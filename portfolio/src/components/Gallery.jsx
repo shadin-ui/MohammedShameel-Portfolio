@@ -16,9 +16,9 @@ const GALLERY_ITEMS = [
   {
     id: 2,
     num: '02',
-    title: 'GITEX — Dubai Chamber Digital',
+    title: 'GITEX 2025 — Dubai Chamber Digital',
     location: 'Dubai, UAE',
-    tag: 'GITEX 2024',
+    tag: 'GITEX 2025',
     image: '/gallery/event5.jpg',
     gradient: 'linear-gradient(135deg, #00103a 0%, #007AFF 50%, #00103a 100%)',
     color: '#007AFF',

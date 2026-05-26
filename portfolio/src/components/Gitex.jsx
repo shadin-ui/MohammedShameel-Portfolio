@@ -18,7 +18,7 @@ export default function Gitex() {
             </div>
 
             <h2 className="gitex-title">
-              GITEX Global <em>2024</em>
+              GITEX Global <em>2025</em>
             </h2>
 
             <p className="gitex-desc">
@@ -56,7 +56,7 @@ export default function Gitex() {
               <div className="gitex-card-glow" />
 
               <div className="gitex-card-top">
-                <span className="gitex-year">2024</span>
+                <span className="gitex-year">2025</span>
                 <span className="gitex-location">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
