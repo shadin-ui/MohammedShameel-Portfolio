@@ -114,6 +114,7 @@
   width: 74%;
   height: 74%;
   object-fit: contain;
+  border-radius: 8px;
   transition: transform 0.4s var(--ease-out-expo);
 }
 
