@@ -26,6 +26,16 @@ const GALLERY_ITEMS = [
   {
     id: 3,
     num: '03',
+    title: 'GITEX Global 2025',
+    location: 'Dubai, UAE',
+    tag: 'GITEX 2025',
+    image: '/gallery/gitex2025.jpg',
+    gradient: 'linear-gradient(135deg, #10002b 0%, #7b2cbf 50%, #10002b 100%)',
+    color: '#7b2cbf',
+  },
+  {
+    id: 4,
+    num: '04',
     title: 'With Governor Phil Murphy',
     location: 'New Jersey, USA',
     tag: 'Leadership Connect',
@@ -34,8 +44,8 @@ const GALLERY_ITEMS = [
     color: '#dc2626',
   },
   {
-    id: 4,
-    num: '04',
+    id: 5,
+    num: '05',
     title: 'Tech & Startup Networking',
     location: 'Kerala, India',
     tag: 'Ecosystem Event',
@@ -44,8 +54,8 @@ const GALLERY_ITEMS = [
     color: '#10b981',
   },
   {
-    id: 5,
-    num: '05',
+    id: 6,
+    num: '06',
     title: 'MFC Meetup',
     location: 'Kerala, India',
     tag: 'Community Building',
