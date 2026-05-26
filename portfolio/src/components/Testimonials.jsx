@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useScrollReveal } from '../hooks';
 import './Testimonials.css';
 
 // Import mentor images directly from src/assets for robust Vite bundling
@@ -85,6 +86,7 @@ const TESTIMONIALS = [
 export default function Testimonials() {
   const sectionRef = useRef(null);
   const [activeCard, setActiveCard] = useState(null);
+  const [headerRef, headerVisible] = useScrollReveal();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -129,16 +131,17 @@ export default function Testimonials() {
   };  return (
     <section id="testimonials" className="testimonials-section" ref={sectionRef}>
       <div className="container">
-        <div className="section-header text-center">
-          <div className="subtitle-pill reveal-stagger">Ecosystem Endorsements</div>
-          <h2 className="section-title creative-title">
-            <span className="line"><span className="line-inner">Validated by <em>Ecosystem Leaders</em></span></span>
-            <span className="line"><span className="line-inner">Voices of <span className="highlight-text">Trust & Authority</span></span></span>
+        <div
+          className={`testimonials-header reveal ${headerVisible ? 'visible' : ''}`}
+          ref={headerRef}
+        >
+          <span className="section-tag">Ecosystem Endorsements</span>
+          <h2>
+            Validated by <span className="text-gradient">Ecosystem Leaders</span>
           </h2>
-          <p className="section-desc">
+          <p className="testimonials-sub">
             Trusted by government ministers, industrial leaders, strategic mentors, and Forbes Council members for building early-stage ecosystems and empowering next-gen founders.
           </p>
-          <div className="title-divider-line" />
         </div>
 
         <div className="bento-grid">
