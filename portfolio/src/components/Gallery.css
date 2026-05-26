@@ -2,6 +2,7 @@
 .gallery-section {
   padding: 120px 0 80px;
   position: relative;
+  z-index: 3;
 }
 
 .gallery-header {
