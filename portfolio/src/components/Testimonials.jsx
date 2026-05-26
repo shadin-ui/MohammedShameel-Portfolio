@@ -6,6 +6,7 @@ import imgKunhalikutty from '../assets/mentor_kunhalikutty.jpg';
 import imgBalagopal from '../assets/mentor_balagopal.png';
 import imgVipin from '../assets/mentor_vipin.png';
 import imgSaheer from '../assets/mentor_saheer.png';
+import imgPhilMurphy from '../assets/mentor_philmurphy.jpg';
 
 
 const TESTIMONIALS = [
@@ -64,6 +65,20 @@ const TESTIMONIALS = [
     isLinkedIn: true,
     split: false,
     size: 'square-card-right-sm' // 5-col bento
+  },
+  {
+    id: 'philmurphy',
+    name: 'Phil Murphy',
+    role: 'Governor of New Jersey, United States',
+    text: 'A highly motivated young mind with innovative thinking and a passion for meaningful conversations and connections.',
+    type: 'Gubernatorial Endorsement',
+    avatar: imgPhilMurphy,
+    initials: 'PM',
+    gradient: 'linear-gradient(135deg, #003087 0%, #B22222 100%)',
+    featured: false,
+    isLinkedIn: false,
+    split: false,
+    size: 'square-card-right'
   }
 ];
 

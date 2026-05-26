@@ -155,15 +155,15 @@ export default function Navbar() {
               <button className="nav-cta nav-cta-desktop" onClick={() => scrollTo('#contact')}>
                 Let's Connect
               </button>
-            </div>
 
-            <button
-              className={`nav-toggle ${mobileOpen ? 'active' : ''}`}
-              onClick={toggleMobile}
-              aria-label="Toggle menu"
-            >
-              <span /><span /><span />
-            </button>
+              <button
+                className={`nav-toggle ${mobileOpen ? 'active' : ''}`}
+                onClick={toggleMobile}
+                aria-label="Toggle menu"
+              >
+                <span /><span /><span />
+              </button>
+            </div>
           </div>
         </div>
       </nav>
@@ -214,10 +214,12 @@ export default function Navbar() {
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         aria-label="Scroll to top"
       >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="18 15 12 9 6 15" />
-        </svg>
-        <span className="scroll-up-text">Scroll Up</span>
+        <span className="scroll-up-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 19V5M5 12l7-7 7 7" />
+          </svg>
+        </span>
+        <span className="scroll-up-text">Back to Top</span>
       </button>
 
       {/* Mobile Overlay */}
@@ -230,7 +232,7 @@ export default function Navbar() {
               onClick={() => scrollTo(href)}
             >
               <span className="mobile-nav-num">0{index + 1}</span>
-              <span className="mobile-nav-text">{label}</span>
+              <span className="mobile-nav-label">{label}</span>
             </button>
           ))}
         </div>

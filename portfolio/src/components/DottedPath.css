@@ -51,9 +51,18 @@
   }
 }
 
-/* Hide on mobile to save processing power and keep mobile layout uncluttered */
+/* Mobile: show dotted path at reduced visibility */
 @media (max-width: 768px) {
   .dotted-path-container {
-    display: none;
+    display: block;
+    opacity: 0.7;
+  }
+
+  .dotted-line-base {
+    stroke: rgba(82, 3, 128, 0.2);
+  }
+
+  .dotted-line-pulse {
+    filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.35)) drop-shadow(0 0 8px rgba(139, 47, 192, 0.2));
   }
 }

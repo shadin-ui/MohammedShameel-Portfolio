@@ -1,6 +1,8 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import Gitex from './components/Gitex';
+import Gallery from './components/Gallery';
 import Ventures from './components/Ventures';
 import Expertise from './components/Expertise';
 import Education from './components/Education';
@@ -26,6 +28,8 @@ export default function App() {
         <Navbar />
         <Hero />
         <About />
+        <Gitex />
+        <Gallery />
         <Ventures />
         <Expertise />
         <Education />

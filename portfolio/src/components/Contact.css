@@ -774,7 +774,7 @@
   gap: 24px;
 }
 
-.scroll-up-btn {
+.footer-scroll-up-btn {
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -789,7 +789,7 @@
   box-shadow: 0 0 15px rgba(82, 3, 128, 0.05);
 }
 
-.scroll-up-btn:hover {
+.footer-scroll-up-btn:hover {
   background: rgba(82, 3, 128, 0.16);
   border-color: var(--purple-400);
   color: var(--purple-200);
@@ -800,13 +800,13 @@
 }
 
 /* Light theme overrides */
-[data-theme="light"] .scroll-up-btn {
+[data-theme="light"] .footer-scroll-up-btn {
   background: rgba(82, 3, 128, 0.03);
   border-color: rgba(82, 3, 128, 0.08);
   color: var(--purple-600);
 }
 
-[data-theme="light"] .scroll-up-btn:hover {
+[data-theme="light"] .footer-scroll-up-btn:hover {
   background: rgba(82, 3, 128, 0.08);
   border-color: var(--purple-600);
   color: var(--purple-700);

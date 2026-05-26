@@ -13,6 +13,21 @@ const VENTURES = [
     featured: true,
   },
   {
+    name: 'SnapShare AI',
+    role: 'Co-Founder & Operator',
+    desc: 'Instant AI Photo Delivery for events and photographers using facial recognition — connecting guests to their photos in seconds.',
+    tags: ['AI / ML', 'SaaS', 'Facial Recognition', 'Event Tech'],
+    color: 'sky',
+    bigPortfolio: true,
+    tagline: 'Instant AI Photo Delivery for Events using Facial Recognition',
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+        <circle cx="12" cy="13" r="4" />
+      </svg>
+    ),
+  },
+  {
     name: 'ZilCubator',
     role: 'Director & Secretary',
     desc: 'Leadership in ecosystem entity focused on startup incubation and acceleration.',
@@ -83,7 +98,11 @@ const COLLABS = [
 
 export default function Ventures() {
   const [headerRef, headerVisible] = useScrollReveal();
+  const [snapRef, snapVisible] = useScrollReveal({ threshold: 0.15 });
   const [collabRef, collabVisible] = useScrollReveal();
+
+  const snapShare = VENTURES.find(v => v.bigPortfolio);
+  const others = VENTURES.filter(v => !v.bigPortfolio);
 
   return (
     <section className="ventures" id="ventures">
@@ -92,7 +111,7 @@ export default function Ventures() {
           className={`ventures-header reveal ${headerVisible ? 'visible' : ''}`}
           ref={headerRef}
         >
-          <span className="section-tag">Portfolio & Ventures</span>
+          <span className="section-tag">Portfolio &amp; Ventures</span>
           <h2>
             Ecosystem <span className="text-gradient">Involvement</span>
           </h2>
@@ -102,8 +121,52 @@ export default function Ventures() {
           </p>
         </div>
 
+        {/* SnapShare AI — Big Portfolio Spotlight */}
+        <div
+          className={`snapshare-spotlight reveal ${snapVisible ? 'visible' : ''}`}
+          ref={snapRef}
+        >
+          <div className="snapshare-left">
+            <div className="snapshare-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Big Portfolio
+            </div>
+            <h3 className="snapshare-name">SnapShare <em>AI</em></h3>
+            <p className="snapshare-role">{snapShare.role}</p>
+            <p className="snapshare-tagline">
+              Instant AI Photo Delivery for Events<br />
+              and Photographers using{' '}
+              <span className="snapshare-highlight">AI facial Recognition.</span>
+            </p>
+            <p className="snapshare-desc">{snapShare.desc}</p>
+            <div className="snapshare-tags">
+              {snapShare.tags.map(t => <span key={t} className="snapshare-tag">{t}</span>)}
+            </div>
+          </div>
+          <div className="snapshare-right">
+            <div className="snapshare-card">
+              <div className="snapshare-card-glow" />
+              <div className="snapshare-icon-ring">
+                <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                  <circle cx="12" cy="13" r="4" />
+                </svg>
+              </div>
+              <div className="snapshare-card-label">SnapShare AI</div>
+              <div className="snapshare-face-detect">
+                <div className="face-corner tl" />
+                <div className="face-corner tr" />
+                <div className="face-corner bl" />
+                <div className="face-corner br" />
+                <div className="face-dot" />
+              </div>
+              <div className="snapshare-scan-line" />
+            </div>
+          </div>
+        </div>
+
         <div className="ventures-grid">
-          {VENTURES.map((v, i) => (
+          {others.map((v, i) => (
             <VentureCard key={v.name} venture={v} index={i} />
           ))}
         </div>
@@ -112,7 +175,7 @@ export default function Ventures() {
           className={`collab-bar reveal ${collabVisible ? 'visible' : ''}`}
           ref={collabRef}
         >
-          <h4>Ecosystem Collaborators & Partnerships</h4>
+          <h4>Ecosystem Collaborators &amp; Partnerships</h4>
           <div className="collab-list">
             {COLLABS.map((name) => (
               <span className="collab-chip" key={name}>{name}</span>

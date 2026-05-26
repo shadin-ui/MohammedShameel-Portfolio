@@ -371,7 +371,7 @@ export default function Contact() {
                 </a>
               </div>
               <button
-                className="scroll-up-btn"
+                className="footer-scroll-up-btn"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                 aria-label="Scroll to top"
               >
