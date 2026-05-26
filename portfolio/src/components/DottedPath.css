@@ -1,0 +1,59 @@
+/* ── Dotted Flowing Bezier Path ── */
+.dotted-path-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2; /* Sits elegantly between background canvas and text panels */
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.dotted-path-container svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Base dotted line flowing slowly */
+.dotted-line-base {
+  animation: dottedFlowSlow 40s linear infinite;
+  stroke: rgba(82, 3, 128, 0.16);
+  transition: stroke 0.5s ease;
+}
+
+[data-theme="light"] .dotted-line-base {
+  stroke: rgba(82, 3, 128, 0.1);
+}
+
+@keyframes dottedFlowSlow {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
+/* Glowing pulse dashes blowing/flowing rapidly */
+.dotted-line-pulse {
+  animation: dottedFlowFast 12s linear infinite;
+  filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.4)) drop-shadow(0 0 12px rgba(139, 47, 192, 0.2));
+}
+
+@keyframes dottedFlowFast {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -2000;
+  }
+}
+
+/* Hide on mobile to save processing power and keep mobile layout uncluttered */
+@media (max-width: 768px) {
+  .dotted-path-container {
+    display: none;
+  }
+}

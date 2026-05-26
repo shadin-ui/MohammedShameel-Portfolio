@@ -1,0 +1,1067 @@
+/* ── Testimonials Section — Premium Bento Grid CSS ── */
+
+.testimonials-section {
+  position: relative;
+  padding: 100px 0 120px;
+  background: transparent;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.testimonials-section::before {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 70%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(82, 3, 128, 0.05) 0%,
+    rgba(139, 47, 192, 0.01) 50%,
+    transparent 100%
+  );
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+
+/* ── Section Header ── */
+.section-header {
+  margin-bottom: 60px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.subtitle-pill {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--purple-300);
+  background: rgba(82, 3, 128, 0.15);
+  border: 1px solid rgba(139, 47, 192, 0.2);
+  margin-bottom: 16px;
+  box-shadow: 0 2px 10px rgba(82, 3, 128, 0.1);
+}
+
+[data-theme="light"] .subtitle-pill {
+  color: var(--purple-700);
+  background: rgba(82, 3, 128, 0.05);
+  border-color: rgba(82, 3, 128, 0.12);
+}
+
+.creative-title {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 5.2vw, 52px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  color: var(--text-primary);
+  margin-top: 10px;
+}
+
+.creative-title em {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--purple-300);
+}
+
+[data-theme="light"] .creative-title em {
+  color: var(--purple-700);
+}
+
+.creative-title .line {
+  display: block;
+  overflow: visible;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+
+.creative-title .line-inner {
+  display: block;
+}
+
+.title-divider-line {
+  position: relative;
+  width: 160px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(139, 47, 192, 0.3) 20%, rgba(139, 47, 192, 0.6) 50%, rgba(139, 47, 192, 0.3) 80%, transparent);
+  margin: 32px auto 0;
+  border-radius: 10px;
+}
+
+.title-divider-line::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--purple-300);
+  box-shadow: 0 0 12px var(--purple-300);
+  animation: glowPulse 2s infinite alternate;
+}
+
+@keyframes glowPulse {
+  from {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.6;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1.3);
+    opacity: 1;
+    box-shadow: 0 0 18px var(--purple-300);
+  }
+}
+
+.section-desc {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ── Symmetrical 2x2 Grid Layout ── */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 equal columns on desktop */
+  gap: 30px;
+  align-items: stretch;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+/* ── Testimonial Card Styling ── */
+.testimonial-card {
+  grid-column: span 1;
+  position: relative;
+  border-radius: 24px;
+  padding: 36px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.01) 40%,
+    rgba(140, 120, 200, 0.02) 100%
+  );
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top-color: rgba(255, 255, 255, 0.15);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(40px) scale(0.95);
+  opacity: 0;
+  z-index: 1;
+}
+
+.testimonial-card.visible {
+  animation: testimonialReveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: calc(var(--card-index) * 0.12s);
+}
+
+@keyframes testimonialReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Symmetrical desktop alignment centering overrides removed */
+
+[data-theme="light"] .testimonial-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.65) 0%,
+    rgba(255, 255, 255, 0.45) 40%,
+    rgba(240, 230, 255, 0.5) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.5);
+  border-top-color: rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 10px 30px rgba(82, 3, 128, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* Obsolete Bento widths removed */
+
+/* Official Government Icon */
+.gov-quote-icon {
+  color: #FFD700;
+  width: 20px;
+  height: 20px;
+  opacity: 0.85;
+  filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.4));
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.testimonial-card:hover .gov-quote-icon {
+  opacity: 1;
+  transform: scale(1.15) rotate(5deg);
+}
+
+/* Specular Card Shine Sweep */
+.card-shine {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  transition: none;
+  pointer-events: none;
+  z-index: 1;
+}
+
+[data-theme="light"] .card-shine {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 100%
+  );
+}
+
+.testimonial-card:hover .card-shine {
+  left: 150%;
+  transition: left 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Iridescent glowing border segments (interactive apple lens effect) ── */
+.card-glow-border {
+  position: absolute;
+  left: 15%;
+  right: 15%;
+  height: 2px;
+  border-radius: 100px;
+  opacity: 0.15;
+  filter: blur(1.5px) saturate(1.8);
+  pointer-events: none;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+  background-size: 200% 100%;
+  animation: chromatic-shimmer 8s linear infinite;
+}
+
+.card-glow-border.top {
+  top: -1px;
+  animation-delay: -2s;
+}
+
+.card-glow-border.bottom {
+  bottom: -1px;
+  animation-direction: reverse;
+}
+
+/* Hover Interactions */
+.testimonial-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="light"] .testimonial-card:hover {
+  border-color: rgba(82, 3, 128, 0.2);
+  box-shadow:
+    0 16px 40px rgba(82, 3, 128, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+.testimonial-card:hover .card-glow-border {
+  opacity: 0.85;
+  left: 8%;
+  right: 8%;
+  height: 2.5px;
+  filter: blur(1px) saturate(2.2);
+}
+
+/* ── Testimonial Header ── */
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.avatar-wrapper {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  padding: 2.5px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.03) 100%);
+  flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .avatar-wrapper {
+  background: linear-gradient(135deg, rgba(82, 3, 128, 0.18) 0%, rgba(82, 3, 128, 0.03) 100%);
+  box-shadow: 0 4px 12px rgba(82, 3, 128, 0.06);
+}
+
+/* Expanded Circular Avatar for Square Bento Panels */
+.avatar-wrapper.size-large {
+  width: 78px;
+  height: 78px;
+  padding: 3px;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1.5px solid #000;
+  background: #14111a;
+  z-index: 1;
+}
+
+[data-theme="light"] .avatar-image {
+  border-color: #fff;
+  background: #fdfdfd;
+}
+
+.avatar-fallback {
+  position: absolute;
+  inset: 2.5px;
+  border-radius: 50%;
+  border: 1.5px solid #000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  color: white;
+  z-index: 0;
+}
+
+.avatar-wrapper.size-large .avatar-fallback {
+  font-size: 24px;
+  inset: 3px;
+  border-width: 1.5px;
+}
+
+[data-theme="light"] .avatar-fallback {
+  border-color: #fff;
+}
+
+.author-info {
+  flex-grow: 1;
+}
+
+.author-name {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: var(--text-primary);
+  margin: 0 0 3px 0;
+}
+
+.author-role {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.35;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Left-aligned structured row for relationship badges and checkmark icons */
+.author-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+/* Relationship Badge & LinkedIn Integration */
+.badge-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.relationship-badge {
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: var(--purple-300);
+  background: rgba(82, 3, 128, 0.18);
+  border: 1px solid rgba(139, 47, 192, 0.15);
+  white-space: nowrap;
+}
+
+[data-theme="light"] .relationship-badge {
+  color: var(--purple-700);
+  background: rgba(82, 3, 128, 0.04);
+  border-color: rgba(82, 3, 128, 0.08);
+}
+
+.linkedin-quote-icon {
+  color: #0077b5;
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.testimonial-card:hover .linkedin-quote-icon {
+  opacity: 1;
+}
+
+/* ── Testimonial Content ── */
+.testimonial-content {
+  position: relative;
+  z-index: 2;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.quote-mark {
+  font-family: var(--font-serif);
+  font-size: 54px;
+  line-height: 1;
+  color: rgba(139, 47, 192, 0.25);
+  position: absolute;
+  top: -15px;
+  left: -8px;
+  pointer-events: none;
+  font-weight: 800;
+}
+
+.quote-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-style: italic;
+  font-weight: 400;
+}
+
+[data-theme="light"] .quote-text {
+  color: var(--slate-800);
+}
+
+
+/* ============================================
+   SPLIT LAYOUT DESIGN — SPACE FOR BIG PORTRAIT PHOTOS
+   ============================================ */
+
+.split-card {
+  padding: 0 !important; /* Full card overflow is managed by split-wrapper */
+}
+
+.split-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: stretch;
+}
+
+/* Left panel for the massive profile headshot */
+.avatar-large-wrapper {
+  position: relative;
+  width: 230px;
+  min-height: 100%;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .avatar-large-wrapper {
+  border-right-color: rgba(0, 0, 0, 0.06);
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.avatar-large-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.8s var(--ease-out-expo), filter 0.8s var(--ease-out-expo);
+}
+
+.testimonial-card:hover .avatar-large-image {
+  transform: scale(1.05);
+}
+
+/* Large letter-avatar fallback if photo fails or is loading */
+.avatar-large-fallback {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 48px;
+  color: white;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* Right content panel inside split card */
+.split-content-right {
+  flex-grow: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 992px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
+    gap: 20px;
+  }
+  .testimonial-card {
+    grid-column: span 1 !important;
+  }
+
+  .testimonials-section {
+    padding: 80px 0 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bento-grid {
+    grid-template-columns: 1fr; /* Stacks vertically on mobile */
+    gap: 16px;
+  }
+  .testimonial-card {
+    grid-column: span 1 !important;
+  }
+  .testimonial-card:nth-child(5) {
+    grid-column: span 1 !important;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .testimonial-card {
+    padding: 24px;
+    border-radius: 20px;
+    gap: 16px;
+  }
+
+  .avatar-wrapper {
+    width: 48px;
+    height: 48px;
+  }
+
+  .avatar-wrapper.size-large {
+    width: 68px;
+    height: 68px;
+  }
+
+  .avatar-fallback {
+    font-size: 15px;
+  }
+
+  .avatar-wrapper.size-large .avatar-fallback {
+    font-size: 20px;
+  }
+
+  .testimonial-header {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .badge-wrapper {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 10px;
+    margin-top: 6px;
+    order: 3;
+  }
+
+  [data-theme="light"] .badge-wrapper {
+    border-top-color: rgba(0, 0, 0, 0.04);
+  }
+
+  .author-info {
+    width: calc(100% - 80px);
+  }
+
+  .quote-mark {
+    font-size: 40px;
+    top: -10px;
+  }
+}
+
+/* ============================================
+   PREMIUM ID CARD DIGITAL PASS MODAL SYSTEM
+   ============================================ */
+
+/* Outer backdrop overlay */
+.id-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 4, 10, 0.82);
+  backdrop-filter: blur(28px) saturate(220%);
+  -webkit-backdrop-filter: blur(28px) saturate(220%);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  animation: idOverlayFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity;
+}
+
+@keyframes idOverlayFadeIn {
+  to { opacity: 1; }
+}
+
+/* The physical ID Card Pass frame */
+.id-card-container {
+  position: relative;
+  width: 100%;
+  max-width: 410px;
+  border-radius: 28px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.02) 40%,
+    rgba(140, 120, 200, 0.03) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-top-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 
+    0 35px 80px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.03);
+  
+  overflow: hidden;
+  transform: perspective(1000px) rotateX(15deg) translateY(40px) scale(0.92);
+  opacity: 0;
+  animation: idCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards;
+  will-change: transform, opacity;
+  z-index: 2001;
+}
+
+@keyframes idCardEnter {
+  to {
+    transform: perspective(1000px) rotateX(0deg) translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+[data-theme="light"] .id-card-container {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(255, 255, 255, 0.7) 40%,
+    rgba(240, 230, 255, 0.75) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.6);
+  border-top-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    0 30px 70px rgba(82, 3, 128, 0.08),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.95),
+    0 0 0 1px rgba(82, 3, 128, 0.03);
+}
+
+/* Card Specular Reflection Sheen */
+.id-card-shine {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 45%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.05) 55%,
+    transparent 100%
+  );
+  opacity: 0.8;
+  pointer-events: none;
+  z-index: 10;
+}
+
+[data-theme="light"] .id-card-shine {
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.25) 45%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0.25) 55%,
+    transparent 100%
+  );
+}
+
+/* Iridescent Top/Bottom glowing pass borders */
+.id-card-glow {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  height: 2.5px;
+  border-radius: 100px;
+  filter: blur(1.5px) saturate(2);
+  pointer-events: none;
+  z-index: 11;
+  background-size: 200% 100%;
+  animation: chromatic-shimmer 6s linear infinite;
+}
+
+.id-card-glow.top {
+  top: -1px;
+}
+
+.id-card-glow.bottom {
+  bottom: -1px;
+  animation-direction: reverse;
+}
+
+/* Pass Header */
+.id-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 28px 18px;
+  z-index: 2;
+  position: relative;
+}
+
+.id-chip-wrapper {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+}
+
+.id-pass-serial {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+
+.id-close-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.id-close-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.id-close-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: white;
+  transform: scale(1.1) rotate(90deg);
+}
+
+[data-theme="light"] .id-close-btn {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: var(--purple-750);
+}
+
+[data-theme="light"] .id-close-btn:hover {
+  background: rgba(82, 3, 128, 0.08);
+  border-color: rgba(82, 3, 128, 0.2);
+  color: var(--purple-950);
+}
+
+/* Portrait Photo Frame */
+.id-photo-frame {
+  position: relative;
+  width: 180px;
+  height: 220px;
+  margin: 0 auto 24px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 16px 36px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="light"] .id-photo-frame {
+  border-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    0 12px 28px rgba(82, 3, 128, 0.06),
+    0 0 0 1.5px rgba(82, 3, 128, 0.08);
+}
+
+.id-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.id-photo-fallback {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 52px;
+  color: white;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+}
+
+/* Hologram reflective security seal overlapping the photo frame corner */
+.id-hologram-seal {
+  position: absolute;
+  bottom: -15px;
+  right: -15px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.02) 65%),
+              linear-gradient(135deg, #ff0055, #00ffaa, #0055ff, #ffff00);
+  background-size: 200% 200%;
+  animation: chromatic-shimmer 8s linear infinite;
+  opacity: 0.3;
+  mix-blend-mode: color-dodge;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 15px rgba(0, 255, 170, 0.15);
+}
+
+/* Credentials */
+.id-credentials {
+  padding: 0 32px 20px;
+  z-index: 2;
+  position: relative;
+}
+
+.id-name {
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.id-role {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+.id-badge-row {
+  display: flex;
+  justify-content: center;
+}
+
+.id-badge {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid transparent;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+}
+
+[data-theme="light"] .id-badge {
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(82, 3, 128, 0.06);
+}
+
+.id-pass-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08) 20%, rgba(255, 255, 255, 0.08) 80%, transparent);
+  width: 85%;
+  margin: 0 auto;
+  z-index: 2;
+  position: relative;
+}
+
+[data-theme="light"] .id-pass-divider {
+  background: linear-gradient(90deg, transparent, rgba(82, 3, 128, 0.06) 20%, rgba(82, 3, 128, 0.06) 80%, transparent);
+}
+
+/* Endorsement text body */
+.id-endorsement-body {
+  position: relative;
+  padding: 24px 36px 28px;
+  z-index: 2;
+}
+
+.id-quote-open {
+  font-family: var(--font-serif);
+  font-size: 64px;
+  line-height: 1;
+  color: rgba(139, 47, 192, 0.2);
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  pointer-events: none;
+  font-weight: 800;
+}
+
+.id-quote-paragraph {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  font-style: italic;
+  font-weight: 400;
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  text-align: center;
+}
+
+[data-theme="light"] .id-quote-paragraph {
+  color: var(--slate-800);
+}
+
+/* Technical footer barcode */
+.id-footer-barcode {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 32px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  position: relative;
+}
+
+[data-theme="light"] .id-footer-barcode {
+  border-top-color: rgba(0, 0, 0, 0.04);
+  background: rgba(82, 3, 128, 0.01);
+}
+
+.id-barcode-lines {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 24px;
+  opacity: 0.65;
+}
+
+.b-line {
+  height: 100%;
+  background: var(--text-primary);
+  border-radius: 1px;
+}
+
+.b-line.w-sm { width: 1px; }
+.b-line.w-md { width: 2.5px; }
+.b-line.w-lg { width: 4px; }
+
+.id-verified-seal {
+  font-family: var(--font-display);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #00FF87;
+  text-shadow: 0 0 10px rgba(0, 255, 135, 0.2);
+  text-transform: uppercase;
+}
+
+[data-theme="light"] .id-verified-seal {
+  color: #009e52;
+  text-shadow: none;
+}
+
+/* Responsive adjustment for ID Pass */
+@media (max-width: 480px) {
+  .id-card-container {
+    max-width: 100%;
+    border-radius: 24px;
+  }
+  .id-photo-frame {
+    width: 140px;
+    height: 170px;
+    margin-bottom: 18px;
+  }
+  .id-credentials {
+    padding: 0 20px 16px;
+  }
+  .id-name {
+    font-size: 18px;
+  }
+  .id-role {
+    font-size: 12px;
+  }
+  .id-endorsement-body {
+    padding: 16px 20px 20px;
+  }
+  .id-quote-paragraph {
+    font-size: 13.5px;
+  }
+  .id-footer-barcode {
+    padding: 16px 20px 20px;
+  }
+}
+

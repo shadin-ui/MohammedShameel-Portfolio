@@ -1,0 +1,151 @@
+/* ── Premium Cinematic Intro Launch Preloader Screen ── */
+.launch-screen-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #06050a; /* Dark background matching --dark-950 */
+  z-index: 999999; /* Higher than custom cursor, ensures absolute block during initialization */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  will-change: transform, opacity;
+  transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1), 
+              opacity 0.8s cubic-bezier(0.85, 0, 0.15, 1),
+              filter 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+/* Glowing ambient backing light */
+.launch-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(82, 3, 128, 0.22) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(40px);
+  z-index: 1;
+}
+
+.launch-noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  z-index: 2;
+  pointer-events: none;
+}
+
+.launch-content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 420px;
+  width: 90%;
+}
+
+/* Glowing Bolt Logo Mark */
+.launch-logo-mark {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #520380 0%, #8b2fc0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: 28px;
+  box-shadow: 
+    0 0 30px rgba(139, 47, 192, 0.4),
+    0 0 60px rgba(139, 47, 192, 0.2);
+  animation: logoPulse 2s infinite ease-in-out;
+}
+
+@keyframes logoPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 30px rgba(139, 47, 192, 0.4);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 0 45px rgba(139, 47, 192, 0.6);
+  }
+}
+
+.launch-svg {
+  width: 32px;
+  height: 32px;
+}
+
+/* Title & Subtitle */
+.launch-title {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
+}
+
+.launch-subtitle {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #a855d9;
+  margin-bottom: 48px;
+}
+
+/* Sleek Charging Progress Line */
+.launch-progress-container {
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 14px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.launch-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #520380 0%, #a855d9 100%);
+  box-shadow: 0 0 10px #a855d9;
+  border-radius: 10px;
+  transition: width 0.05s linear;
+}
+
+/* Status Label Row */
+.launch-status-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.launch-status-text {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #7a7290;
+}
+
+.launch-percent {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 11px;
+  font-weight: 800;
+  color: white;
+}
+
+/* ── Launch Split Slide-up and Fade Transition ── */
+.slide-up-fade {
+  transform: translateY(-100%);
+  opacity: 0;
+  filter: blur(10px);
+}

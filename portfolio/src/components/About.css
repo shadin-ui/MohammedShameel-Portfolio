@@ -1,0 +1,416 @@
+/* ── About Section ── */
+.about {
+  padding: var(--section-padding) 0;
+  background: transparent;
+  position: relative;
+  z-index: 3;
+  overflow: hidden;
+}
+
+.about::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  right: -200px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(82, 3, 128, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.about .section-tag {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(132, 115, 142, 0.12);
+  border: var(--border-subtle);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--purple-300);
+  margin-bottom: 20px;
+}
+
+.about-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.about-header h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.about-lead {
+  font-size: 20px;
+  line-height: 1.75;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+
+.about-text p {
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+.about-text strong {
+  color: var(--purple-200);
+  font-weight: 600;
+}
+
+.about-text em {
+  color: var(--purple-300);
+  font-style: normal;
+}
+
+/* Role Tags */
+.role-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.role-tag {
+  padding: 9px 20px;
+  background: rgba(82, 3, 128, 0.1);
+  border: var(--border-subtle);
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--purple-200);
+  transition: all 0.35s var(--ease-out-expo);
+}
+
+.role-tag:hover {
+  background: rgba(82, 3, 128, 0.22);
+  border-color: var(--purple-400);
+  transform: translateY(-2px);
+}
+
+/* Orbit Visual */
+.about-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.orbit-system {
+  position: relative;
+  width: 360px;
+  height: 360px;
+}
+
+.orbit-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  border-radius: 22px;
+  background: rgba(149, 88, 219, 0.493);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(139, 47, 192, 0.2);
+  z-index: 2;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.orbit-center:hover {
+  border-color: rgba(168, 85, 247, 0.55);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(139, 47, 192, 0.4);
+}
+
+.orbit-center-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 15px;
+  transition: transform 0.4s var(--ease-out-expo);
+}
+
+.orbit-center:hover .orbit-center-logo {
+  transform: scale(1.12) rotate(6deg);
+}
+
+.orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border: 1px solid rgba(113, 89, 128, 0.64);
+}
+
+.orbit-ring-1 {
+  width: 220px;
+  height: 220px;
+  margin-top: -110px;
+  margin-left: -110px;
+  animation: orbitSpin 36s linear infinite;
+}
+
+.orbit-ring-2 {
+  width: 340px;
+  height: 340px;
+  margin-top: -170px;
+  margin-left: -170px;
+  animation: orbitSpin 50s linear infinite reverse;
+}
+
+@keyframes orbitSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.orbit-node {
+  position: absolute;
+  padding: 8px 16px;
+  background: rgba(82, 3, 128, 0.12);
+  border: 1px solid rgba(82, 3, 128, 0.25);
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--purple-100);
+  white-space: nowrap;
+  transition: background 0.4s var(--ease-out-expo), border-color 0.4s var(--ease-out-expo), color 0.4s var(--ease-out-expo), box-shadow 0.4s var(--ease-out-expo);
+  box-shadow: 0 4px 12px rgba(82, 3, 128, 0.05);
+}
+
+.orbit-node:hover {
+  background: rgba(82, 3, 128, 0.32);
+  border-color: var(--purple-300);
+  color: white;
+  box-shadow: 0 0 20px rgba(139, 47, 192, 0.45);
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* Pause whole system animations elegantly on hover */
+.orbit-system:hover .orbit-ring,
+.orbit-system:hover .orbit-node {
+  animation-play-state: paused;
+}
+
+/* Position and counter-spin orbit nodes (keeping them upright) */
+/* Inner Ring (Ring 1) — 2 Nodes: Strategy (Top), Operations (Bottom) */
+.orbit-ring-1 .orbit-node:nth-child(1) {
+  top: -16px;
+  left: 50%;
+  animation: counterSpinX 36s linear infinite;
+}
+
+.orbit-ring-1 .orbit-node:nth-child(2) {
+  bottom: -16px;
+  left: 50%;
+  animation: counterSpinX 36s linear infinite;
+}
+
+/* Outer Ring (Ring 2) — 4 Nodes: Founders (Top), Investors (Bottom), Partners (Left), Networks (Right) */
+.orbit-ring-2 .orbit-node:nth-child(1) {
+  top: -16px;
+  left: 50%;
+  animation: counterSpinXReverse 50s linear infinite;
+}
+
+.orbit-ring-2 .orbit-node:nth-child(2) {
+  bottom: -16px;
+  left: 50%;
+  animation: counterSpinXReverse 50s linear infinite;
+}
+
+.orbit-ring-2 .orbit-node:nth-child(3) {
+  top: 50%;
+  left: -24px;
+  animation: counterSpinYReverse 50s linear infinite;
+}
+
+.orbit-ring-2 .orbit-node:nth-child(4) {
+  top: 50%;
+  right: -24px;
+  animation: counterSpinYReverse 50s linear infinite;
+}
+
+/* Upright Counter-spin physics keyframes */
+@keyframes counterSpinX {
+  from {
+    transform: translateX(-50%) rotate(0deg);
+  }
+
+  to {
+    transform: translateX(-50%) rotate(-360deg);
+  }
+}
+
+@keyframes counterSpinXReverse {
+  from {
+    transform: translateX(-50%) rotate(0deg);
+  }
+
+  to {
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+
+@keyframes counterSpinY {
+  from {
+    transform: translateY(-50%) rotate(0deg);
+  }
+
+  to {
+    transform: translateY(-50%) rotate(-360deg);
+  }
+}
+
+@keyframes counterSpinYReverse {
+  from {
+    transform: translateY(-50%) rotate(0deg);
+  }
+
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .about-header {
+    margin-bottom: 48px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-header {
+    margin-bottom: 36px;
+  }
+
+  .about-grid {
+    gap: 36px;
+  }
+}
+
+@media (max-width: 640px) {
+  .orbit-system {
+    width: 280px;
+    height: 280px;
+  }
+
+  .orbit-ring-1 {
+    width: 180px;
+    height: 180px;
+    margin-top: -90px;
+    margin-left: -90px;
+  }
+
+  .orbit-ring-2 {
+    width: 260px;
+    height: 260px;
+    margin-top: -130px;
+    margin-left: -130px;
+  }
+
+  .orbit-center {
+    width: 64px;
+    height: 64px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .orbit-system {
+    transform: scale(0.82);
+    transform-origin: center;
+    margin: -24px 0;
+  }
+}
+
+@media (max-width: 360px) {
+  .orbit-system {
+    transform: scale(0.68);
+    transform-origin: center;
+    margin: -48px 0;
+  }
+}
+
+/* ── About Light Mode Overrides ── */
+[data-theme="light"] .about .section-tag {
+  background: rgba(82, 3, 128, 0.06);
+  color: var(--purple-600);
+}
+
+[data-theme="light"] .about-lead {
+  color: var(--dark-50);
+}
+
+[data-theme="light"] .about-text strong {
+  color: var(--purple-600);
+}
+
+[data-theme="light"] .about-text em {
+  color: var(--purple-500);
+}
+
+[data-theme="light"] .role-tag {
+  background: rgba(82, 3, 128, 0.05);
+  border-color: rgba(82, 3, 128, 0.1);
+  color: var(--purple-600);
+}
+
+[data-theme="light"] .role-tag:hover {
+  background: rgba(82, 3, 128, 0.12);
+  border-color: var(--purple-600);
+  color: var(--purple-700);
+}
+
+[data-theme="light"] .orbit-ring {
+  border-color: rgba(30, 0, 58, 0.811);
+}
+
+[data-theme="light"] .orbit-node {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(0, 0, 0, 0.15);
+  color: var(--purple-600);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .orbit-center {
+  background: var(--purple-500);
+  border-color: rgba(82, 3, 128, 0.2);
+  box-shadow:
+    0 10px 25px rgba(82, 3, 128, 0.1),
+    0 0 20px rgba(82, 3, 128, 0.15);
+}
