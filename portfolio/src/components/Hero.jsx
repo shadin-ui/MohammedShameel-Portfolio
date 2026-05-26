@@ -33,7 +33,7 @@ export default function Hero() {
                 <span className="line-inner">Hi, I'm <em>Shameel</em>,</span>
               </span>
               <span className="line">
-                <span className="line-inner">an <span className="highlight">Ecosystem Builder</span> based in Keralam.</span>
+                <span className="line-inner">an <span className="highlight">Ecosystem Builder</span> based in Kerala.</span>
               </span>
             </h1>
 
