@@ -46,12 +46,12 @@ const GALLERY_ITEMS = [
   {
     id: 5,
     num: '05',
-    title: 'Founder Community Meetup',
+    title: 'MFC Meetup',
     location: 'Kerala, India',
     tag: 'Community Building',
     image: '/gallery/event3.jpg',
     gradient: 'linear-gradient(135deg, #1a0533 0%, #8B2FC0 50%, #1a0533 100%)',
-    color: '#8B2FC0',
+    color: 'rgba(255, 255, 255, 1)',
   },
 ];
 

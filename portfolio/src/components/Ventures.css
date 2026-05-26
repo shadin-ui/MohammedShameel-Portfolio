@@ -348,8 +348,8 @@
 }
 
 [data-theme="light"] .venture-card.featured .venture-icon {
-  background: rgba(82, 3, 128, 0.05);
-  border-color: rgba(82, 3, 128, 0.12);
+  background: rgba(82, 3, 128, 0.95); /* Rich purple background so white LYNQ logo is fully visible and high contrast */
+  border-color: rgba(82, 3, 128, 0.2);
 }
 
 /* ── SnapShare AI Spotlight Showcase ── */

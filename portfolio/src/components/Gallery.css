@@ -177,13 +177,15 @@
 /* Collapsed state vertical label */
 .panel-collapsed-label {
   position: absolute;
-  bottom: 28px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%) rotate(-90deg) translateX(30%);
-  transform-origin: center center;
+  width: 560px; /* Match parent height to prevent text clipping before rotation */
+  height: 72px; /* Match parent width */
+  transform: translate(-50%, -50%) rotate(-90deg);
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   white-space: nowrap;
   z-index: 5;
@@ -252,10 +254,12 @@
   }
 
   .panel-collapsed-label {
-    transform: none;
+    top: 50%;
+    bottom: auto;
     left: 70px;
-    bottom: 50%;
-    transform: translateY(50%);
+    width: auto;
+    height: auto;
+    transform: translateY(-50%);
     flex-direction: row;
     gap: 8px;
   }
