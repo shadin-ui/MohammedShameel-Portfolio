@@ -128,10 +128,10 @@ export default function Ventures() {
         >
           <div className="snapshare-left">
             <div className="snapshare-badge">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
               Big Portfolio
             </div>
-            <h3 className="snapshare-name">SnapShare <em>AI</em></h3>
+            <h3 className="snapshare-name">SnapShare AI</h3>
             <p className="snapshare-role">{snapShare.role}</p>
             <p className="snapshare-tagline">
               Instant AI Photo Delivery for Events<br />
