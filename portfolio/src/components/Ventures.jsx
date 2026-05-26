@@ -2,6 +2,10 @@ import { useScrollReveal } from '../hooks';
 import lynqLogo from '../assets/Lynq logo Svg (2).svg';
 import zilcubatorLogo from '../assets/zilcubator_logo.png';
 import pitmastersLogo from '../assets/pitmasters_logo.png';
+import blulinesLogo from '../assets/blulines_logo.png';
+import fitmyjobLogo from '../assets/fitmyjob_logo.png';
+import paywintLogo from '../assets/paywint_logo.png';
+import snapshareLogo from '../assets/snapshare_logo.png';
 import './Ventures.css';
 
 const VENTURES = [
@@ -22,12 +26,7 @@ const VENTURES = [
     color: 'sky',
     bigPortfolio: true,
     tagline: 'Instant AI Photo Delivery for Events using Facial Recognition',
-    icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-        <circle cx="12" cy="13" r="4" />
-      </svg>
-    ),
+    icon: <img src={snapshareLogo} alt="SnapShare AI" />,
   },
   {
     name: 'ZilCubator',
@@ -43,11 +42,7 @@ const VENTURES = [
     desc: 'Contributing to strategic direction and operational scaling for early-stage growth.',
     tags: ['Startup', 'Growth'],
     color: 'teal',
-    icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-      </svg>
-    ),
+    icon: <img src={blulinesLogo} alt="Blulines" />,
   },
   {
     name: 'FitMyJob',
@@ -55,12 +50,7 @@ const VENTURES = [
     desc: 'Advisory and strategic positioning support for early-stage growth.',
     tags: ['HR Tech', 'Advisory'],
     color: 'amber',
-    icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" />
-        <path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />
-      </svg>
-    ),
+    icon: <img src={fitmyjobLogo} alt="FitMyJob" />,
   },
   {
     name: 'Paywint',
@@ -68,11 +58,7 @@ const VENTURES = [
     desc: 'Fintech startup involvement with strategic growth and operational structuring.',
     tags: ['Fintech', 'Operations'],
     color: 'rose',
-    icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <rect x="2" y="5" width="20" height="14" rx="2" /><path d="M2 10h20" />
-      </svg>
-    ),
+    icon: <img src={paywintLogo} alt="Paywint" />,
   },
   {
     name: 'Pitmasters Café',
@@ -140,10 +126,7 @@ export default function Ventures() {
             <div className="snapshare-card">
               <div className="snapshare-card-glow" />
               <div className="snapshare-icon-ring">
-                <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
-                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-                  <circle cx="12" cy="13" r="4" />
-                </svg>
+                <img src={snapshareLogo} className="snapshare-featured-logo" alt="SnapShare AI" />
               </div>
               <div className="snapshare-card-label">SnapShare AI</div>
               <div className="snapshare-face-detect">
