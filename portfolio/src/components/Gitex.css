@@ -3,7 +3,6 @@
   padding: 100px 0;
   position: relative;
   overflow: hidden;
-  z-index: 3;
 }
 
 .gitex-section::before {
@@ -52,8 +51,8 @@
 }
 
 .gitex-title em {
-  font-style: italic;
-  background: linear-gradient(135deg, #8B2FC0 0%, #007AFF 100%);
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ad1fff 0%, #002144 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -230,7 +229,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #FFD700;
 }
 
 .gitex-year {

@@ -368,7 +368,8 @@
 }
 
 [data-theme="light"] .venture-card.featured .venture-icon {
-  background: rgba(82, 3, 128, 0.95); /* Rich purple background so white LYNQ logo is fully visible and high contrast */
+  background: rgba(82, 3, 128, 0.95);
+  /* Rich purple background so white LYNQ logo is fully visible and high contrast */
   border-color: rgba(82, 3, 128, 0.2);
 }
 
@@ -469,8 +470,7 @@
 
 .snapshare-name em {
   font-family: var(--font-serif);
-
-  font-weight: 400;
+  font-style: normal;
   background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -636,12 +636,14 @@
   width: 76%;
   height: 76%;
   object-fit: contain;
-  filter: invert(1) brightness(2); /* Invert black logo to white in dark theme */
+  filter: invert(1) brightness(2);
+  /* Invert black logo to white in dark theme */
   transition: transform 0.4s ease;
 }
 
 [data-theme="light"] .snapshare-featured-logo {
-  filter: none; /* Keep original black logo in light theme */
+  filter: none;
+  /* Keep original black logo in light theme */
 }
 
 @keyframes pulseRing {
