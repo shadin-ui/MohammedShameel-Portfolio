@@ -774,44 +774,6 @@
   gap: 24px;
 }
 
-.footer-scroll-up-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgb(162, 66, 217);
-  border: var(--border-subtle);
-  color: var(--text-secondary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.4s var(--ease-out-expo);
-  cursor: pointer;
-  box-shadow: 0 0 15px rgba(82, 3, 128, 0.05);
-}
-
-.footer-scroll-up-btn:hover {
-  background: rgba(82, 3, 128, 0.16);
-  border-color: var(--purple-400);
-  color: var(--purple-200);
-  transform: translateY(-4px);
-  box-shadow:
-    0 10px 20px rgba(0, 0, 0, 0.25),
-    0 0 20px rgba(139, 47, 192, 0.2);
-}
-
-/* Light theme overrides */
-[data-theme="light"] .footer-scroll-up-btn {
-  background: rgba(82, 3, 128, 0.03);
-  border-color: rgba(82, 3, 128, 0.08);
-  color: var(--purple-600);
-}
-
-[data-theme="light"] .footer-scroll-up-btn:hover {
-  background: rgba(82, 3, 128, 0.08);
-  border-color: var(--purple-600);
-  color: var(--purple-700);
-}
-
 /* ── Interactive Connect Form & Tab System ── */
 .contact-form-container {
   padding: 40px;
