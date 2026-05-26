@@ -61,7 +61,7 @@ const GALLERY_ITEMS = [
     tag: 'Community Building',
     image: '/gallery/event3.jpg',
     gradient: 'linear-gradient(135deg, #1a0533 0%, #8B2FC0 50%, #1a0533 100%)',
-    color: 'rgba(255, 255, 255, 1)',
+    color: 'rgba(58, 180, 109, 1)',
   },
 ];
 

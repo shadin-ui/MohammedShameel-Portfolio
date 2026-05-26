@@ -107,6 +107,25 @@
   margin-bottom: 18px;
   transition: all 0.35s var(--ease-out-expo);
   flex-shrink: 0;
+  overflow: hidden;
+}
+
+.venture-icon img {
+  width: 74%;
+  height: 74%;
+  object-fit: contain;
+  transition: transform 0.4s var(--ease-out-expo);
+}
+
+.venture-icon img.logo-full {
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  object-fit: cover;
+}
+
+.venture-card:hover .venture-icon img {
+  transform: scale(1.1);
 }
 
 .venture-icon.purple {
@@ -444,7 +463,7 @@
   letter-spacing: -1px;
   line-height: 1.1;
   margin: 0;
-  color: rgb(0, 0, 0);
+  color: var(--text-primary);
 }
 
 .snapshare-name em {
@@ -457,7 +476,7 @@
 }
 
 [data-theme="light"] .snapshare-name {
-  color: var(--dark-950);
+  color: var(--text-primary);
 }
 
 .snapshare-role {
@@ -610,6 +629,18 @@
   color: var(--purple-600);
   border-color: rgba(82, 3, 128, 0.25);
   background: rgba(82, 3, 128, 0.02);
+}
+
+.snapshare-featured-logo {
+  width: 76%;
+  height: 76%;
+  object-fit: contain;
+  filter: invert(1) brightness(2); /* Invert black logo to white in dark theme */
+  transition: transform 0.4s ease;
+}
+
+[data-theme="light"] .snapshare-featured-logo {
+  filter: none; /* Keep original black logo in light theme */
 }
 
 @keyframes pulseRing {
