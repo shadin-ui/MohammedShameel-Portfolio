@@ -12,6 +12,7 @@ import SaasModels from './components/SaasModels';
 import DottedPath from './components/DottedPath';
 import LaunchScreen from './components/LaunchScreen';
 import { ThemeProvider } from './ThemeContext';
+import { Analytics } from '@vercel/analytics/react';
 
 export default function App() {
   return (
@@ -31,7 +32,7 @@ export default function App() {
         <Testimonials />
         <Contact />
       </div>
+      <Analytics />
     </ThemeProvider>
   );
 }
-
