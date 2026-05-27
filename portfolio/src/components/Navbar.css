@@ -434,8 +434,8 @@
 .bottom-nav-inner {
   display: flex;
   align-items: center;
-  gap: 8px; /* Spaced premium dock feel */
-  padding: 6px 8px;
+  gap: 16px; /* Increased gap for a clean, spacious premium dock feel */
+  padding: 8px 12px; /* Increased padding for bold capsule volume */
   border-radius: 100px;
   position: relative;
   overflow: visible; /* Allow active glass bubbles to protrude vertically */
@@ -460,13 +460,8 @@
     /* Inner bottom shadow - gives refraction */
     inset 0 -1px 0 rgba(0, 0, 0, 0.35),
     
-    /* === Outer Refracted Glows & Shadows === */
-    /* 1. Emerald Green ambient glow (left refraction glow) */
-    -12px 24px 50px rgba(16, 185, 129, 0.28),
-    /* 2. Sunset Ruby Red ambient glow (right refraction glow) */
-    12px 24px 50px rgba(239, 68, 68, 0.22),
-    /* 3. Deep soft shadow for floating volume */
-    0 12px 36px rgba(0, 0, 0, 0.42);
+    /* === Outer Depth Shadows (No Colored Underglows) === */
+    0 16px 40px rgba(0, 0, 0, 0.5);
 }
 
 /* === Animated caustic light sweep across glass surface === */
@@ -556,10 +551,8 @@
     inset 0 0 12px rgba(255, 255, 255, 0.25), /* light theme frosted light scattering */
     inset 0 -1px 0 rgba(0, 0, 0, 0.05),
     
-    /* === Outer Light Refracted Glows === */
-    -10px 20px 40px rgba(16, 185, 129, 0.12),
-    10px 20px 40px rgba(239, 68, 68, 0.08),
-    0 12px 32px rgba(0, 0, 0, 0.05);
+    /* === Outer Light Shadows (No Colored Underglows) === */
+    0 16px 36px rgba(0, 0, 0, 0.08);
   outline: none;
 }
 
@@ -576,8 +569,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 56px; /* Scaled up from 44px */
+  height: 56px; /* Scaled up from 44px */
   border-radius: 50%;
   border: none;
   background: transparent;
@@ -596,8 +589,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.6);
-  width: 52px;
-  height: 52px;
+  width: 64px; /* Scaled up from 52px */
+  height: 64px; /* Scaled up from 52px */
   border-radius: 50%;
   z-index: -1;
   background: rgba(255, 255, 255, 0.02);
@@ -648,8 +641,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
-  width: 52px;
-  height: 52px;
+  width: 64px; /* Scaled up from 52px */
+  height: 64px; /* Scaled up from 52px */
   border-radius: 50%;
   z-index: -1;
 
@@ -668,10 +661,8 @@
     inset 0 1.5px 0 rgba(255, 255, 255, 0.35),
     /* Frosted internal light scattering */
     inset 0 0 10px rgba(255, 255, 255, 0.06),
-    /* Soft colorful glows beneath circle */
-    0 10px 20px rgba(16, 185, 129, 0.35),
-    0 10px 20px rgba(239, 68, 68, 0.25),
-    0 6px 14px rgba(0, 0, 0, 0.35) !important;
+    /* Elevated clean dark depth shadow (No Colored Underglows) */
+    0 8px 16px rgba(0, 0, 0, 0.45) !important;
   
   animation: bubblePop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
@@ -701,8 +692,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
-  width: 52px;
-  height: 52px;
+  width: 64px; /* Scaled up from 52px */
+  height: 64px; /* Scaled up from 52px */
   border-radius: 50%;
   z-index: -1;
   backdrop-filter: blur(15px) saturate(180%) contrast(1.05);
@@ -715,9 +706,7 @@
     inset 0 1.5px 0 rgba(255, 255, 255, 0.95),
     inset 0 0 10px rgba(255, 255, 255, 0.25),
     inset 0 -0.5px 0 rgba(0, 0, 0, 0.05),
-    0 10px 20px rgba(16, 185, 129, 0.18),
-    0 10px 20px rgba(239, 68, 68, 0.12),
-    0 6px 14px rgba(82, 3, 128, 0.05) !important;
+    0 8px 16px rgba(0, 0, 0, 0.12) !important;
   animation: bubblePop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
@@ -726,11 +715,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 22px; /* Scaled up from 18px */
   line-height: 1;
   position: relative;
   z-index: 1;
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.bottom-nav-icon svg {
+  width: 22px !important; /* Scaled up from 18px */
+  height: 22px !important; /* Scaled up from 18px */
+  stroke-width: 2.2 !important;
 }
 
 .bottom-nav-item:hover .bottom-nav-icon,
@@ -752,9 +747,9 @@
 .bottom-nav-theme::before {
   content: '';
   position: absolute;
-  left: -6px; /* perfectly in the middle of our 8px gap */
-  top: 20%;
-  height: 60%;
+  left: -9px; /* perfectly in the middle of our new 16px gap */
+  top: 15%;
+  height: 70%;
   width: 1px;
   background: linear-gradient(to bottom,
       transparent,
