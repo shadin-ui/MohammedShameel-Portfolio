@@ -422,10 +422,6 @@
   transition:
     transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1),
     opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-  /* ambient mixed green & red glow beneath the capsule */
-  filter: drop-shadow(0 20px 48px rgba(16, 185, 129, 0.3))
-          drop-shadow(0 20px 48px rgba(239, 68, 68, 0.2))
-          drop-shadow(0 4px 12px rgba(0, 0, 0, 0.55));
 }
 
 .navbar-bottom.navbar-bottom--visible {
@@ -464,8 +460,14 @@
     inset 0 0 16px rgba(255, 255, 255, 0.08),
     /* Inner bottom shadow - gives refraction */
     inset 0 -1px 0 rgba(0, 0, 0, 0.35),
-    /* Soft ambient drop shadow */
-    0 12px 32px rgba(0, 0, 0, 0.35);
+    
+    /* === Outer Refracted Glows & Shadows === */
+    /* 1. Emerald Green ambient glow (left refraction glow) */
+    -12px 24px 50px rgba(16, 185, 129, 0.28),
+    /* 2. Sunset Ruby Red ambient glow (right refraction glow) */
+    12px 24px 50px rgba(239, 68, 68, 0.22),
+    /* 3. Deep soft shadow for floating volume */
+    0 12px 36px rgba(0, 0, 0, 0.42);
 }
 
 /* === Animated caustic light sweep across glass surface === */
@@ -554,7 +556,11 @@
     inset 0 1.5px 0 rgba(255, 255, 255, 0.95),
     inset 0 0 12px rgba(255, 255, 255, 0.25), /* light theme frosted light scattering */
     inset 0 -1px 0 rgba(0, 0, 0, 0.05),
-    0 12px 32px rgba(0, 0, 0, 0.06);
+    
+    /* === Outer Light Refracted Glows === */
+    -10px 20px 40px rgba(16, 185, 129, 0.12),
+    10px 20px 40px rgba(239, 68, 68, 0.08),
+    0 12px 32px rgba(0, 0, 0, 0.05);
   outline: none;
 }
 
