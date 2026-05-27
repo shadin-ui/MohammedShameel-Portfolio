@@ -254,31 +254,48 @@
     flex: none !important;
     height: 72px;
     border-radius: 14px;
+    overflow: hidden;
   }
 
   .gallery-panel.is-active {
-    height: 380px;
+    height: 420px;
   }
 
+  /* On mobile the label is horizontal — pin it left of the arrow, clip overflow */
   .panel-collapsed-label {
+    position: absolute;
     top: 50%;
-    bottom: auto;
-    left: 70px;
+    left: 68px;
+    right: 12px;      /* stop it reaching the edge */
     width: auto;
     height: auto;
     transform: translateY(-50%);
+    /* reset desktop rotation */
+    rotate: none;
     flex-direction: row;
-    gap: 8px;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    overflow: hidden;  /* clip overflow */
+  }
+
+  .collapsed-tag {
+    flex-shrink: 0;    /* badge never shrinks */
+  }
+
+  .collapsed-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;      /* allows flex child to shrink */
   }
 
   .panel-header {
-    top: 50%;
-    transform: translateY(-50%);
-    top: unset;
-    bottom: unset;
+    position: absolute;
     top: 0;
     left: 16px;
     height: 100%;
+    transform: none;
     align-items: center;
   }
 
@@ -301,10 +318,18 @@
   }
 
   .gallery-panel.is-active {
-    height: 320px;
+    height: 340px;
   }
 
   .panel-title {
-    font-size: 18px;
+    font-size: 17px;
+  }
+
+  .collapsed-tag {
+    font-size: 9px;
+  }
+
+  .collapsed-title {
+    font-size: 12px;
   }
 }
