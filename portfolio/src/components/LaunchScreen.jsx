@@ -42,12 +42,7 @@ export default function LaunchScreen() {
       <div className="launch-noise" />
 
       <div className="launch-content">
-        {/* Glowing Lightning Bolt Logo */}
-        <div className="launch-logo-mark">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="launch-svg">
-            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-          </svg>
-        </div>
+
 
         {/* Text Details */}
         <h1 className="launch-title">MOHAMMED SHAMEEL</h1>

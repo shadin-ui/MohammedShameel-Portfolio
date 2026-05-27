@@ -322,12 +322,7 @@ export default function Contact() {
           <div className="footer-main-row">
             <div className="footer-bio-col">
               <div className="footer-logo">
-                <div className="footer-logo-mark">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                  </svg>
-                </div>
-                <div className="footer-brand-text">
+                <div className="footer-brand-text" style={{ marginLeft: 0 }}>
                   <span>Mohammed Shameel</span>
                   <p>Venture Operator & Ecosystem Builder</p>
                 </div>
