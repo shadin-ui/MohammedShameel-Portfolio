@@ -1,10 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useScrollReveal } from '../hooks';
 import './Contact.css';
 
 const MARQUEE_ITEMS = [
   'Ecosystem Builder', '◆', 'Venture Operator', '◆', '39+ Startups', '◆',
   '₹22Cr+ Exposure', '◆', 'LYNQ Capital', '◆', 'Strategic Partnerships', '◆',
+];
+
+const STAGE_OPTIONS = [
+  { value: 'idea', label: 'Idea / Pre-Seed' },
+  { value: 'seed', label: 'Seed Stage' },
+  { value: 'growth', label: 'Series A / Growth' },
+  { value: 'bootstrap', label: 'Bootstrapped / Profitable' },
+];
+
+const TICKET_OPTIONS = [
+  { value: 'under50k', label: '< ₹50 Lakhs' },
+  { value: '50k-250k', label: '₹50 Lakhs - ₹2 Crores' },
+  { value: '250k-1m', label: '₹2 Crores - ₹5 Crores' },
+  { value: '1m-plus', label: '₹5 Crores +' },
 ];
 
 export default function Contact() {
@@ -197,17 +211,12 @@ export default function Contact() {
 
                         <div className="form-group">
                           <label htmlFor="form-stage">Startup Growth Stage</label>
-                          <select
-                            id="form-stage"
+                          <CustomSelect
                             name="stage"
                             value={formData.stage}
                             onChange={handleInputChange}
-                          >
-                            <option value="idea">Idea / Pre-Seed</option>
-                            <option value="seed">Seed Stage</option>
-                            <option value="growth">Series A / Growth</option>
-                            <option value="bootstrap">Bootstrapped / Profitable</option>
-                          </select>
+                            options={STAGE_OPTIONS}
+                          />
                         </div>
 
                         <div className="form-group">
@@ -240,17 +249,12 @@ export default function Contact() {
                           </div>
                           <div className="form-group">
                             <label htmlFor="form-ticket">Average Ticket Size</label>
-                            <select
-                              id="form-ticket"
+                            <CustomSelect
                               name="ticketSize"
                               value={formData.ticketSize}
                               onChange={handleInputChange}
-                            >
-                              <option value="under50k">&lt; ₹50 Lakhs</option>
-                              <option value="50k-250k">₹50 Lakhs - ₹2 Crores</option>
-                              <option value="250k-1m">₹2 Crores - ₹5 Crores</option>
-                              <option value="1m-plus">₹5 Crores +</option>
-                            </select>
+                              options={TICKET_OPTIONS}
+                            />
                           </div>
                         </div>
 
@@ -385,6 +389,66 @@ function ContactLink({ href, label, handle, icon }) {
         <path d="M7 17L17 7M17 7H7M17 7v10" />
       </svg>
     </a>
+  );
+}
+
+function CustomSelect({ name, value, onChange, options }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (containerRef.current && !containerRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const selectedOption = options.find(opt => opt.value === value) || options[0];
+
+  const handleSelect = (val) => {
+    onChange({ target: { name, value: val } });
+    setIsOpen(false);
+  };
+
+  return (
+    <div className={`custom-select-container ${isOpen ? 'is-open' : ''}`} ref={containerRef}>
+      <button
+        type="button"
+        className="custom-select-trigger"
+        onClick={() => setIsOpen(!isOpen)}
+        aria-haspopup="listbox"
+        aria-expanded={isOpen}
+      >
+        <span className="custom-select-value">{selectedOption ? selectedOption.label : ''}</span>
+        <svg className="custom-select-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      </button>
+
+      {isOpen && (
+        <ul className="custom-select-dropdown" role="listbox">
+          {options.map((opt) => (
+            <li
+              key={opt.value}
+              className={`custom-select-option ${opt.value === value ? 'selected' : ''}`}
+              role="option"
+              aria-selected={opt.value === value}
+              onClick={() => handleSelect(opt.value)}
+            >
+              <span className="option-label">{opt.label}</span>
+              {opt.value === value && (
+                <svg className="option-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }
 

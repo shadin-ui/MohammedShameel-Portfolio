@@ -49,6 +49,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
+  column-gap: 64px;
   min-height: 100vh;
   align-items: center;
 }

@@ -945,6 +945,11 @@
   outline: none;
 }
 
+.form-group select option {
+  background-color: #13111c;
+  color: #ffffff;
+}
+
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
@@ -1128,7 +1133,12 @@
 [data-theme="light"] .form-group textarea {
   background: white;
   border-color: rgba(82, 3, 128, 0.15);
-  color: var(--dark-950);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .form-group select option {
+  background-color: #ffffff;
+  color: var(--text-primary);
 }
 
 [data-theme="light"] .form-group input:focus,
@@ -1144,5 +1154,168 @@
 }
 
 [data-theme="light"] .form-success-card h4 {
-  color: var(--dark-950);
+  color: var(--text-primary);
+}
+
+/* ── Custom Select UI Styles ── */
+.custom-select-container {
+  position: relative;
+  width: 100%;
+}
+
+.custom-select-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: rgba(6, 5, 10, 0.6);
+  border: 1.5px solid rgba(82, 3, 128, 0.2);
+  border-radius: 12px;
+  color: white;
+  font-family: inherit;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.35s var(--ease-out-expo);
+  outline: none;
+}
+
+[data-theme="light"] .custom-select-trigger {
+  background: white;
+  border-color: rgba(82, 3, 128, 0.15);
+  color: var(--text-primary);
+}
+
+.custom-select-container.is-open .custom-select-trigger,
+.custom-select-trigger:focus {
+  border-color: var(--purple-400);
+  background: rgba(82, 3, 128, 0.06);
+  box-shadow:
+    0 0 0 4px rgba(139, 47, 192, 0.15),
+    0 0 15px rgba(139, 47, 192, 0.1);
+}
+
+[data-theme="light"] .custom-select-container.is-open .custom-select-trigger,
+[data-theme="light"] .custom-select-trigger:focus {
+  border-color: var(--purple-600);
+  background: rgba(82, 3, 128, 0.02);
+  box-shadow:
+    0 0 0 4px rgba(82, 3, 128, 0.08),
+    0 0 15px rgba(82, 3, 128, 0.05);
+}
+
+.custom-select-chevron {
+  color: var(--purple-300);
+  transition: transform 0.4s var(--ease-out-expo);
+}
+
+[data-theme="light"] .custom-select-chevron {
+  color: var(--purple-500);
+}
+
+.custom-select-container.is-open .custom-select-chevron {
+  transform: rotate(180deg);
+  color: var(--purple-400);
+}
+
+/* Dropdown Menu - Glassmorphic Blur & Glow */
+.custom-select-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 8px;
+  background: rgba(12, 10, 20, 0.95);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1.5px solid rgba(82, 3, 128, 0.25);
+  border-radius: 14px;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(82, 3, 128, 0.1);
+  list-style: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transform-origin: top center;
+  animation: dropdownReveal 0.4s var(--ease-out-expo) forwards;
+}
+
+[data-theme="light"] .custom-select-dropdown {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(82, 3, 128, 0.18);
+  box-shadow:
+    0 15px 35px rgba(82, 3, 128, 0.08),
+    0 0 20px rgba(82, 3, 128, 0.04);
+}
+
+@keyframes dropdownReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Options */
+.custom-select-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-radius: 10px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-out-expo);
+}
+
+.custom-select-option:hover {
+  background: rgba(82, 3, 128, 0.15);
+  color: white;
+  transform: translateX(4px);
+}
+
+[data-theme="light"] .custom-select-option {
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] .custom-select-option:hover {
+  background: rgba(82, 3, 128, 0.08);
+  color: var(--text-primary);
+  transform: translateX(4px);
+}
+
+.custom-select-option.selected {
+  background: rgba(82, 3, 128, 0.25);
+  color: white;
+  font-weight: 700;
+}
+
+[data-theme="light"] .custom-select-option.selected {
+  background: rgba(82, 3, 128, 0.12);
+  color: var(--text-primary);
+}
+
+.option-check-icon {
+  animation: checkReveal 0.3s var(--ease-out-expo) forwards;
+  flex-shrink: 0;
+}
+
+@keyframes checkReveal {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
