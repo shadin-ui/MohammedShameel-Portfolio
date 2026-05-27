@@ -113,7 +113,9 @@ export default function Navbar() {
       <nav className={`navbar-top ${scrolled ? 'navbar-top--hidden' : ''}`}>
         <div className="container">
           <div className="nav-inner">
-
+            <a href="#hero" className="nav-logo" onClick={(e) => { e.preventDefault(); scrollTo('#hero'); }}>
+              <span className="logo-text" style={{ textTransform: 'uppercase', letterSpacing: '1.5px', fontWeight: '800' }}>SHAMEEL</span>
+            </a>
 
             <div className="nav-center-top">
               {NAV_ITEMS.slice(0, 5).map(({ label, href }) => (
