@@ -169,8 +169,8 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* ── Bottom Floating Navbar (appears on scroll, hides in footer) ── */}
-      <nav className={`navbar-bottom ${scrolled && !isNearFooter ? 'navbar-bottom--visible' : ''}`}>
+      {/* ── Bottom Floating Navbar (visible permanently, hides in footer) ── */}
+      <nav className={`navbar-bottom ${!isNearFooter ? 'navbar-bottom--visible' : ''}`}>
         <div className="bottom-nav-inner">
           {NAV_ITEMS.map(({ label, href, icon }) => (
             <button
