@@ -8,6 +8,10 @@
   z-index: 5;
 }
 
+.testimonials-section.has-active-modal {
+  z-index: 99999 !important; /* Elevate entire stacking context above floating top/bottom navs when modal is active */
+}
+
 .testimonials-section::before {
   content: '';
   position: absolute;
@@ -578,11 +582,12 @@
   background: rgba(6, 4, 10, 0.82);
   backdrop-filter: blur(28px) saturate(220%);
   -webkit-backdrop-filter: blur(28px) saturate(220%);
-  z-index: 2000;
+  z-index: 99999 !important; /* Ensure absolute top stacking over the floating navigation dock */
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* Align to top to allow scroll spacing when tall */
   justify-content: center;
-  padding: 24px;
+  padding: 40px 24px;
+  overflow-y: auto; /* Enable vertical scroll if card content exceeds viewport height */
   opacity: 0;
   animation: idOverlayFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   will-change: opacity;
@@ -617,6 +622,7 @@
   animation: idCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards;
   will-change: transform, opacity;
   z-index: 2001;
+  margin: auto; /* Magic bullet: centers card when short, aligns to top and scroll-safely when tall! */
 }
 
 @keyframes idCardEnter {

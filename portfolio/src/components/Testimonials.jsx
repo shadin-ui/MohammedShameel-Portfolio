@@ -108,6 +108,18 @@ export default function Testimonials() {
     };
   }, []);
 
+  // Lock background body scroll when digital pass modal is active
+  useEffect(() => {
+    if (activeCard) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [activeCard]);
+
   // Realistic 3D Card Hover Angle Calculations
   const handleMouseMove = (e) => {
     const card = e.currentTarget.querySelector('.id-card-container');
@@ -128,8 +140,10 @@ export default function Testimonials() {
       card.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
       card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
     }
-  };  return (
-    <section id="testimonials" className="testimonials-section" ref={sectionRef}>
+  };
+
+  return (
+    <section id="testimonials" className={`testimonials-section ${activeCard ? 'has-active-modal' : ''}`} ref={sectionRef}>
       <div className="container">
         <div
           className={`testimonials-header reveal ${headerVisible ? 'visible' : ''}`}
