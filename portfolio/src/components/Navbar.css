@@ -340,23 +340,24 @@
   box-shadow: 0 0 12px rgba(82, 3, 128, 0.18);
 }
 
-/* CTA */
+/* CTA — gradient pill, consistent throughout site */
 .nav-cta {
   padding: 11px 26px;
   border-radius: 100px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   color: white;
-  background: var(--purple-600);
-  border: 1px solid rgba(139, 47, 192, 0.4);
+  background: var(--gradient-primary);
+  border: 1px solid rgba(139, 47, 192, 0.3);
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(82, 3, 128, 0.3);
 }
 
 .nav-cta:hover {
-  background: var(--purple-500);
-  box-shadow: 0 0 30px rgba(82, 3, 128, 0.5);
-  transform: translateY(-1px);
+  box-shadow: 0 8px 28px rgba(82, 3, 128, 0.55);
+  transform: translateY(-2px);
 }
 
 /* Mobile Toggle */
@@ -645,13 +646,11 @@
   border-radius: 0 16px 16px 0;
 }
 
-/* ============================================
-   MOBILE OVERLAY — Architectural Editorial Design
-   ============================================ */
+/* ── Mobile overlay — fully opaque, properly centered ── */
 .mobile-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(10, 8, 16, 0.85);
+  background: rgba(10, 8, 16, 0.97);  /* near-opaque so hero text doesn't bleed through */
   backdrop-filter: blur(36px) saturate(200%);
   -webkit-backdrop-filter: blur(36px) saturate(200%);
   z-index: 999;
@@ -659,11 +658,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 0 48px;
-  gap: 28px;
+  padding: 80px 48px 56px;   /* top padding clears the navbar */
+  gap: 0;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .mobile-overlay::before {
@@ -676,7 +675,7 @@
 }
 
 [data-theme="light"] .mobile-overlay {
-  background: rgba(248, 246, 252, 0.85);
+  background: rgba(248, 246, 252, 0.97);
 }
 
 [data-theme="light"] .mobile-overlay::before {
@@ -735,51 +734,110 @@
   flex-shrink: 0;
 }
 
-/* CTA & Theme button styling */
+.mobile-overlay .mobile-nav-links {
+  margin-bottom: 32px;
+}
+
 .mobile-overlay .mobile-nav-cta {
-  margin-top: 24px;
-  padding: 14px 44px;
+  margin-top: 16px;
+  padding: 15px 48px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 700;
   border-radius: 100px;
   background: var(--gradient-primary);
-  box-shadow: 0 10px 30px rgba(82, 3, 128, 0.35);
+  box-shadow: 0 10px 30px rgba(82, 3, 128, 0.4);
   color: white;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  cursor: pointer;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: -0.2px;
 }
 
 .mobile-overlay .mobile-nav-cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 36px rgba(82, 3, 128, 0.5);
+  box-shadow: 0 14px 36px rgba(82, 3, 128, 0.55);
 }
 
-.theme-toggle-mobile {
-  margin-top: 12px;
-  padding: 11px 32px;
-  border-radius: 100px;
-  font-size: 14px;
+/* ── Mobile Theme Toggle Switch Row ── */
+.mobile-theme-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 300px;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  margin-bottom: 0;
+}
+
+.mobile-theme-label {
+  font-family: var(--font-display);
+  font-size: 15px;
   font-weight: 600;
   color: var(--text-secondary);
-  background: rgba(255, 255, 255, 0.04);
-  border: var(--border-subtle);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: -0.2px;
 }
 
-.theme-toggle-mobile:hover {
-  background: rgba(82, 3, 128, 0.08);
-  color: var(--text-primary);
-  border-color: rgba(82, 3, 128, 0.2);
+/* Toggle Switch — pill with sliding thumb */
+.theme-toggle-switch {
+  position: relative;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
-[data-theme="light"] .theme-toggle-mobile {
-  background: rgba(0, 0, 0, 0.03);
-  border-color: rgba(82, 3, 128, 0.12);
+.toggle-track {
+  display: flex;
+  align-items: center;
+  width: 52px;
+  height: 28px;
+  border-radius: 100px;
+  background: rgba(82, 3, 128, 0.2);
+  border: 1.5px solid rgba(82, 3, 128, 0.35);
+  padding: 3px;
+  transition: background 0.35s ease, border-color 0.35s ease;
+  position: relative;
+}
+
+.theme-toggle-switch.is-light .toggle-track {
+  background: var(--gradient-primary);
+  border-color: rgba(168, 85, 247, 0.5);
+  box-shadow: 0 0 14px rgba(139, 47, 192, 0.45);
+}
+
+.toggle-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--purple-300);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background 0.35s ease;
+  transform: translateX(0);
+  flex-shrink: 0;
+}
+
+.theme-toggle-switch.is-light .toggle-thumb {
+  transform: translateX(24px);
+  background: rgba(255, 255, 255, 0.95);
   color: var(--purple-600);
+  border-color: transparent;
 }
 
-[data-theme="light"] .theme-toggle-mobile:hover {
-  background: rgba(82, 3, 128, 0.05);
+[data-theme="light"] .mobile-theme-row {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(82, 3, 128, 0.12);
+}
+
+[data-theme="light"] .mobile-theme-label {
   color: var(--purple-700);
 }
 
@@ -974,6 +1032,77 @@
 }
 
 [data-theme="light"] .scroll-up-btn:not(.scroll-up-btn--highlight):hover {
+  border-color: var(--purple-400);
+  color: var(--purple-800);
+  box-shadow: 0 10px 30px rgba(82, 3, 128, 0.15);
+}
+
+/* ── Floating Theme Toggle Button (LEFT side, mirrors scroll-up) ── */
+.theme-float-btn {
+  position: fixed;
+  left: 32px;
+  bottom: 32px;
+  z-index: 999;
+  display: none;      /* desktop: hidden — theme toggle already in top nav */
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  padding: 0;
+  background: rgba(15, 6, 25, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  color: var(--purple-300);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+  pointer-events: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-float-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+.theme-float-btn--visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.theme-float-btn:hover {
+  border-color: rgba(168, 85, 247, 0.6);
+  color: white;
+  transform: translateY(-4px) scale(1.05);
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(168, 85, 247, 0.3);
+}
+
+/* Only show on mobile (where top-nav toggle is hidden) */
+@media (max-width: 860px) {
+  .theme-float-btn {
+    display: flex;
+    left: 20px;
+    bottom: 28px;
+  }
+}
+
+[data-theme="light"] .theme-float-btn {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(82, 3, 128, 0.15);
+  color: var(--purple-600);
+  box-shadow: 0 10px 25px rgba(82, 3, 128, 0.08);
+}
+
+[data-theme="light"] .theme-float-btn:hover {
   border-color: var(--purple-400);
   color: var(--purple-800);
   box-shadow: 0 10px 30px rgba(82, 3, 128, 0.15);
