@@ -74,10 +74,10 @@ export default function Navbar() {
       const currentScroll = window.scrollY;
       setScrolled(currentScroll > 400);
 
-      // Check if we are near the bottom (in the footer zone)
+      // Check if we are near the bottom (in the footer zone) with currentScroll safety to avoid height measurement offset bugs
       const totalHeight = document.documentElement.scrollHeight;
       const viewportHeight = window.innerHeight;
-      const isAtFooter = totalHeight - (currentScroll + viewportHeight) < 220;
+      const isAtFooter = currentScroll > 100 && (totalHeight - (currentScroll + viewportHeight) < 280);
       setIsNearFooter(isAtFooter);
 
       const sections = document.querySelectorAll('section[id]');
@@ -92,6 +92,10 @@ export default function Navbar() {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Synchronize initial load scroll coordinates
+    handleScroll();
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 

@@ -64,11 +64,11 @@ export default function App() {
     <ThemeProvider>
       <LaunchScreen />
       <CustomCursor />
+      <Navbar />
       <div className="app-main-container" style={{ position: 'relative', width: '100%', minHeight: '100vh', overflowX: 'hidden' }}>
         <ParticleCanvas />
         <SaasModels />
         <DottedPath />
-        <Navbar />
         <Hero />
         <About />
         <Gitex />

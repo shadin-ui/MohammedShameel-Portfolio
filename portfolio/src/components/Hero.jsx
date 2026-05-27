@@ -30,7 +30,10 @@ export default function Hero() {
 
             <h1 className="hero-title">
               <span className="line">
-                <span className="line-inner">Hi, I'm <em>Mohammed Shameel</em>,</span>
+                <span className="line-inner">Hi, I'm</span>
+              </span>
+              <span className="line">
+                <span className="line-inner"><em>Mohammed Shameel</em>,</span>
               </span>
               <span className="line">
                 <span className="line-inner">an <span className="highlight">Ecosystem Builder</span> based in India.</span>
