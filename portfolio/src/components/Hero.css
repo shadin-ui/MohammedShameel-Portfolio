@@ -334,6 +334,11 @@
   text-shadow: 0 0 15px rgba(168, 85, 247, 0.6);
 }
 
+[data-theme="light"] .hero-stat:hover .hero-stat-number {
+  color: var(--purple-600) !important;
+  text-shadow: 0 0 15px rgba(82, 3, 128, 0.2) !important;
+}
+
 .hero-stat-number .prefix {
   font-size: 24px;
   color: var(--purple-300);
@@ -342,6 +347,10 @@
 
 .hero-stat:hover .hero-stat-number .prefix {
   color: var(--purple-200);
+}
+
+[data-theme="light"] .hero-stat:hover .hero-stat-number .prefix {
+  color: var(--purple-500) !important;
 }
 
 .hero-stat-number .suffix {
@@ -353,6 +362,10 @@
 
 .hero-stat:hover .hero-stat-number .suffix {
   color: var(--purple-200);
+}
+
+[data-theme="light"] .hero-stat:hover .hero-stat-number .suffix {
+  color: var(--purple-500) !important;
 }
 
 .hero-stat-label {
@@ -482,15 +495,32 @@
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: var(--gradient-primary);
+  background: rgba(15, 6, 25, 0.4);
+  border: 1px solid rgba(168, 85, 247, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 16px;
-  color: white;
   flex-shrink: 0;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+[data-theme="light"] .hero-float-avatar {
+  background: rgba(82, 3, 128, 0.08);
+  border-color: rgba(82, 3, 128, 0.2);
+}
+
+.hero-float-avatar img {
+  width: 76%;
+  height: 76%;
+  object-fit: contain;
+  border-radius: 6px;
+  transition: filter 0.3s ease;
+}
+
+[data-theme="light"] .hero-float-avatar img {
+  filter: brightness(0) saturate(100%) invert(9%) sepia(99%) saturate(5304%) hue-rotate(279deg) brightness(79%) contrast(118%);
 }
 
 .hero-float-info h4 {
@@ -784,14 +814,35 @@
 }
 
 .hero-image-wrapper .hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center top;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.hero-image-wrapper:hover .hero-image {
+.hero-image.default-image {
+  opacity: 1;
+  z-index: 1;
+}
+
+.hero-image.hover-image {
+  opacity: 0;
+  z-index: 0;
+}
+
+.hero-image-wrapper:hover .hero-image.default-image {
+  opacity: 0;
+  transform: scale(1.06);
+}
+
+.hero-image-wrapper:hover .hero-image.hover-image {
+  opacity: 1;
   transform: scale(1.06);
   filter: brightness(1.04) contrast(1.04);
 }

@@ -221,83 +221,32 @@
   animation-play-state: paused;
 }
 
-/* Position and counter-spin orbit nodes (keeping them upright) */
-/* Inner Ring (Ring 1) — 2 Nodes: Strategy (Top), Operations (Bottom) */
-.orbit-ring-1 .orbit-node:nth-child(1) {
-  top: -16px;
-  left: 50%;
+/* Dynamic positioning and counter-spin */
+.node-ring-1 {
   animation: counterSpinX 36s linear infinite;
 }
 
-.orbit-ring-1 .orbit-node:nth-child(2) {
-  bottom: -16px;
-  left: 50%;
-  animation: counterSpinX 36s linear infinite;
-}
-
-/* Outer Ring (Ring 2) — 4 Nodes: Founders (Top), Investors (Bottom), Partners (Left), Networks (Right) */
-.orbit-ring-2 .orbit-node:nth-child(1) {
-  top: -16px;
-  left: 50%;
+.node-ring-2 {
   animation: counterSpinXReverse 50s linear infinite;
 }
 
-.orbit-ring-2 .orbit-node:nth-child(2) {
-  bottom: -16px;
-  left: 50%;
-  animation: counterSpinXReverse 50s linear infinite;
-}
-
-.orbit-ring-2 .orbit-node:nth-child(3) {
-  top: 50%;
-  left: -24px;
-  animation: counterSpinYReverse 50s linear infinite;
-}
-
-.orbit-ring-2 .orbit-node:nth-child(4) {
-  top: 50%;
-  right: -24px;
-  animation: counterSpinYReverse 50s linear infinite;
-}
-
-/* Upright Counter-spin physics keyframes */
 @keyframes counterSpinX {
   from {
-    transform: translateX(-50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
   }
 
   to {
-    transform: translateX(-50%) rotate(-360deg);
+    transform: translate(-50%, -50%) rotate(-360deg);
   }
 }
 
 @keyframes counterSpinXReverse {
   from {
-    transform: translateX(-50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
   }
 
   to {
-    transform: translateX(-50%) rotate(360deg);
-  }
-}
-
-@keyframes counterSpinY {
-  from {
-    transform: translateY(-50%) rotate(0deg);
-  }
-
-  to {
-    transform: translateY(-50%) rotate(-360deg);
-  }
-}
-
-@keyframes counterSpinYReverse {
-  from {
-    transform: translateY(-50%) rotate(0deg);
-  }
-
-  to {
-    transform: translateY(-50%) rotate(360deg);
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 

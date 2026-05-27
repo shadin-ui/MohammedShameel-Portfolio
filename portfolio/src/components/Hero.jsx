@@ -42,7 +42,7 @@ export default function Hero() {
             </h1>
 
             <p className="hero-subtitle">
-              Building structured support systems for early-stage founders — connecting people, structuring operations, and activating networks across 39+ startups.
+              I build structured support systems that help early-stage founders scale. My work focuses on connecting the right people, organizing complex operations, and unlocking network effects across a portfolio of 39+ startups.
             </p>
 
             <div className="hero-bottom-bar" ref={statsRef}>
@@ -73,9 +73,14 @@ export default function Hero() {
           <div className="hero-right">
             <div className="hero-image-wrapper">
               <img
-                src="/hero-profile.jpg"
+                src="/hero-new.png"
+                alt="Mohammed Shameel"
+                className="hero-image default-image"
+              />
+              <img
+                src="/hero-profile.png"
                 alt="Mohammed Shameel — Venture Operator"
-                className="hero-image"
+                className="hero-image hover-image"
               />
 
               {/* Modern Glass Shimmer Sheen Sweep Overlay */}
@@ -86,7 +91,9 @@ export default function Hero() {
 
               {/* Floating Card */}
               <div className="hero-float-card">
-                <div className="hero-float-avatar">MS</div>
+                <div className="hero-float-avatar">
+                  <img src={lynqIcon} alt="LYNQ" />
+                </div>
                 <div className="hero-float-info">
                   <h4>Mohammed Shameel</h4>
                   <p>CSO · Venture Operator · LYNQ Capital</p>

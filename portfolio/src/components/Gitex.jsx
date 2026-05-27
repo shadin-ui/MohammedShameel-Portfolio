@@ -18,11 +18,14 @@ export default function Gitex() {
             </div>
 
             <h2 className="gitex-title">
-              GITEX Global <em>2025</em>
+              GITEX Global <em>2024 &amp; 2025</em>
             </h2>
 
             <p className="gitex-desc">
-              Represented Kerala's startup ecosystem on the world's largest technology stage in Dubai — connecting with global investors, governments, and innovators across 180+ countries.
+              Part of the organising ecosystem at GITEX Global 2025 after attending GITEX 2024 as a delegate and building relationships within the startup and technology ecosystem.
+            </p>
+            <p className="gitex-desc" style={{ marginTop: '16px' }}>
+              Contributed across media, attendee engagement, partnerships, and strategic networking at one of the world’s largest technology exhibitions in Dubai — connecting with founders, investors, government representatives, and innovators across 80+ countries.
             </p>
 
             <div className="gitex-stats">
@@ -56,7 +59,7 @@ export default function Gitex() {
               <div className="gitex-card-glow" />
 
               <div className="gitex-card-top">
-                <span className="gitex-year">2025</span>
+                <span className="gitex-year">2024 - 2025</span>
                 <span className="gitex-location">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />

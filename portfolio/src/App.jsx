@@ -5,6 +5,8 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Gitex from './components/Gitex';
 import Gallery from './components/Gallery';
+import HuddleGallery from './components/HuddleGallery';
+import MentoringGallery from './components/MentoringGallery';
 import Ventures from './components/Ventures';
 import Expertise from './components/Expertise';
 import Education from './components/Education';
@@ -73,6 +75,8 @@ export default function App() {
         <About />
         <Gitex />
         <Gallery />
+        <MentoringGallery />
+        <HuddleGallery />
         <Ventures />
         <Expertise />
         <Education />

@@ -2,7 +2,16 @@ import { useScrollReveal } from '../hooks';
 import lynqIcon from '../assets/icon lynq.png';
 import './About.css';
 
-const ROLES = ['CSO', 'Venture Operator', 'Ecosystem Builder', 'Strategic Advisor'];
+const ROLES = [
+  'Venture Operator',
+  'Ecosystem Builder',
+  'CSO / Strategy Lead',
+  'Partnerships Strategist',
+  'Venture Growth Strategist',
+  'Strategic Advisor',
+  'Market Expansion Strategist',
+  'Founder’s Office'
+];
 
 export default function About() {
   const [headerRef, headerVisible] = useScrollReveal();
@@ -29,23 +38,13 @@ export default function About() {
             ref={textRef}
           >
             <p className="about-lead">
-              I'm not focused on a single startup or product. I operate as a{' '}
-              <strong>system builder inside ecosystems</strong>, helping startups
-              gain clarity, structure, visibility, and access to networks that
-              accelerate growth.
+              I don't just focus on a single product or startup. Instead, I design and run the broader systems that allow whole ecosystems of startups to thrive. I love helping founders find clarity amidst chaos, put standard structures in place, and tap into networks that truly move the needle.
             </p>
             <p>
-              Working at the intersection of startups, investors, and execution
-              systems. I operate under <strong>LYNQ Capital</strong>, focusing
-              on building structured support systems for early-stage founders.
-              My approach combines strategy, operations, and network activation
-              to help startups move from idea to execution.
+              Operating under <strong>LYNQ Capital</strong>, I sit right at the intersection of founders, investors, and active operators. I don't just offer high-level advice; I build structured operational engines that carry startups from their earliest stages straight through to successful, repeatable execution.
             </p>
             <p>
-              My core strength lies in{' '}
-              <em>connecting people, structuring operations, and building growth
-                systems</em>{' '}
-              rather than execution in a single vertical.
+              Rather than working as a single-specialty vertical expert, my strength lies in <em>orchestration—bridging gaps, streamlining workflows, and creating high-leverage growth networks</em>.
             </p>
 
             <div className="role-tags">
@@ -64,14 +63,30 @@ export default function About() {
                 <img src={lynqIcon} className="orbit-center-logo" alt="LYNQ" />
               </div>
               <div className="orbit-ring orbit-ring-1">
-                <span className="orbit-node">Strategy</span>
-                <span className="orbit-node">Operations</span>
+                {["Strategy", "Operations", "GTM & Market Expansion", "Venture Scaling", "Founders"].map((node, i, arr) => {
+                  const angle = (i / arr.length) * 360;
+                  const rad = (angle - 90) * (Math.PI / 180);
+                  const left = 50 + 50 * Math.cos(rad);
+                  const top = 50 + 50 * Math.sin(rad);
+                  return (
+                    <span key={node} className="orbit-node node-ring-1" style={{ left: `${left}%`, top: `${top}%` }}>
+                      {node}
+                    </span>
+                  );
+                })}
               </div>
               <div className="orbit-ring orbit-ring-2">
-                <span className="orbit-node">Founders</span>
-                <span className="orbit-node">Investors</span>
-                <span className="orbit-node">Partners</span>
-                <span className="orbit-node">Networks</span>
+                {["Investors", "Partners", "Networks", "Process Architecture", "Supply Chain & Infrastructure", "Technology Integration", "Deal Flow"].map((node, i, arr) => {
+                  const angle = (i / arr.length) * 360;
+                  const rad = (angle - 90) * (Math.PI / 180);
+                  const left = 50 + 50 * Math.cos(rad);
+                  const top = 50 + 50 * Math.sin(rad);
+                  return (
+                    <span key={node} className="orbit-node node-ring-2" style={{ left: `${left}%`, top: `${top}%` }}>
+                      {node}
+                    </span>
+                  );
+                })}
               </div>
             </div>
           </div>

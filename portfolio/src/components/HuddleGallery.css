@@ -1,0 +1,605 @@
+.huddle-section {
+  padding: 140px 0 100px;
+  position: relative;
+  z-index: 1;
+}
+
+.huddle-section-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 56px;
+}
+
+.section-tag-main {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+  background: rgba(168, 85, 247, 0.06);
+  border: 1px solid rgba(168, 85, 247, 0.18);
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #a855d9;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+[data-theme="light"] .section-tag-main {
+  background: rgba(168, 85, 247, 0.04);
+  border-color: rgba(168, 85, 247, 0.12);
+  color: #8b5cf6;
+}
+
+.section-title-main {
+  font-family: var(--font-serif);
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+
+.section-desc-main {
+  font-size: clamp(15px, 1.8vw, 17px);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.huddle-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+}
+
+.huddle-header-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+  position: relative;
+}
+
+.huddle-text {
+  text-align: center;
+  max-width: 650px;
+  position: relative;
+  z-index: 2;
+  animation: huddle-text-slide-in 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes huddle-text-slide-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Background high-tech animated dashed lines matching uploaded diagram */
+.huddle-header-decor {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 700px;
+  height: 260px;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 0.35;
+}
+
+.decor-line {
+  position: absolute;
+  width: 2px;
+  height: 400px;
+}
+
+.decor-line-1 {
+  left: 45%;
+  border-left: 2px dashed rgba(168, 85, 247, 0.4);
+  transform: rotate(32deg) translateY(-50px);
+  animation: flow-dash-down 20s linear infinite;
+}
+
+.decor-line-2 {
+  left: 55%;
+  border-left: 2px dashed rgba(16, 185, 129, 0.3);
+  transform: rotate(32deg) translateY(-50px);
+  animation: flow-dash-up 24s linear infinite;
+}
+
+@keyframes flow-dash-down {
+  0% { transform: rotate(32deg) translateY(-100px); }
+  100% { transform: rotate(32deg) translateY(100px); }
+}
+
+@keyframes flow-dash-up {
+  0% { transform: rotate(32deg) translateY(100px); }
+  100% { transform: rotate(32deg) translateY(-100px); }
+}
+
+/* Creative, highly editorial typography for heading */
+.huddle-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 24px;
+  background: rgba(168, 85, 247, 0.08) !important;
+  border: 1px solid rgba(168, 85, 247, 0.25) !important;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #a855d9 !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+  box-shadow: 0 0 25px rgba(168, 85, 247, 0.08);
+}
+
+[data-theme="light"] .huddle-tag {
+  background: rgba(168, 85, 247, 0.05) !important;
+  border-color: rgba(168, 85, 247, 0.15) !important;
+  color: #8b5cf6 !important;
+  box-shadow: none;
+}
+
+.huddle-title {
+  font-family: var(--font-serif) !important;
+  font-size: clamp(28px, 4vw, 44px) !important;
+  font-weight: 400 !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.5px !important;
+  color: var(--text-primary) !important;
+  margin-bottom: 20px;
+}
+
+.huddle-gradient {
+  font-family: var(--font-sans) !important;
+  font-weight: 800 !important;
+  font-size: 1.08em;
+  background: linear-gradient(135deg, #a855d9 0%, #10b981 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  text-shadow: 0 0 35px rgba(168, 85, 247, 0.15);
+  letter-spacing: -0.8px;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+.huddle-desc {
+  font-size: clamp(14px, 1.5vw, 16px) !important;
+  color: var(--text-secondary) !important;
+  line-height: 1.65 !important;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.huddle-video-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(82, 3, 128, 0.3);
+  background: var(--dark-900);
+  transition: border-color 0.4s ease-in-out;
+}
+
+.huddle-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%; /* Auto crops to keep heads fully visible */
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.huddle-image.active {
+  opacity: 1;
+}
+
+/* Premium side navigation arrow buttons on the container */
+.huddle-slide-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(10, 10, 12, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 15;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  opacity: 0.6;
+}
+
+.huddle-slide-nav-btn:hover {
+  background: rgba(139, 47, 192, 0.7);
+  border-color: rgba(168, 85, 247, 0.5);
+  opacity: 1;
+  box-shadow: 0 0 15px rgba(139, 47, 192, 0.4);
+}
+
+.huddle-slide-nav-btn.prev {
+  left: 24px;
+}
+
+.huddle-slide-nav-btn.next {
+  right: 24px;
+}
+
+.huddle-slide-nav-btn.prev:hover {
+  transform: translateY(-50%) translateX(-4px);
+}
+
+.huddle-slide-nav-btn.next:hover {
+  transform: translateY(-50%) translateX(4px);
+}
+
+/* Event info metadata overlay */
+.huddle-meta-overlay {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  z-index: 10;
+  background: rgba(10, 10, 12, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 16px 24px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+.huddle-meta-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+}
+
+.huddle-meta-details {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.65); /* Always highly readable light text */
+}
+
+.huddle-meta-dot {
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.4); /* Always light dot */
+  border-radius: 50%;
+}
+
+.huddle-overlay {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 10;
+}
+
+.huddle-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.huddle-indicator::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: #f43f5e;
+  border-radius: 50%;
+  animation: pulse-live 1.5s infinite;
+}
+
+@keyframes pulse-live {
+  0% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.7); }
+  70% { box-shadow: 0 0 0 6px rgba(244, 63, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); }
+}
+
+
+/* Unified 3D Showcase Wrapper */
+.huddle-showcase-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1800px; /* Enhanced 3D depth */
+  margin-top: 24px;
+}
+
+/* Outer Switch Navigation Circular Buttons (Left / Right) */
+.huddle-outer-arrow-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px; /* Premium sizing */
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(10, 10, 12, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 25;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.huddle-outer-arrow-btn:hover {
+  background: rgba(168, 85, 247, 0.25);
+  border-color: rgba(168, 85, 247, 0.6);
+  box-shadow: 0 0 25px rgba(168, 85, 247, 0.4);
+  transform: translateY(-50%) scale(1.1);
+  color: white;
+}
+
+.huddle-outer-arrow-btn.prev {
+  left: -90px; /* Floating elegantly on the left outside */
+}
+
+.huddle-outer-arrow-btn.next {
+  right: -90px; /* Floating elegantly on the right outside */
+}
+
+.huddle-outer-arrow-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.huddle-outer-arrow-btn.prev:hover svg {
+  transform: translateX(-4px);
+}
+
+.huddle-outer-arrow-btn.next:hover svg {
+  transform: translateX(4px);
+}
+
+/* Deck Cards layout */
+.huddle-deck-card {
+  position: absolute;
+  width: 80%; /* Optimize sizing to fit beautifully inside the screen */
+  aspect-ratio: 16 / 9;
+  border-radius: 24px;
+  transition: all 0.85s cubic-bezier(0.16, 1, 0.3, 1); /* Ultra smooth easing */
+  cursor: pointer;
+  z-index: 1;
+}
+
+/* Active center card */
+.huddle-deck-card.active {
+  transform: translateX(0) translateZ(0) rotateY(0deg) scale(1);
+  opacity: 1;
+  z-index: 10;
+  pointer-events: auto;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+}
+
+.huddle-deck-card.next {
+  transform: translateX(24%) translateZ(-250px) rotateY(-15deg) scale(0.82);
+  opacity: 0.35;
+  z-index: 5;
+  pointer-events: auto;
+  filter: blur(4px);
+}
+
+.huddle-deck-card.prev {
+  transform: translateX(-24%) translateZ(-250px) rotateY(15deg) scale(0.82);
+  opacity: 0.35;
+  z-index: 5;
+  pointer-events: auto;
+  filter: blur(4px);
+}
+
+/* Hover effects for side cards to indicate clickability */
+.huddle-deck-card.next:hover {
+  opacity: 0.8;
+  transform: translateX(20%) translateZ(-120px) rotateY(-8deg) scale(0.86);
+  filter: blur(0px);
+}
+
+.huddle-deck-card.prev:hover {
+  opacity: 0.8;
+  transform: translateX(-20%) translateZ(-120px) rotateY(8deg) scale(0.86);
+  filter: blur(0px);
+}
+
+/* Larger, high-impact video showcase container within card */
+.huddle-video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(82, 3, 128, 0.3);
+  background: var(--dark-900);
+  transition: border-color 0.4s ease-in-out;
+}
+
+/* Teaser glass overlay for the inactive event deck */
+.huddle-teaser-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 12, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 18;
+  padding: 24px;
+  text-align: center;
+}
+
+.teaser-tag {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.teaser-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: rgba(168, 85, 247, 0.25);
+  border: 1px solid rgba(168, 85, 247, 0.5);
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.2);
+  transition: all 0.3s ease;
+}
+
+.huddle-deck-card:hover .teaser-pill {
+  background: rgba(168, 85, 247, 0.4);
+  border-color: rgba(168, 85, 247, 0.8);
+  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4);
+}
+
+.teaser-arrow {
+  animation: bounce-arrow 1.5s infinite;
+}
+
+@keyframes bounce-arrow {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
+}
+
+@media (max-width: 1200px) {
+  .huddle-outer-arrow-btn.prev {
+    left: -20px; /* Pull inside container padding on medium screens */
+  }
+  .huddle-outer-arrow-btn.next {
+    right: -20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .huddle-showcase-wrapper {
+    aspect-ratio: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .huddle-deck-card {
+    position: relative;
+    width: 100%;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    animation: none !important;
+  }
+
+  .huddle-video-container {
+    aspect-ratio: 16 / 9;
+  }
+
+  .huddle-teaser-overlay {
+    display: none; /* Teaser not needed when cards stack */
+  }
+
+  .huddle-outer-arrow-btn {
+    display: none; /* Hide circular side arrows when stacked */
+  }
+}
+
+@media (max-width: 768px) {
+  .huddle-text {
+    text-align: center;
+  }
+  
+  .huddle-video-container {
+    border-radius: 16px;
+    aspect-ratio: 4 / 3;
+  }
+
+  .huddle-meta-overlay {
+    bottom: 16px;
+    left: 16px;
+    padding: 12px 16px;
+    max-width: 80%;
+  }
+
+  .huddle-meta-title {
+    font-size: 14px;
+  }
+  
+  .huddle-slide-nav-btn {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .huddle-slide-nav-btn.prev {
+    left: 12px;
+  }
+
+  .huddle-slide-nav-btn.next {
+    right: 12px;
+  }
+}

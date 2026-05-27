@@ -26,6 +26,20 @@ const TESTIMONIALS = [
     size: 'featured-card' // 8-col bento
   },
   {
+    id: 'philmurphy',
+    name: 'Phil Murphy',
+    role: 'Governor of New Jersey, United States',
+    text: 'A highly motivated young mind with innovative thinking and a passion for meaningful conversations and connections.',
+    type: 'Gubernatorial Endorsement',
+    avatar: imgPhilMurphy,
+    initials: 'PM',
+    gradient: 'linear-gradient(135deg, #003087 0%, #B22222 100%)',
+    featured: false,
+    isLinkedIn: false,
+    split: false,
+    size: 'square-card-right'
+  },
+  {
     id: 'balagopal',
     name: 'Balagopal Chandrasekhar',
     role: 'Chairman, Keralam State Industrial Development Corporation (KSIDC)',
@@ -37,7 +51,21 @@ const TESTIMONIALS = [
     featured: false,
     isLinkedIn: true,
     split: false,
-    size: 'square-card-right' // 4-col bento
+    size: 'square-card-right-sm'
+  },
+  {
+    id: 'saheer',
+    name: 'Dr. Saheer Nelliparamban',
+    role: 'Founder & CEO @ Paywint | Forbes Business Council Member',
+    text: 'Shameel represents the next generation of ecosystem enablers. His vision for empowering startups, building strategic bridges, and driving collaborations is exceptional. Wishing him the absolute best of luck in shaping the future of early-stage ventures.',
+    type: 'Investor & Forbes Council Member',
+    avatar: imgSaheer,
+    initials: 'SN',
+    gradient: 'linear-gradient(135deg, #00FFB2 0%, #007AFF 100%)',
+    featured: false,
+    isLinkedIn: true,
+    split: false,
+    size: 'square-card-right-sm'
   },
   {
     id: 'vipin',
@@ -52,34 +80,6 @@ const TESTIMONIALS = [
     isLinkedIn: true,
     split: true,
     size: 'wide-card' // 7-col bento
-  },
-  {
-    id: 'saheer',
-    name: 'Dr. Saheer Nelliparamban',
-    role: 'Founder & CEO @ Paywint | Forbes Business Council Member',
-    text: 'Shameel represents the next generation of ecosystem enablers. His vision for empowering startups, building strategic bridges, and driving collaborations is exceptional. Wishing him the absolute best of luck in shaping the future of early-stage ventures.',
-    type: 'Investor & Forbes Council Member',
-    avatar: imgSaheer,
-    initials: 'SN',
-    gradient: 'linear-gradient(135deg, #00FFB2 0%, #007AFF 100%)',
-    featured: false,
-    isLinkedIn: true,
-    split: false,
-    size: 'square-card-right-sm' // 5-col bento
-  },
-  {
-    id: 'philmurphy',
-    name: 'Phil Murphy',
-    role: 'Governor of New Jersey, United States',
-    text: 'A highly motivated young mind with innovative thinking and a passion for meaningful conversations and connections.',
-    type: 'Gubernatorial Endorsement',
-    avatar: imgPhilMurphy,
-    initials: 'PM',
-    gradient: 'linear-gradient(135deg, #003087 0%, #B22222 100%)',
-    featured: false,
-    isLinkedIn: false,
-    split: false,
-    size: 'square-card-right'
   }
 ];
 

@@ -6,13 +6,15 @@ import blulinesLogo from '../assets/blulines_logo.png';
 import fitmyjobLogo from '../assets/fitmyjob_logo.png';
 import paywintLogo from '../assets/paywint_logo.png';
 import snapshareLogo from '../assets/snapshare_logo.png';
+import kerlytixLogo from '../assets/kerlytix_logo.png';
+import cubstudioLogo from '../assets/cubstudio_logo.png';
 import './Ventures.css';
 
 const VENTURES = [
   {
     name: 'LYNQ Capital',
     role: 'co-Founder & Operator',
-    desc: 'Building structured support systems for early-stage founders — combining strategy, operations, and network activation.',
+    desc: 'Laying down the structural foundation early-stage founders need—bringing absolute clarity to strategy, investor relations, and capital orchestration.',
     tags: ['Venture Capital', 'Ecosystem', 'Advisory'],
     color: 'purple',
     icon: <img src={lynqLogo} className="lynq-featured-logo" alt="LYNQ Capital" />,
@@ -21,7 +23,7 @@ const VENTURES = [
   {
     name: 'SnapShare AI',
     role: 'Revenue Sharing Partner',
-    desc: 'Instant AI Photo Delivery for events and photographers using facial recognition — connecting guests to their photos in seconds.',
+    desc: 'A high-growth SaaS platform delivering event photos instantly to guests using real-time facial recognition technology.',
     tags: ['AI / ML', 'SaaS', 'Facial Recognition', 'Event Tech'],
     color: 'sky',
     bigPortfolio: true,
@@ -31,7 +33,7 @@ const VENTURES = [
   {
     name: 'ZilCubator',
     role: 'Director & Secretary',
-    desc: 'Leadership in ecosystem entity focused on startup incubation and acceleration.',
+    desc: 'Steering leadership and operational strategy inside a premium startup incubator designed to scale high-potential ideas.',
     tags: ['Incubation', 'Leadership'],
     color: 'blue',
     icon: <img src={zilcubatorLogo} alt="ZilCubator" />,
@@ -39,7 +41,7 @@ const VENTURES = [
   {
     name: 'Blulines',
     role: 'Growth Support',
-    desc: 'Contributing to strategic direction and operational scaling for early-stage growth.',
+    desc: 'Actively shaping strategic direction and hands-on operational architecture to unlock early growth and traction.',
     tags: ['Startup', 'Growth'],
     color: 'teal',
     icon: <img src={blulinesLogo} alt="Blulines" />,
@@ -47,7 +49,7 @@ const VENTURES = [
   {
     name: 'FitMyJob',
     role: 'Startup Involvement',
-    desc: 'Advisory and strategic positioning support for early-stage growth.',
+    desc: 'Advising on strategic market positioning and helping the team navigate the zero-to-one phase of growth.',
     tags: ['HR Tech', 'Advisory'],
     color: 'amber',
     icon: <img src={fitmyjobLogo} alt="FitMyJob" />,
@@ -55,7 +57,7 @@ const VENTURES = [
   {
     name: 'Paywint',
     role: 'Growth Support',
-    desc: 'Fintech startup involvement with strategic growth and operational structuring.',
+    desc: 'Guiding operational design and business growth strategies for a disruptive early-stage fintech startup.',
     tags: ['Fintech', 'Operations'],
     color: 'rose',
     icon: <img src={paywintLogo} alt="Paywint" />,
@@ -63,7 +65,7 @@ const VENTURES = [
   {
     name: 'Pitmasters Café',
     role: 'Expansion Support',
-    desc: 'Strategic expansion support for F&B venture growth and new market entry.',
+    desc: 'Driving geographical expansion, physical location scaling, and entry strategies for a rapidly growing F&B brand.',
     tags: ['F&B', 'Expansion'],
     color: 'emerald',
     icon: <img src={pitmastersLogo} className="logo-full" alt="Pitmasters Café" />,
@@ -71,18 +73,20 @@ const VENTURES = [
   {
     name: 'Kerlytix',
     role: 'Operations & Growth Manager',
-    desc: 'Venture Operating Group helping businesses establish systematic, scalable, and highly structured execution frameworks.',
+    desc: 'A venture operating group that designs custom execution frameworks to make business operations reliable, systematic, and ready to scale.',
     tags: ['Venture Operating', 'Systematization', 'Scale'],
     color: 'indigo',
-    icon: <div className="ventures-lettermark k-lettermark">K</div>,
+    icon: <img src={kerlytixLogo} className="logo-full" alt="Kerlytix" />,
+    url: 'https://www.kerlytix.com',
   },
   {
     name: 'TheCubStudio',
     role: 'Digital Transformation Partner',
-    desc: 'The dedicated digital transformation arm of Kerlytix, engineering systematic tech solutions powered by Kerlytix workflows.',
+    desc: 'The digital transformation powerhouse that translates Kerlytix operational designs into custom-engineered technology systems.',
     tags: ['Digital Tech', 'Transformation', 'Scale'],
     color: 'violet',
-    icon: <div className="ventures-lettermark cs-lettermark">CS</div>,
+    icon: <img src={cubstudioLogo} className="logo-full" alt="TheCubStudio" />,
+    url: 'https://thecubstudio.com',
   },
 ];
 
@@ -99,7 +103,16 @@ export default function Ventures() {
 
   const lynqSpot = VENTURES.find(v => v.name === 'LYNQ Capital');
   const snapShare = VENTURES.find(v => v.name === 'SnapShare AI');
-  const others = VENTURES.filter(v => v.name !== 'LYNQ Capital' && v.name !== 'SnapShare AI');
+  
+  // Split grid items to arrange Kerlytix & TheCubStudio row between the LYNQ and SnapShare spotlights
+  const row1Grid = [
+    VENTURES.find(v => v.name === 'Kerlytix'),
+    VENTURES.find(v => v.name === 'TheCubStudio')
+  ];
+
+  const remainingGrid = VENTURES.filter(
+    v => !['LYNQ Capital', 'SnapShare AI', 'Kerlytix', 'TheCubStudio'].includes(v.name)
+  );
 
   return (
     <section className="ventures" id="ventures">
@@ -118,7 +131,7 @@ export default function Ventures() {
           </p>
         </div>
 
-        {/* LYNQ Capital — Big Portfolio Spotlight (First) */}
+        {/* 1. LYNQ Capital — Big Portfolio Spotlight */}
         <div
           className={`snapshare-spotlight reveal ${lynqVisible ? 'visible' : ''}`}
           ref={lynqRef}
@@ -157,6 +170,17 @@ export default function Ventures() {
           <div className="snapshare-right">
             <div className="snapshare-card lynq-card">
               <div className="snapshare-card-glow" />
+              
+              {/* Erupting/Fountain Dollar Signs (Come Out model) */}
+              <span className="erupting-dollar" style={{ '--angle': '0deg', '--delay': '0s' }}>$</span>
+              <span className="erupting-dollar" style={{ '--angle': '45deg', '--delay': '0.4s' }}>$</span>
+              <span className="erupting-dollar" style={{ '--angle': '90deg', '--delay': '0.2s' }}>$</span>
+              <span className="erupting-dollar" style={{ '--angle': '135deg', '--delay': '0.6s' }}>$</span>
+              <span className="erupting-dollar" style={{ '--angle': '180deg', '--delay': '0.1s' }}>$</span>
+              <span className="erupting-dollar" style={{ '--angle': '225deg', '--delay': '0.5s' }}>$</span>
+              <span className="erupting-dollar" style={{ '--angle': '270deg', '--delay': '0.3s' }}>$</span>
+              <span className="erupting-dollar" style={{ '--angle': '315deg', '--delay': '0.7s' }}>$</span>
+
               <div className="snapshare-icon-ring lynq-icon-ring">
                 <img src={lynqLogo} className="lynq-featured-logo" alt="LYNQ Capital" />
               </div>
@@ -166,17 +190,24 @@ export default function Ventures() {
                 <div className="vault-corner tr" />
                 <div className="vault-corner bl" />
                 <div className="vault-corner br" />
-                <div className="vault-pulse-ring" />
+                <div className="lynq-pulse-ring" />
               </div>
-              <div className="snapshare-scan-line lynq-scan-line" />
             </div>
           </div>
         </div>
 
-        {/* SnapShare AI — Big Portfolio Spotlight (Second) */}
+        {/* 2 & 3. Kerlytix and TheCubStudio — Top row of Card Grid */}
+        <div className="ventures-grid-2col" style={{ marginBottom: '40px' }}>
+          {row1Grid.map((v, i) => (
+            <VentureCard key={v.name} venture={v} index={i} />
+          ))}
+        </div>
+
+        {/* 4. SnapShare AI — Big Portfolio Spotlight */}
         <div
           className={`snapshare-spotlight reveal ${snapVisible ? 'visible' : ''}`}
           ref={snapRef}
+          style={{ marginBottom: '40px' }}
         >
           <div className="snapshare-left">
             <div className="snapshare-badge">
@@ -191,9 +222,23 @@ export default function Ventures() {
               <span className="snapshare-highlight">Ai facial Recognition.</span>
             </p>
             <p className="snapshare-desc">{snapShare.desc}</p>
-            <div className="snapshare-tags">
+            <div className="snapshare-tags" style={{ marginBottom: '12px' }}>
               {snapShare.tags.map(t => <span key={t} className="snapshare-tag">{t}</span>)}
             </div>
+
+            {/* Premium action redirect button */}
+            <a
+              href="https://www.snapshare.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ventures-redirect-btn"
+            >
+              <span>Visit Website</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="btn-arrow">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
           </div>
           <div className="snapshare-right">
             <div className="snapshare-card">
@@ -214,8 +259,9 @@ export default function Ventures() {
           </div>
         </div>
 
+        {/* 5+. Remaining grid cards */}
         <div className="ventures-grid">
-          {others.map((v, i) => (
+          {remainingGrid.map((v, i) => (
             <VentureCard key={v.name} venture={v} index={i} />
           ))}
         </div>
@@ -238,22 +284,47 @@ export default function Ventures() {
 
 function VentureCard({ venture, index }) {
   const [ref, visible] = useScrollReveal();
-  const { name, role, desc, tags, color, icon, featured } = venture;
+  const { name, role, desc, tags, color, icon, featured, url } = venture;
+
+  const CardWrapper = url ? 'a' : 'div';
+  const wrapperProps = url 
+    ? { href: url, target: '_blank', rel: 'noopener noreferrer', style: { cursor: 'pointer', display: 'flex', flexDirection: 'column' } } 
+    : {};
 
   return (
-    <div
+    <CardWrapper
       ref={ref}
-      className={`venture-card reveal reveal-delay-${Math.min(index + 1, 5)} ${featured ? 'featured' : ''} ${visible ? 'visible' : ''}`}
+      className={`venture-card reveal reveal-delay-${Math.min(index + 1, 5)} ${featured ? 'featured' : ''} ${visible ? 'visible' : ''} ${url ? 'clickable-card' : ''}`}
+      {...wrapperProps}
     >
+      {url && (
+        <div className="card-external-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </div>
+      )}
       <div className={`venture-icon ${color}`}>{icon}</div>
-      <div>
+      <div className="venture-card-content">
         <h3>{name}</h3>
         <p className="venture-role">{role}</p>
         <p className="venture-desc">{desc}</p>
+        
+        {url && (
+          <div className="venture-visit-btn">
+            <span>Visit Website</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="btn-arrow">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </div>
+        )}
+
         <div className="venture-tags">
           {tags.map((t) => <span key={t}>{t}</span>)}
         </div>
       </div>
-    </div>
+    </CardWrapper>
   );
 }

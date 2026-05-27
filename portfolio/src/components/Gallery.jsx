@@ -63,6 +63,16 @@ const GALLERY_ITEMS = [
     gradient: 'linear-gradient(135deg, #1a0533 0%, #8B2FC0 50%, #1a0533 100%)',
     color: 'rgba(207, 173, 5, 1)',
   },
+  {
+    id: 7,
+    num: '07',
+    title: 'Huddle Global 2025',
+    location: 'Kerala, India',
+    tag: 'Ecosystem Summit',
+    image: '/gallery/huddle_global_2025.jpg',
+    gradient: 'linear-gradient(135deg, #2e0854 0%, #c084ef 50%, #2e0854 100%)',
+    color: '#c084ef',
+  },
 ];
 
 export default function Gallery() {

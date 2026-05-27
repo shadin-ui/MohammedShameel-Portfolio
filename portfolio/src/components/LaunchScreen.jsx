@@ -42,11 +42,33 @@ export default function LaunchScreen() {
       <div className="launch-noise" />
 
       <div className="launch-content">
-
+        {/* Pixel Model Grid Loader */}
+        <div className="pixel-grid-loader">
+          {Array.from({ length: 25 }).map((_, i) => {
+            // S letter grid indices in 5x5 matrix
+            const isS = [
+              0, 1, 2, 3, 4,
+              5,
+              10, 11, 12, 13, 14,
+              19,
+              20, 21, 22, 23, 24
+            ].includes(i);
+            
+            return (
+              <div 
+                key={i} 
+                className={`pixel-node ${isS ? 'pixel-active' : ''}`}
+                style={{ 
+                  animationDelay: `${i * 0.05}s` 
+                }} 
+              />
+            );
+          })}
+        </div>
 
         {/* Text Details */}
-        <h1 className="launch-title">MOHAMMED SHAMEEL</h1>
-        <p className="launch-subtitle">Venture Operator · System Builder</p>
+        <h1 className="launch-title">WELCOME TO</h1>
+        <p className="launch-subtitle">SHAMEEL PORTFOLIO</p>
 
         {/* Sleek Charging Progress Bar */}
         <div className="launch-progress-container">

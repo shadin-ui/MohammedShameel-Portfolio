@@ -579,15 +579,15 @@
 .id-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(6, 4, 10, 0.82);
-  backdrop-filter: blur(28px) saturate(220%);
-  -webkit-backdrop-filter: blur(28px) saturate(220%);
-  z-index: 99999 !important; /* Ensure absolute top stacking over the floating navigation dock */
+  background: rgba(6, 4, 10, 0.85);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  z-index: 999999 !important; /* Ensure absolute top stacking over navigation dock */
   display: flex;
-  align-items: flex-start; /* Align to top to allow scroll spacing when tall */
+  align-items: center; /* Perfect vertical centering */
   justify-content: center;
-  padding: 40px 24px;
-  overflow-y: auto; /* Enable vertical scroll if card content exceeds viewport height */
+  padding: 20px;
+  overflow: hidden; /* Scroll is handled inside the card for premium feel */
   opacity: 0;
   animation: idOverlayFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   will-change: opacity;
@@ -601,11 +601,14 @@
 .id-card-container {
   position: relative;
   width: 100%;
-  max-width: 410px;
-  border-radius: 28px;
+  max-width: 380px; /* perfectly optimized size for mobile & desktop */
+  max-height: 90vh; /* vertical safety barrier */
+  display: flex;
+  flex-direction: column;
+  border-radius: 24px;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.06) 0%,
     rgba(255, 255, 255, 0.02) 40%,
     rgba(140, 120, 200, 0.03) 100%
   );
@@ -616,13 +619,20 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.15),
     0 0 0 1px rgba(255, 255, 255, 0.03);
   
-  overflow: hidden;
+  /* Scroll-safe internal box model */
+  overflow-y: auto;
+  scrollbar-width: none; /* Hide scrollbars for clean pass look */
+  -ms-overflow-style: none;
+  
   transform: perspective(1000px) rotateX(15deg) translateY(40px) scale(0.92);
   opacity: 0;
   animation: idCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards;
   will-change: transform, opacity;
   z-index: 2001;
-  margin: auto; /* Magic bullet: centers card when short, aligns to top and scroll-safely when tall! */
+}
+
+.id-card-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbars in Webkit browsers */
 }
 
 @keyframes idCardEnter {
@@ -635,9 +645,9 @@
 [data-theme="light"] .id-card-container {
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.85) 0%,
-    rgba(255, 255, 255, 0.7) 40%,
-    rgba(240, 230, 255, 0.75) 100%
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(255, 255, 255, 0.8) 40%,
+    rgba(240, 230, 255, 0.85) 100%
   );
   border-color: rgba(255, 255, 255, 0.6);
   border-top-color: rgba(255, 255, 255, 0.95);
