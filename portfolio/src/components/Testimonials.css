@@ -30,6 +30,9 @@
 
 /* ── Section Header ── */
 .testimonials-header {
+  display: flex;
+  flex-direction: column;   /* tag ABOVE h2, not beside it */
+  align-items: flex-start;
   margin-bottom: 56px;
 }
 
@@ -41,7 +44,7 @@
   color: var(--text-primary);
   margin: 12px 0 16px;
   line-height: 1.1;
-  display: inline-block;
+  display: block;           /* was inline-block — caused tag to float beside it */
   cursor: pointer;
   transition: color 0.4s ease;
 }

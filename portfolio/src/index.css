@@ -247,3 +247,91 @@ button {
 [data-theme="light"] .contact-left h2:hover {
   color: var(--purple-600);
 }
+
+/* ============================================================
+   GLOBAL GRADIENT CARD  — purple radial + subtle stroke
+   Apply to any card in the site for consistent premium look
+   ============================================================ */
+
+/* Dark mode — deep translucent purple gradient */
+.venture-card,
+.testimonial-card,
+.contact-form-container,
+.expertise-item,
+.contact-card,
+.collab-bar,
+.cc-stat,
+.gitex-card,
+.mentor-card,
+.edu-timeline-item,
+.collab-chip {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(82, 3, 128, 0.09)  0%,
+      rgba(139, 47, 192, 0.04) 60%,
+      rgba(82, 3, 128, 0.06)  100%
+    ) !important;
+  border: 1px solid rgba(139, 47, 192, 0.18) !important;
+  position: relative;
+}
+
+/* Top specular stroke line — the signature */
+.venture-card::after,
+.testimonial-card::after,
+.expertise-item::after,
+.mentor-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(168, 85, 247, 0.35) 30%,
+    rgba(200, 140, 255, 0.5) 50%,
+    rgba(168, 85, 247, 0.35) 70%,
+    transparent
+  );
+  border-radius: 100px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Light mode — soft lavender gradient + purple stroke */
+[data-theme="light"] .venture-card,
+[data-theme="light"] .testimonial-card,
+[data-theme="light"] .contact-form-container,
+[data-theme="light"] .expertise-item,
+[data-theme="light"] .contact-card,
+[data-theme="light"] .collab-bar,
+[data-theme="light"] .cc-stat,
+[data-theme="light"] .gitex-card,
+[data-theme="light"] .mentor-card,
+[data-theme="light"] .edu-timeline-item,
+[data-theme="light"] .collab-chip {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(247, 242, 255, 0.98) 0%,
+      rgba(237, 220, 255, 0.6)  50%,
+      rgba(247, 242, 255, 0.95) 100%
+    ) !important;
+  border: 1px solid rgba(139, 47, 192, 0.16) !important;
+  box-shadow:
+    0 2px 12px rgba(82, 3, 128, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+[data-theme="light"] .venture-card.featured {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(247, 242, 255, 0.98) 0%,
+      rgba(232, 210, 255, 0.7)  50%,
+      rgba(247, 242, 255, 0.95) 100%
+    ) !important;
+  border-color: rgba(139, 47, 192, 0.22) !important;
+}
