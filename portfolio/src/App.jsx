@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -17,6 +18,21 @@ import { ThemeProvider } from './ThemeContext';
 import { Analytics } from '@vercel/analytics/react';
 
 export default function App() {
+  useEffect(() => {
+    // Disable browser default scroll restoration on reload
+    if ('history' in window) {
+      window.history.scrollRestoration = 'manual';
+    }
+    
+    // Force scroll to top instantly on initial mount/refresh
+    window.scrollTo(0, 0);
+
+    // Clear hash (e.g. #ventures) so reload doesn't jump away from Hero
+    if (window.location.hash) {
+      window.history.replaceState(null, null, ' ');
+    }
+  }, []);
+
   return (
     <ThemeProvider>
       <LaunchScreen />
