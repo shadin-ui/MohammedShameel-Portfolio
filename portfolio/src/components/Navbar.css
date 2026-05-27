@@ -447,41 +447,27 @@
   overflow: hidden;
   isolation: isolate;
 
-  /* === Layer 1: Deep translucent glass body === */
-  background:
-    linear-gradient(
-      165deg,
-      rgba(255, 255, 255, 0.072) 0%,
-      rgba(255, 255, 255, 0.028) 35%,
-      rgba(120, 80, 200, 0.045) 65%,
-      rgba(255, 255, 255, 0.018) 100%
-    );
-  backdrop-filter: blur(48px) saturate(260%) brightness(1.08) contrast(1.05);
-  -webkit-backdrop-filter: blur(48px) saturate(260%) brightness(1.08) contrast(1.05);
+  /* === Liquid Glass Core === */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.03) 50%,
+    rgba(0, 0, 0, 0.15) 100%
+  );
+  backdrop-filter: blur(25px) saturate(140%) brightness(0.95);
+  -webkit-backdrop-filter: blur(25px) saturate(140%) brightness(0.95);
 
-  /* === Layer 2: Multi-plane glass border === */
-  border: 1px solid transparent;
-  background-clip: padding-box;
-  outline: 1px solid rgba(255, 255, 255, 0.055);
-  outline-offset: -1px;
+  /* === Sharp Realistic Glass Border === */
+  border: 1px solid rgba(255, 255, 255, 0.22);
 
-  /* === Layer 3: Depth, glow, specular rim === */
+  /* === Real cut-glass reflections and depth === */
   box-shadow:
-    /* deep ambient shadow */
-    0 24px 64px rgba(0, 0, 0, 0.52),
-    0 8px 24px rgba(0, 0, 0, 0.38),
-    /* glass inner top highlight */
-    inset 0 1.5px 0 rgba(255, 255, 255, 0.22),
-    /* glass inner bottom shadow */
-    inset 0 -1px 0 rgba(0, 0, 0, 0.28),
-    /* inner left specular edge */
-    inset 1px 0 0 rgba(255, 255, 255, 0.08),
-    /* inner right shadow edge */
-    inset -1px 0 0 rgba(0, 0, 0, 0.1),
-    /* outer chromatic rim */
-    0 0 0 1px rgba(255, 255, 255, 0.09),
-    /* purple ambient under-glow */
-    0 0 40px rgba(82, 3, 128, 0.18);
+    /* Inner top specular highlight - gives the glass edge thickness */
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.25),
+    /* Inner bottom shadow - gives refraction */
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    /* Soft ambient drop shadow */
+    0 12px 32px rgba(0, 0, 0, 0.35);
 }
 
 /* === Animated caustic light sweep across glass surface === */
@@ -545,23 +531,20 @@
 
 /* ── Light mode glass capsule ── */
 [data-theme="light"] .bottom-nav-inner {
-  background:
-    linear-gradient(
-      165deg,
-      rgba(255, 255, 255, 0.72) 0%,
-      rgba(255, 255, 255, 0.52) 40%,
-      rgba(240, 228, 255, 0.55) 70%,
-      rgba(255, 255, 255, 0.48) 100%
-    );
-  backdrop-filter: blur(48px) saturate(220%) brightness(1.1);
-  -webkit-backdrop-filter: blur(48px) saturate(220%) brightness(1.1);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.75) 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(240, 230, 255, 0.5) 100%
+  );
+  backdrop-filter: blur(25px) saturate(140%) brightness(1.05);
+  -webkit-backdrop-filter: blur(25px) saturate(140%) brightness(1.05);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow:
-    0 20px 56px rgba(0, 0, 0, 0.08),
-    0 6px 18px rgba(82, 3, 128, 0.06),
-    inset 0 2px 0 rgba(255, 255, 255, 0.9),
-    inset 0 -1px 0 rgba(82, 3, 128, 0.06),
-    0 0 0 1px rgba(255, 255, 255, 0.5);
-  outline: 1px solid rgba(82, 3, 128, 0.08);
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05),
+    0 12px 32px rgba(0, 0, 0, 0.06);
+  outline: none;
 }
 
 [data-theme="light"] .bottom-nav-inner::after {
@@ -639,128 +622,49 @@
 /* ── Active pill — the centrepiece ── */
 .bottom-nav-item.active {
   color: white !important;
-  /* Inner glass body */
-  background:
-    linear-gradient(
-      160deg,
-      rgba(255, 255, 255, 0.16) 0%,
-      rgba(168, 85, 247, 0.22) 45%,
-      rgba(109, 40, 217, 0.28) 100%
-    ) !important;
-  backdrop-filter: blur(20px) saturate(220%);
-  -webkit-backdrop-filter: blur(20px) saturate(220%);
-  /* Layered glass depth */
+  /* Nested glass body */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  ) !important;
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+  /* Realistic cut-glass nested depth */
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
   box-shadow:
-    /* ambient glow */
-    0 0 28px rgba(139, 47, 192, 0.55),
-    0 8px 24px rgba(82, 3, 128, 0.45),
-    /* inner top specular */
-    inset 0 1.5px 0 rgba(255, 255, 255, 0.42),
-    /* inner bottom shadow */
-    inset 0 -1px 0 rgba(82, 3, 128, 0.55),
-    /* outer rim */
-    0 0 0 1px rgba(168, 85, 247, 0.4),
-    0 0 0 2px rgba(168, 85, 247, 0.12) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  transition:
-    color      0.32s cubic-bezier(0.16, 1, 0.3, 1),
-    background 0.32s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -0.5px 0 rgba(0, 0, 0, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.2) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Active — iridescent top caustic stripe */
-.bottom-nav-item.active::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 8%;
-  right: 8%;
-  height: 1.5px;
-  border-radius: 100px;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 100, 200, 0.7)  0%,
-    rgba(180, 110, 255, 0.85) 22%,
-    rgba(100, 200, 255, 0.85) 50%,
-    rgba(180, 110, 255, 0.85) 78%,
-    rgba(255, 200, 100, 0.7)  100%
-  );
-  background-size: 200% 100%;
-  filter: blur(0.5px);
-  pointer-events: none;
-  z-index: 3;
-  animation:
-    chromaticShimmer 4s linear infinite,
-    fadeSlideIn      0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* Active — iridescent bottom reflection stripe */
-.bottom-nav-item.active::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 18%;
-  right: 18%;
-  height: 1px;
-  border-radius: 100px;
-  background: linear-gradient(
-    90deg,
-    rgba(255,100,200,0.4)  0%,
-    rgba(100,200,255,0.6)  50%,
-    rgba(255,200,100,0.4)  100%
-  );
-  background-size: 200% 100%;
-  filter: blur(1px);
-  pointer-events: none;
-  z-index: 3;
-  animation:
-    chromaticShimmer 4s linear infinite reverse,
-    fadeSlideIn      0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes chromaticShimmer {
-  0%   { background-position: 0% 50%; }
-  100% { background-position: 200% 50%; }
-}
-
-@keyframes fadeSlideIn {
-  from { opacity: 0; transform: scaleX(0.5); }
-  to   { opacity: 1; transform: scaleX(1); }
-}
-
-/* Active hover — flare the refraction guides */
 .bottom-nav-item.active:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0.08) 100%
+  ) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
   box-shadow:
-    0 0 36px rgba(139, 47, 192, 0.7),
-    0 10px 30px rgba(82, 3, 128, 0.55),
-    inset 0 1.5px 0 rgba(255, 255, 255, 0.52),
-    inset 0 -1px 0 rgba(82, 3, 128, 0.6),
-    0 0 0 1px rgba(168, 85, 247, 0.55),
-    0 0 0 3px rgba(168, 85, 247, 0.15) !important;
-}
-
-.bottom-nav-item.active:hover::before {
-  left: 4%;
-  right: 4%;
-  filter: blur(0.3px) brightness(1.2);
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -0.5px 0 rgba(0, 0, 0, 0.1),
+    0 6px 16px rgba(0, 0, 0, 0.25) !important;
 }
 
 /* Light mode active */
 [data-theme="light"] .bottom-nav-item.active {
   color: var(--purple-950) !important;
-  background:
-    linear-gradient(
-      160deg,
-      rgba(255, 255, 255, 0.85) 0%,
-      rgba(237, 220, 255, 0.75) 50%,
-      rgba(255, 255, 255, 0.8) 100%
-    ) !important;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.5) 100%
+  ) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
   box-shadow:
-    0 0 20px rgba(82, 3, 128, 0.18),
-    0 6px 18px rgba(82, 3, 128, 0.12),
-    inset 0 2px 0 rgba(255, 255, 255, 0.95),
-    inset 0 -1px 0 rgba(82, 3, 128, 0.08),
-    0 0 0 1px rgba(168, 85, 247, 0.25) !important;
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -0.5px 0 rgba(0, 0, 0, 0.05),
+    0 4px 10px rgba(82, 3, 128, 0.04) !important;
 }
 
 /* ── Icon & label ── */
