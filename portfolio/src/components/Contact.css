@@ -56,7 +56,7 @@
 /* Contact layout */
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.1fr;
   gap: 64px;
   align-items: start;
 }
@@ -673,6 +673,80 @@
   .contact-grid {
     gap: 36px;
   }
+
+  .contact-form-container {
+    padding: 28px 28px 32px;
+  }
+
+  .form-tabs {
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .form-tab-btn {
+    font-size: 13px;
+    padding: 10px 8px;
+  }
+
+  .interactive-connect-form {
+    gap: 16px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 13px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-section {
+    padding-top: 80px;
+    padding-bottom: 60px;
+  }
+
+  .contact-form-container {
+    padding: 22px 18px 28px;
+    border-radius: 18px;
+  }
+
+  .form-tabs {
+    gap: 6px;
+    padding: 5px;
+    margin-bottom: 20px;
+  }
+
+  .form-tab-btn {
+    font-size: 12px;
+    padding: 9px 6px;
+    gap: 5px;
+  }
+
+  .tab-icon {
+    display: none; /* hide icon on tiny screens — save space */
+  }
+
+  .interactive-connect-form {
+    gap: 14px;
+  }
+
+  .form-group label {
+    font-size: 11px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 12px 14px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+
+  .form-submit-btn {
+    font-size: 14px;
+    padding: 14px 20px;
+    border-radius: 10px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -776,7 +850,7 @@
 
 /* ── Interactive Connect Form & Tab System ── */
 .contact-form-container {
-  padding: 40px;
+  padding: 36px 40px 40px;
   background: rgba(12, 10, 20, 0.55);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
@@ -892,9 +966,11 @@
   gap: 16px;
 }
 
+/* Collapse 2-col row on narrow screens */
 @media (max-width: 640px) {
   .form-row-2 {
     grid-template-columns: 1fr;
+    gap: 0;
   }
 }
 
@@ -903,6 +979,7 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
+  width: 100%;           /* always full-width */
   padding: 16px 28px;
   background: var(--gradient-primary);
   color: white;
@@ -911,6 +988,7 @@
   font-weight: 700;
   border-radius: 12px;
   border: none;
+  cursor: pointer;
   transition: all 0.4s var(--ease-out-expo);
   box-shadow: 0 8px 25px rgba(82, 3, 128, 0.35);
   margin-top: 8px;
