@@ -970,34 +970,32 @@
   .nav-toggle {
     display: flex;
   }
-
-  /* Hide bottom nav on mobile */
-  .navbar-bottom {
-    display: none !important;
-  }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 580px) {
   .bottom-nav-item {
-    padding: 6px 6px;
+    width: 44px !important;
+    height: 44px !important;
   }
-
-  .bottom-nav-icon {
-    font-size: 16px;
+  
+  .bottom-nav-item:not(.active)::before,
+  .bottom-nav-item.active::after {
+    width: 52px !important;
+    height: 52px !important;
   }
-
+  
   .bottom-nav-icon svg {
-    width: 15px;
-    height: 15px;
+    width: 18px !important;
+    height: 18px !important;
   }
-
-  .bottom-nav-label {
-    font-size: 8px;
-  }
-
+  
   .bottom-nav-inner {
-    padding: 5px 3px;
-    gap: 1px;
+    gap: 8px !important;
+    padding: 6px 8px !important;
+  }
+  
+  .bottom-nav-theme::before {
+    left: -5px !important;
   }
 }
 
