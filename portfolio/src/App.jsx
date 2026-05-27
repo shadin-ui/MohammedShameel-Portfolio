@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -31,13 +32,39 @@ export default function App() {
     if (window.location.hash) {
       window.history.replaceState(null, null, ' ');
     }
+
+    // Initialize Lenis hyper-smooth kinetic scroll (lag-free, hardware accelerated)
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // springy cubic easeOutExpo
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.5,
+      infinite: false,
+    });
+
+    window.lenis = lenis;
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+      window.lenis = null;
+    };
   }, []);
 
   return (
     <ThemeProvider>
       <LaunchScreen />
       <CustomCursor />
-      <div style={{ position: 'relative', width: '100%', minHeight: '100vh', overflowX: 'hidden' }}>
+      <div className="app-main-container" style={{ position: 'relative', width: '100%', minHeight: '100vh', overflowX: 'hidden' }}>
         <ParticleCanvas />
         <SaasModels />
         <DottedPath />

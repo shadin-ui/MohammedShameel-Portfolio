@@ -99,7 +99,13 @@ export default function Navbar() {
     setMobileOpen(false);
     document.body.style.overflow = '';
     const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (el) {
+      if (window.lenis) {
+        window.lenis.scrollTo(el, { duration: 1.4 });
+      } else {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
   };
 
   const toggleMobile = () => {
@@ -206,7 +212,13 @@ export default function Navbar() {
       {/* ── Floating Scroll Up Button ── */}
       <button 
         className={`scroll-up-btn ${scrolled ? 'scroll-up-btn--visible' : ''} ${isNearFooter ? 'scroll-up-btn--highlight' : ''}`}
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        onClick={() => {
+          if (window.lenis) {
+            window.lenis.scrollTo(0, { duration: 1.4 });
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        }}
         aria-label="Scroll to top"
       >
         <span className="scroll-up-icon">

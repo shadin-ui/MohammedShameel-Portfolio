@@ -98,8 +98,29 @@
   box-sizing: border-box;
 }
 
+/* ── Lenis Smooth Scroll Core Styles ── */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 80px;
   overflow-x: hidden;
   width: 100%;
@@ -334,4 +355,22 @@ button {
       rgba(247, 242, 255, 0.95) 100%
     ) !important;
   border-color: rgba(139, 47, 192, 0.22) !important;
+}
+
+/* ── Cinematic Page Entry Reveal Animation (Applies to all inner divs) ── */
+.app-main-container {
+  opacity: 0;
+  transform: scale(0.985);
+  filter: blur(10px);
+  transition: 
+    opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.6s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity, filter;
+}
+
+body.loaded .app-main-container {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
 }
