@@ -8,6 +8,24 @@ export default function Hero() {
   const fundraising = useCountUp(22, 2000, statsVisible);
   const ventures = useCountUp(6, 1500, statsVisible);
 
+  const scrollToSection = (id) => {
+    const el = document.querySelector(id);
+    if (el) {
+      if (window.lenis) {
+        window.lenis.scrollTo(el, { duration: 1.4 });
+      } else {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
+
+  const triggerCallScheduler = () => {
+    if (window.selectContactTab) {
+      window.selectContactTab('scheduler');
+    }
+    scrollToSection('#contact');
+  };
+
   return (
     <section className="hero" id="hero">
       {/* Background */}
@@ -44,6 +62,25 @@ export default function Hero() {
             <p className="hero-subtitle">
               I build structured support systems that help early-stage founders scale. My work focuses on connecting the right people, organizing complex operations, and unlocking network effects across a portfolio of 39+ startups.
             </p>
+
+            <div className="hero-cta-group">
+              <button onClick={() => scrollToSection('#ventures')} className="hero-cta-btn primary">
+                <span>Explore Work</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="btn-arrow">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+              <button onClick={triggerCallScheduler} className="hero-cta-btn secondary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="btn-icon">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                <span>Schedule a Call</span>
+              </button>
+            </div>
 
             <div className="hero-bottom-bar" ref={statsRef}>
               <div className="hero-stat">

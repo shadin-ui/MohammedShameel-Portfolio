@@ -564,302 +564,367 @@
   .author-info {
     width: calc(100% - 80px);
   }
-
-  .quote-mark {
-    font-size: 40px;
-    top: -10px;
-  }
 }
 
 /* ============================================
-   PREMIUM ID CARD DIGITAL PASS MODAL SYSTEM
+   PREMIUM ID CARD MODAL — VERTICAL PORTRAIT PASS
    ============================================ */
 
-/* Outer backdrop overlay */
+
+/* Blurred modal backdrop overlay */
 .id-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(6, 4, 10, 0.85);
-  backdrop-filter: blur(24px) saturate(200%);
-  -webkit-backdrop-filter: blur(24px) saturate(200%);
-  z-index: 999999 !important; /* Ensure absolute top stacking over navigation dock */
+  background: rgba(4, 2, 8, 0.88);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  z-index: 999999;
   display: flex;
-  align-items: center; /* Perfect vertical centering */
+  align-items: center;
   justify-content: center;
-  padding: 20px;
-  overflow: hidden; /* Scroll is handled inside the card for premium feel */
+  padding: 24px;
   opacity: 0;
-  animation: idOverlayFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  will-change: opacity;
+  animation: idOverlayFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes idOverlayFadeIn {
   to { opacity: 1; }
 }
 
-/* The physical ID Card Pass frame */
+/* Vertical ID Card container */
 .id-card-container {
   position: relative;
   width: 100%;
-  max-width: 380px; /* perfectly optimized size for mobile & desktop */
-  max-height: 90vh; /* vertical safety barrier */
+  max-width: 440px;
+  height: 680px;
   display: flex;
   flex-direction: column;
-  border-radius: 24px;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.06) 0%,
-    rgba(255, 255, 255, 0.02) 40%,
-    rgba(140, 120, 200, 0.03) 100%
-  );
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-top-color: rgba(255, 255, 255, 0.22);
-  box-shadow: 
-    0 35px 80px rgba(0, 0, 0, 0.65),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    0 0 0 1px rgba(255, 255, 255, 0.03);
-  
-  /* Scroll-safe internal box model */
-  overflow-y: auto;
-  scrollbar-width: none; /* Hide scrollbars for clean pass look */
-  -ms-overflow-style: none;
-  
-  transform: perspective(1000px) rotateX(15deg) translateY(40px) scale(0.92);
+  border-radius: 28px;
+  background: #0d0618;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 40px 100px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transform: perspective(1200px) rotateX(12deg) translateY(30px) scale(0.94);
   opacity: 0;
-  animation: idCardEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards;
-  will-change: transform, opacity;
-  z-index: 2001;
+  animation: idCardEnter 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.08s forwards;
+  z-index: 10;
+  overflow: hidden;
+  transition: transform 0.1s ease; /* For smooth mouse tilt response */
 }
 
-.id-card-container::-webkit-scrollbar {
-  display: none; /* Hide scrollbars in Webkit browsers */
+[data-theme="light"] .id-card-container {
+  background: #f5f0ff;
+  border-color: rgba(168, 85, 247, 0.2);
+  box-shadow:
+    0 30px 80px rgba(82, 3, 128, 0.12),
+    0 0 0 1px rgba(168, 85, 247, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
 }
 
 @keyframes idCardEnter {
   to {
-    transform: perspective(1000px) rotateX(0deg) translateY(0) scale(1);
+    transform: perspective(1200px) rotateX(0deg) translateY(0) scale(1);
     opacity: 1;
   }
 }
 
-[data-theme="light"] .id-card-container {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.92) 0%,
-    rgba(255, 255, 255, 0.8) 40%,
-    rgba(240, 230, 255, 0.85) 100%
-  );
-  border-color: rgba(255, 255, 255, 0.6);
-  border-top-color: rgba(255, 255, 255, 0.95);
-  box-shadow: 
-    0 30px 70px rgba(82, 3, 128, 0.08),
-    inset 0 1.5px 0 rgba(255, 255, 255, 0.95),
-    0 0 0 1px rgba(82, 3, 128, 0.03);
+/* Lanyard slot at top of ID Card */
+.id-card-lanyard-slot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-top: 14px;
+  padding-bottom: 2px;
+  z-index: 5;
 }
 
-/* Card Specular Reflection Sheen */
+.id-card-slot-hole {
+  width: 55px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.8);
+}
+
+[data-theme="light"] .id-card-slot-hole {
+  background: rgba(82, 3, 128, 0.15);
+  border-color: rgba(82, 3, 128, 0.25);
+  box-shadow: inset 0 2px 4px rgba(82, 3, 128, 0.2);
+}
+
+/* Iridescent card glows */
+.id-card-glow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 0;
+  pointer-events: none;
+  z-index: 20;
+  animation: chromatic-shimmer 6s linear infinite;
+}
+.id-card-glow.top { top: 0; }
+.id-card-glow.bottom { bottom: 0; animation-direction: reverse; }
+
+/* Metallic/glass shine sweep */
 .id-card-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+    rgba(255,255,255,0.06) 0%,
+    transparent 50%,
+    rgba(255,255,255,0.02) 100%);
+  pointer-events: none;
+  z-index: 15;
+}
+
+/* Interactive light reflection overlay on hover */
+.id-card-container::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.05) 45%,
-    rgba(255, 255, 255, 0.08) 50%,
-    rgba(255, 255, 255, 0.05) 55%,
-    transparent 100%
-  );
-  opacity: 0.8;
+  background: linear-gradient(105deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.04) 45%,
+    rgba(255, 255, 255, 0.12) 50%,
+    rgba(255, 255, 255, 0.04) 55%,
+    transparent 65%);
+  background-size: 200% 200%;
+  background-position: 0% 0%;
   pointer-events: none;
-  z-index: 10;
+  z-index: 14;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
-[data-theme="light"] .id-card-shine {
-  background: linear-gradient(
-    135deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.25) 45%,
-    rgba(255, 255, 255, 0.35) 50%,
-    rgba(255, 255, 255, 0.25) 55%,
-    transparent 100%
-  );
+.id-card-container:hover::after {
+  opacity: 1;
+  background-position: 100% 100%;
+  transition: opacity 0.5s ease, background-position 0.1s ease;
 }
 
-/* Iridescent Top/Bottom glowing pass borders */
-.id-card-glow {
-  position: absolute;
-  left: 10%;
-  right: 10%;
-  height: 2.5px;
-  border-radius: 100px;
-  filter: blur(1.5px) saturate(2);
-  pointer-events: none;
-  z-index: 11;
-  background-size: 200% 100%;
-  animation: chromatic-shimmer 6s linear infinite;
-}
-
-.id-card-glow.top {
-  top: -1px;
-}
-
-.id-card-glow.bottom {
-  bottom: -1px;
-  animation-direction: reverse;
-}
-
-/* Pass Header */
-.id-card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 24px 28px 18px;
-  z-index: 2;
-  position: relative;
-}
-
-.id-chip-wrapper {
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.85;
-}
-
-.id-pass-serial {
-  font-family: var(--font-display);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  color: var(--text-muted);
-  opacity: 0.8;
-  text-transform: uppercase;
-}
-
+/* Close button - sleek overlay */
 .id-close-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.55);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.id-close-btn svg {
-  width: 14px;
-  height: 14px;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 30;
 }
 
 .id-close-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.14);
   color: white;
-  transform: scale(1.1) rotate(90deg);
+  transform: rotate(90deg) scale(1.1);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
 }
 
 [data-theme="light"] .id-close-btn {
-  background: rgba(0, 0, 0, 0.04);
-  border-color: rgba(0, 0, 0, 0.08);
-  color: var(--purple-750);
+  background: rgba(82, 3, 128, 0.05);
+  border-color: rgba(82, 3, 128, 0.12);
+  color: rgba(82, 3, 128, 0.6);
 }
 
 [data-theme="light"] .id-close-btn:hover {
-  background: rgba(82, 3, 128, 0.08);
-  border-color: rgba(82, 3, 128, 0.2);
-  color: var(--purple-950);
+  background: rgba(82, 3, 128, 0.12);
+  color: #520380;
+  box-shadow: 0 0 10px rgba(82, 3, 128, 0.08);
 }
 
-/* Portrait Photo Frame */
-.id-photo-frame {
+/* ── ID Card Header ── */
+.id-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 24px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  z-index: 5;
+}
+
+[data-theme="light"] .id-card-header {
+  border-bottom-color: rgba(82, 3, 128, 0.08);
+}
+
+.id-card-title {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--purple-300);
+}
+
+[data-theme="light"] .id-card-title {
+  color: var(--purple-700);
+}
+
+.id-pass-serial {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+}
+
+[data-theme="light"] .id-pass-serial {
+  color: rgba(82, 3, 128, 0.45);
+}
+
+/* ── ID Card Body (Sleek column layout) ── */
+.id-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 24px 10px;
+  overflow: hidden; /* Locked container for static layout */
+  z-index: 5;
+}
+
+.id-card-body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Photo frame styling */
+.id-photo-container {
   position: relative;
-  width: 180px;
-  height: 220px;
-  margin: 0 auto 24px;
-  border-radius: 20px;
+  margin-bottom: 16px;
+  z-index: 6;
+}
+
+.id-photo-frame {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  padding: 3px;
+  background: #080410;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  position: relative;
   overflow: hidden;
-  border: 1.5px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 
-    0 16px 36px rgba(0, 0, 0, 0.35),
-    0 0 0 1px rgba(255, 255, 255, 0.05);
-  z-index: 2;
-  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  transition: transform 0.4s ease;
 }
 
 [data-theme="light"] .id-photo-frame {
-  border-color: rgba(255, 255, 255, 0.95);
-  box-shadow: 
-    0 12px 28px rgba(82, 3, 128, 0.06),
-    0 0 0 1.5px rgba(82, 3, 128, 0.08);
+  background: #ffffff;
+  border-color: rgba(82, 3, 128, 0.15);
+  box-shadow: 0 8px 20px rgba(82, 3, 128, 0.06);
 }
 
 .id-photo-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  border-radius: 50%;
 }
 
 .id-photo-fallback {
   position: absolute;
-  inset: 0;
+  inset: 3px;
+  border-radius: 50%;
   display: none;
   align-items: center;
   justify-content: center;
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 52px;
+  font-size: 32px;
   color: white;
-  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
 }
 
-/* Hologram reflective security seal overlapping the photo frame corner */
+/* Holographic dynamic verified seal stamp */
 .id-hologram-seal {
   position: absolute;
-  bottom: -15px;
-  right: -15px;
-  width: 64px;
-  height: 64px;
+  bottom: -4px;
+  right: -4px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.02) 65%),
               linear-gradient(135deg, #ff0055, #00ffaa, #0055ff, #ffff00);
   background-size: 200% 200%;
-  animation: chromatic-shimmer 8s linear infinite;
-  opacity: 0.3;
+  animation: chromatic-shimmer 7s linear infinite;
+  opacity: 0.65;
   mix-blend-mode: color-dodge;
-  pointer-events: none;
   border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 0 15px rgba(0, 255, 170, 0.15);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 10;
 }
 
-/* Credentials */
-.id-credentials {
-  padding: 0 32px 20px;
-  z-index: 2;
-  position: relative;
+[data-theme="light"] .id-hologram-seal {
+  opacity: 0.8;
+  mix-blend-mode: multiply;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Status indicator dot */
+.id-status-dot {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #00FF87;
+  border: 1.5px solid #0d0618;
+  box-shadow: 0 0 8px #00FF87;
+  z-index: 8;
+  animation: blinkStatus 2s infinite ease-in-out;
+}
+
+[data-theme="light"] .id-status-dot {
+  border-color: #f5f0ff;
+  background: #00b359;
+  box-shadow: 0 0 6px #00b359;
+}
+
+@keyframes blinkStatus {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Profile Info */
+.id-profile-info {
+  text-align: center;
+  margin-bottom: 16px;
+  width: 100%;
 }
 
 .id-name {
   font-family: var(--font-display);
-  font-size: 21px;
-  font-weight: 800;
+  font-size: 20px;
+  font-weight: 850;
   letter-spacing: -0.5px;
-  color: var(--text-primary);
-  margin-bottom: 4px;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+  line-height: 1.15;
+}
+
+[data-theme="light"] .id-name {
+  color: #0d0618;
 }
 
 .id-role {
-  font-size: 13px;
+  font-size: 12px;
+  font-weight: 550;
   color: var(--text-muted);
-  font-weight: 500;
   line-height: 1.4;
-  margin-bottom: 16px;
+  margin: 0 0 10px 0;
+  padding: 0 10px;
 }
 
 .id-badge-row {
@@ -869,149 +934,295 @@
 
 .id-badge {
   display: inline-block;
-  padding: 5px 14px;
-  border-radius: 8px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid transparent;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
   text-transform: uppercase;
+  background: rgba(168, 85, 247, 0.12);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  color: #c084fc;
 }
 
 [data-theme="light"] .id-badge {
-  background: rgba(0, 0, 0, 0.02);
-  border: 1px solid rgba(82, 3, 128, 0.06);
+  background: rgba(82, 3, 128, 0.06);
+  border-color: rgba(82, 3, 128, 0.18);
+  color: #6d28d9;
 }
 
-.id-pass-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08) 20%, rgba(255, 255, 255, 0.08) 80%, transparent);
-  width: 85%;
-  margin: 0 auto;
-  z-index: 2;
+/* Metadata Info Grid */
+.id-metadata-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 12px 16px;
+  margin-bottom: 18px;
+}
+
+[data-theme="light"] .id-metadata-grid {
+  background: rgba(82, 3, 128, 0.02);
+  border-color: rgba(82, 3, 128, 0.06);
+}
+
+.id-meta-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.id-meta-label {
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+}
+
+[data-theme="light"] .id-meta-label {
+  color: rgba(82, 3, 128, 0.45);
+}
+
+.id-meta-value {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="light"] .id-meta-value {
+  color: #2d1a4a;
+}
+
+.id-meta-value.status-active {
+  color: #00FF87;
+  text-shadow: 0 0 6px rgba(0, 255, 135, 0.2);
+}
+
+[data-theme="light"] .id-meta-value.status-active {
+  color: #009e52;
+  text-shadow: none;
+}
+
+/* Endorsement Scrollable Quote Container */
+.id-quote-container {
   position: relative;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 18px;
+  padding: 16px 20px;
+  margin-bottom: 10px;
+  text-align: left;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(168, 85, 247, 0.25) transparent;
 }
 
-[data-theme="light"] .id-pass-divider {
-  background: linear-gradient(90deg, transparent, rgba(82, 3, 128, 0.06) 20%, rgba(82, 3, 128, 0.06) 80%, transparent);
+/* Premium scrollbar for the quote container */
+.id-quote-container::-webkit-scrollbar {
+  width: 5px;
 }
 
-/* Endorsement text body */
-.id-endorsement-body {
-  position: relative;
-  padding: 24px 36px 28px;
-  z-index: 2;
+.id-quote-container::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-.id-quote-open {
+.id-quote-container::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.25);
+  border-radius: 10px;
+}
+
+.id-quote-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(168, 85, 247, 0.45);
+}
+
+[data-theme="light"] .id-quote-container {
+  background: rgba(82, 3, 128, 0.02);
+  border-color: rgba(82, 3, 128, 0.05);
+  scrollbar-color: rgba(82, 3, 128, 0.15) transparent;
+}
+
+[data-theme="light"] .id-quote-container::-webkit-scrollbar-thumb {
+  background: rgba(82, 3, 128, 0.15);
+}
+
+[data-theme="light"] .id-quote-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(82, 3, 128, 0.35);
+}
+
+.id-quote-mark {
   font-family: var(--font-serif);
-  font-size: 64px;
+  font-size: 38px;
   line-height: 1;
-  color: rgba(139, 47, 192, 0.2);
+  color: rgba(168, 85, 247, 0.2);
   position: absolute;
-  top: 10px;
-  left: 20px;
-  pointer-events: none;
+  top: 4px;
+  left: 12px;
   font-weight: 800;
+  pointer-events: none;
+  user-select: none;
 }
 
-.id-quote-paragraph {
-  font-size: 14.5px;
-  line-height: 1.65;
-  color: var(--text-secondary);
+.id-quote-text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
   font-style: italic;
   font-weight: 400;
+  margin: 0;
   position: relative;
   z-index: 1;
-  margin: 0;
-  text-align: center;
+  padding-top: 2px;
 }
 
-[data-theme="light"] .id-quote-paragraph {
-  color: var(--slate-800);
+[data-theme="light"] .id-quote-text {
+  color: #3b2460;
 }
 
-/* Technical footer barcode */
-.id-footer-barcode {
+/* ── ID Card Footer ── */
+.id-card-footer {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 20px 32px 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  background: rgba(0, 0, 0, 0.1);
-  z-index: 2;
-  position: relative;
+  gap: 8px;
+  padding: 16px 24px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.2);
+  width: 100%;
+  z-index: 5;
 }
 
-[data-theme="light"] .id-footer-barcode {
-  border-top-color: rgba(0, 0, 0, 0.04);
-  background: rgba(82, 3, 128, 0.01);
+[data-theme="light"] .id-card-footer {
+  border-top-color: rgba(82, 3, 128, 0.07);
+  background: rgba(82, 3, 128, 0.03);
+}
+
+/* Authentic barcode section */
+.id-barcode-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
 }
 
 .id-barcode-lines {
   display: flex;
   align-items: flex-end;
-  gap: 2px;
-  height: 24px;
-  opacity: 0.65;
+  gap: 1.8px;
+  height: 28px;
 }
 
 .b-line {
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 0.5px;
   height: 100%;
-  background: var(--text-primary);
-  border-radius: 1px;
 }
 
-.b-line.w-sm { width: 1px; }
-.b-line.w-md { width: 2.5px; }
-.b-line.w-lg { width: 4px; }
+.id-card-container:hover .b-line {
+  animation: barcodeHoverShimmer 1.5s ease-in-out infinite;
+}
 
-.id-verified-seal {
+.id-card-container:hover .b-line:nth-child(even) {
+  animation-delay: 0.15s;
+}
+
+@keyframes barcodeHoverShimmer {
+  0%, 100% { transform: scaleY(1); opacity: 0.45; }
+  50% { transform: scaleY(0.85); opacity: 0.75; }
+}
+
+[data-theme="light"] .b-line {
+  background: rgba(82, 3, 128, 0.45);
+}
+
+.id-barcode-number {
+  font-family: monospace;
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="light"] .id-barcode-number {
+  color: rgba(82, 3, 128, 0.45);
+}
+
+.id-verification-watermark {
   font-family: var(--font-display);
-  font-size: 9.5px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
   color: #00FF87;
-  text-shadow: 0 0 10px rgba(0, 255, 135, 0.2);
   text-transform: uppercase;
 }
 
-[data-theme="light"] .id-verified-seal {
+[data-theme="light"] .id-verification-watermark {
   color: #009e52;
-  text-shadow: none;
 }
 
-/* Responsive adjustment for ID Pass */
-@media (max-width: 480px) {
+
+/* ============================================
+   RESPONSIVE MODAL ADAPTATIONS
+   ============================================ */
+
+@media (max-width: 500px) {
+  .id-modal-overlay {
+    padding: 16px 12px;
+  }
+
   .id-card-container {
-    max-width: 100%;
+    height: calc(100vh - 40px);
+    max-height: 640px;
     border-radius: 24px;
   }
+
+  .id-card-lanyard-slot {
+    padding-top: 10px;
+  }
+
   .id-photo-frame {
-    width: 140px;
-    height: 170px;
-    margin-bottom: 18px;
+    width: 90px;
+    height: 90px;
   }
-  .id-credentials {
-    padding: 0 20px 16px;
-  }
+
   .id-name {
     font-size: 18px;
   }
-  .id-role {
-    font-size: 12px;
+
+  .id-quote-container {
+    padding: 12px 16px;
   }
-  .id-endorsement-body {
-    padding: 16px 20px 20px;
+
+  .id-quote-text {
+    font-size: 12.5px;
   }
-  .id-quote-paragraph {
-    font-size: 13.5px;
+
+  .id-metadata-grid {
+    padding: 10px 14px;
+    margin-bottom: 12px;
   }
-  .id-footer-barcode {
-    padding: 16px 20px 20px;
+
+  .id-card-footer {
+    padding: 12px 20px 16px;
   }
 }
+
+@media (max-height: 700px) and (min-width: 501px) {
+  .id-card-container {
+    height: 95vh;
+    max-height: 640px;
+  }
+  .id-card-body {
+    padding-top: 12px;
+  }
+
+
+
 

@@ -122,24 +122,21 @@ export default function Testimonials() {
 
   // Realistic 3D Card Hover Angle Calculations
   const handleMouseMove = (e) => {
-    const card = e.currentTarget.querySelector('.id-card-container');
-    if (!card) return;
+    const card = e.currentTarget;
     const box = card.getBoundingClientRect();
     const x = e.clientX - box.left - box.width / 2;
     const y = e.clientY - box.top - box.height / 2;
-    const rotateX = -(y / (box.height / 2)) * 14; // Limit to 14 degrees
-    const rotateY = (x / (box.width / 2)) * 14;
+    const rotateX = -(y / (box.height / 2)) * 15; // Limit to 15 degrees
+    const rotateY = (x / (box.width / 2)) * 15;
 
     card.style.transition = 'none';
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1)`;
+    card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
   };
 
   const handleMouseLeave = (e) => {
-    const card = e.currentTarget.querySelector('.id-card-container');
-    if (card) {
-      card.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
-    }
+    const card = e.currentTarget;
+    card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+    card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) scale(1)';
   };
 
   return (
@@ -222,114 +219,130 @@ export default function Testimonials() {
         </div>
       </div>
 
-      {/* ── Premium Animated ID Card Modal Pass Overlay ── */}
+      {/* ── Premium Vertical ID Card Modal ── */}
       {activeCard && (
         <div
           className="id-modal-overlay"
           onClick={() => setActiveCard(null)}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
         >
           <div
             className="id-card-container"
             onClick={(e) => e.stopPropagation()}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
           >
-            {/* spec shine layer */}
-            <div className="id-card-shine" />
+            {/* Lanyard Slot at the very top */}
+            <div className="id-card-lanyard-slot">
+              <div className="id-card-slot-hole" />
+            </div>
 
-            {/* Top & Bottom Iridescent Pass Borders */}
+            {/* Glowing borders and light sheen */}
             <div className="id-card-glow top" style={{ background: activeCard.gradient }} />
             <div className="id-card-glow bottom" style={{ background: activeCard.gradient }} />
+            <div className="id-card-shine" />
 
-            {/* Pass Header */}
+            {/* Close Button */}
+            <button className="id-close-btn" onClick={() => setActiveCard(null)} aria-label="Close">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+
+            {/* ID Card Header */}
             <div className="id-card-header">
-              <div className="id-chip-wrapper" style={{ color: activeCard.featured ? '#FFD700' : '#8B2FC0' }}>
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <rect x="3" y="3" width="18" height="18" rx="4" fill="none" stroke="currentColor" strokeWidth="1.5" />
-                  <rect x="8" y="8" width="8" height="8" rx="1.5" />
-                  <line x1="3" y1="9" x2="8" y2="9" stroke="currentColor" strokeWidth="1.5" />
-                  <line x1="3" y1="15" x2="8" y2="15" stroke="currentColor" strokeWidth="1.5" />
-                  <line x1="16" y1="9" x2="21" y2="9" stroke="currentColor" strokeWidth="1.5" />
-                  <line x1="16" y1="15" x2="21" y2="15" stroke="currentColor" strokeWidth="1.5" />
-                  <line x1="9" y1="3" x2="9" y2="8" stroke="currentColor" strokeWidth="1.5" />
-                  <line x1="15" y1="3" x2="15" y2="8" stroke="currentColor" strokeWidth="1.5" />
-                  <line x1="9" y1="16" x2="9" y2="21" stroke="currentColor" strokeWidth="1.5" />
-                  <line x1="15" y1="16" x2="15" y2="21" stroke="currentColor" strokeWidth="1.5" />
-                </svg>
-              </div>
-
+              <span className="id-card-title">Ecosystem VIP Pass</span>
               <span className="id-pass-serial">
-                LYNQ·PASS·2026·{(activeCard.initials + '042').toUpperCase()}
+                {(activeCard.initials + '-042').toUpperCase()}
               </span>
-
-              <button className="id-close-btn" onClick={() => setActiveCard(null)} aria-label="Close pass">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              </button>
             </div>
 
-            {/* Photo Section */}
-            <div className="id-photo-frame">
-              <img
-                src={activeCard.avatar}
-                alt={activeCard.name}
-                className="id-photo-img"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                  e.target.nextSibling.style.display = 'flex';
-                }}
-              />
-              <div className="id-photo-fallback" style={{ background: activeCard.gradient }}>
-                {activeCard.initials}
+            {/* ID Card Body */}
+            <div className="id-card-body">
+              {/* Photo Area */}
+              <div className="id-photo-container">
+                <div className="id-photo-frame" style={{ borderColor: activeCard.gradient }}>
+                  <img
+                    src={activeCard.avatar}
+                    alt={activeCard.name}
+                    className="id-photo-img"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'flex';
+                    }}
+                  />
+                  <div className="id-photo-fallback" style={{ background: activeCard.gradient }}>
+                    {activeCard.initials}
+                  </div>
+                  {/* Glowing Status Indicator */}
+                  <div className="id-status-dot" />
+                </div>
+                {/* Hologram Stamp */}
+                <div className="id-hologram-seal" />
               </div>
-              <div className="id-hologram-seal" />
+
+              {/* Personal Details */}
+              <div className="id-profile-info">
+                <h3 className="id-name">{activeCard.name}</h3>
+                <p className="id-role">{activeCard.role}</p>
+                <div className="id-badge-row">
+                  <span className="id-badge" style={{ '--badge-gradient': activeCard.gradient }}>
+                    {activeCard.type}
+                  </span>
+                </div>
+              </div>
+
+              {/* ID Metadata Info Grid */}
+              <div className="id-metadata-grid">
+                <div className="id-meta-item">
+                  <span className="id-meta-label">PASS TYPE</span>
+                  <span className="id-meta-value">{activeCard.isLinkedIn ? 'LinkedIn' : 'Official'}</span>
+                </div>
+                <div className="id-meta-item">
+                  <span className="id-meta-label">CLEARANCE</span>
+                  <span className="id-meta-value">{activeCard.featured ? 'LVL-5 VIP' : 'LVL-4 MENTOR'}</span>
+                </div>
+                <div className="id-meta-item">
+                  <span className="id-meta-label">ISSUE DATE</span>
+                  <span className="id-meta-value">2026-05</span>
+                </div>
+                <div className="id-meta-item">
+                  <span className="id-meta-label">STATUS</span>
+                  <span className="id-meta-value status-active">ACTIVE</span>
+                </div>
+              </div>
+
+              {/* Endorsement Text (Styled Scrollable Quote) */}
+              <div className="id-quote-container">
+                <span className="id-quote-mark">“</span>
+                <p className="id-quote-text">{activeCard.text}</p>
+              </div>
             </div>
 
-            {/* Author Credentials */}
-            <div className="id-credentials text-center">
-              <h3 className="id-name">{activeCard.name}</h3>
-              <p className="id-role">{activeCard.role}</p>
-
-              <div className="id-badge-row">
-                <span className="id-badge" style={{ borderImage: `${activeCard.gradient} 1` }}>
-                  {activeCard.type}
+            {/* ID Card Footer */}
+            <div className="id-card-footer">
+              <div className="id-barcode-section">
+                <div className="id-barcode-lines">
+                  {[2, 4, 1, 3, 2, 5, 1, 3, 4, 1, 2, 4, 1, 3, 2, 5].map((w, i) => (
+                    <div
+                      key={i}
+                      className="b-line"
+                      style={{ width: `${w}px` }}
+                    />
+                  ))}
+                </div>
+                <span className="id-barcode-number">
+                  *{(activeCard.id + '-2026').toUpperCase()}*
                 </span>
               </div>
-            </div>
-
-            <div className="id-pass-divider" />
-
-            {/* Endorsement Statement */}
-            <div className="id-endorsement-body">
-              <span className="id-quote-open">“</span>
-              <p className="id-quote-paragraph">{activeCard.text}</p>
-            </div>
-
-            {/* Card Footer with Technical Barcode Pass */}
-            <div className="id-footer-barcode">
-              <div className="id-barcode-lines">
-                <div className="b-line w-sm"></div>
-                <div className="b-line w-lg"></div>
-                <div className="b-line w-md"></div>
-                <div className="b-line w-sm"></div>
-                <div className="b-line w-lg"></div>
-                <div className="b-line w-sm"></div>
-                <div className="b-line w-md"></div>
-                <div className="b-line w-lg"></div>
-                <div className="b-line w-sm"></div>
-                <div className="b-line w-md"></div>
-                <div className="b-line w-lg"></div>
-                <div className="b-line w-sm"></div>
+              <div className="id-verification-watermark">
+                {!activeCard.isLinkedIn ? '✦ MINISTERIAL VERIFIED ✦' : '✦ PROFESSIONAL VERIFIED ✦'}
               </div>
-              <span className="id-verified-seal">
-                {!activeCard.isLinkedIn ? 'MINISTERIAL VERIFIED' : 'SECURE SEC-KEY'}
-              </span>
             </div>
           </div>
         </div>
       )}
+
     </section>
   );
 }

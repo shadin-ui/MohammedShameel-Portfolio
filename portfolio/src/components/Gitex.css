@@ -374,6 +374,40 @@
   }
 }
 
+/* ── Light Theme: Force Dark Text ── */
+[data-theme="light"] .gitex-title {
+  color: #0f0820;
+}
+
+[data-theme="light"] .gitex-title em {
+  background: linear-gradient(135deg, #6d28d9 0%, #3b0764 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="light"] .gitex-desc {
+  color: #2d1a4a;
+}
+
+[data-theme="light"] .gitex-stat-num {
+  color: #0f0820;
+}
+
+[data-theme="light"] .gitex-stat-label {
+  color: #4a3370;
+}
+
+[data-theme="light"] .gitex-badge {
+  color: #b8860b;
+  background: rgba(184, 134, 11, 0.1);
+  border-color: rgba(184, 134, 11, 0.3);
+}
+
+[data-theme="light"] .gitex-section::before {
+  background: radial-gradient(ellipse 70% 60% at 60% 50%, rgba(82, 3, 128, 0.06) 0%, transparent 70%);
+}
+
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .gitex-inner {

@@ -954,3 +954,130 @@
     0 15px 35px rgba(0, 0, 0, 0.5),
     0 0 20px rgba(168, 85, 217, 0.2);
 }
+
+/* ============================================
+   HERO CALL-TO-ACTION BUTTON SYSTEM
+   ============================================ */
+
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 48px;
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(8px);
+}
+
+.loaded .hero-cta-group {
+  animation: heroChildReveal 1s cubic-bezier(0.25, 1, 0.5, 1) 1.2s forwards;
+}
+
+.hero-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.4s var(--ease-out-expo);
+  border: none;
+  outline: none;
+}
+
+/* Primary Button: Solid Chrome Brand Gradient */
+.hero-cta-btn.primary {
+  background: var(--gradient-primary);
+  color: white;
+  box-shadow: 0 8px 25px rgba(82, 3, 128, 0.35);
+}
+
+.hero-cta-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 12px 30px rgba(82, 3, 128, 0.5),
+    0 0 20px rgba(168, 85, 217, 0.3);
+}
+
+.hero-cta-btn.primary:active {
+  transform: translateY(0);
+}
+
+.hero-cta-btn .btn-arrow {
+  transition: transform 0.35s var(--ease-out-expo);
+}
+
+.hero-cta-btn.primary:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+/* Secondary Button: Premium Glassmorphism */
+.hero-cta-btn.secondary {
+  background: rgba(15, 6, 25, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  color: var(--text-secondary);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.hero-cta-btn.secondary:hover {
+  background: rgba(82, 3, 128, 0.08);
+  border-color: rgba(168, 85, 247, 0.4);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.25),
+    0 0 15px rgba(139, 47, 192, 0.1);
+}
+
+.hero-cta-btn.secondary:active {
+  transform: translateY(0);
+}
+
+.hero-cta-btn .btn-icon {
+  color: var(--purple-300);
+  transition: transform 0.35s var(--ease-out-expo);
+}
+
+.hero-cta-btn.secondary:hover .btn-icon {
+  transform: scale(1.15);
+}
+
+/* Light Mode Overrides */
+[data-theme="light"] .hero-cta-btn.secondary {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(82, 3, 128, 0.15);
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] .hero-cta-btn.secondary:hover {
+  background: rgba(82, 3, 128, 0.04);
+  color: var(--purple-700);
+  border-color: rgba(82, 3, 128, 0.3);
+}
+
+[data-theme="light"] .hero-cta-btn .btn-icon {
+  color: var(--purple-600);
+}
+
+/* Responsive CTA alignment */
+@media (max-width: 640px) {
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .hero-cta-btn {
+    width: 100%;
+    padding: 13px 24px;
+    font-size: 13.5px;
+    border-radius: 10px;
+  }
+}
