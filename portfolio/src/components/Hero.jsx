@@ -4,9 +4,9 @@ import './Hero.css';
 
 export default function Hero() {
   const [statsRef, statsVisible] = useScrollReveal({ threshold: 0.3 });
-  const startups = useCountUp(39, 2000, statsVisible);
+  const startups    = useCountUp(39, 2000, statsVisible);
   const fundraising = useCountUp(22, 2000, statsVisible);
-  const ventures = useCountUp(6, 1500, statsVisible);
+  const ventures    = useCountUp(6,  1500, statsVisible);
 
   const scrollToSection = (id) => {
     const el = document.querySelector(id);
@@ -35,17 +35,18 @@ export default function Hero() {
         <div className="hero-noise" />
       </div>
 
-      {/* Content Grid wrapped in standard container for perfect horizontal alignment */}
       <div className="container">
         <div className="hero-content">
-          {/* Left — Text */}
+
+          {/* ── Left — Text column ── */}
           <div className="hero-left">
-            {/* LYNQ Capital Tag */}
+            {/* LYNQ Tag */}
             <div className="hero-tag">
               <img src={lynqIcon} className="hero-tag-logo" alt="LYNQ" />
               LYNQ Capital
             </div>
 
+            {/* Title */}
             <h1 className="hero-title">
               <span className="line">
                 <span className="line-inner">
@@ -59,10 +60,31 @@ export default function Hero() {
               </span>
             </h1>
 
+            {/* ── MOBILE ONLY: centered photo between title & subtitle ── */}
+            <div className="hero-mobile-photo">
+              <div className="hero-mobile-photo-ring">
+                <img
+                  src="/hero-new.png"
+                  alt="Mohammed Shameel"
+                  className="hero-mobile-photo-img"
+                />
+              </div>
+              {/* Small name chip */}
+              <div className="hero-mobile-chip">
+                <img src={lynqIcon} alt="LYNQ" className="hero-mobile-chip-logo" />
+                <span>Mohammed Shameel</span>
+                <span className="hero-mobile-chip-dot" />
+              </div>
+            </div>
+
+            {/* Subtitle */}
             <p className="hero-subtitle">
-              I build structured support systems that help early-stage founders scale. My work focuses on connecting the right people, organizing complex operations, and unlocking network effects across a portfolio of 39+ startups.
+              I build structured support systems that help early-stage founders scale. My work focuses
+              on connecting the right people, organizing complex operations, and unlocking network
+              effects across a portfolio of 39+ startups.
             </p>
 
+            {/* CTA Buttons */}
             <div className="hero-cta-group">
               <button onClick={() => scrollToSection('#ventures')} className="hero-cta-btn primary">
                 <span>Explore Work</span>
@@ -75,13 +97,14 @@ export default function Hero() {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="btn-icon">
                   <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                   <line x1="16" y1="2" x2="16" y2="6" />
-                  <line x1="8" y1="2" x2="8" y2="6" />
-                  <line x1="3" y1="10" x2="21" y2="10" />
+                  <line x1="8"  y1="2" x2="8"  y2="6" />
+                  <line x1="3"  y1="10" x2="21" y2="10" />
                 </svg>
                 <span>Schedule a Call</span>
               </button>
             </div>
 
+            {/* Stats bar */}
             <div className="hero-bottom-bar" ref={statsRef}>
               <div className="hero-stat">
                 <span className="hero-stat-number">
@@ -106,7 +129,7 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right — Image */}
+          {/* ── Right — Full image (desktop only, hidden on mobile) ── */}
           <div className="hero-right">
             <div className="hero-image-wrapper">
               <img
@@ -120,13 +143,11 @@ export default function Hero() {
                 className="hero-image hover-image"
               />
 
-              {/* Modern Glass Shimmer Sheen Sweep Overlay */}
-              <div className="image-shimmer-sheen"></div>
+              {/* Shimmer & underline overlays */}
+              <div className="image-shimmer-sheen" />
+              <div className="image-underline" />
 
-              {/* Sliding Underline Animation */}
-              <div className="image-underline"></div>
-
-              {/* Floating Card */}
+              {/* Floating info card */}
               <div className="hero-float-card">
                 <div className="hero-float-avatar">
                   <img src={lynqIcon} alt="LYNQ" />
@@ -139,6 +160,7 @@ export default function Hero() {
               </div>
             </div>
           </div>
+
         </div>
       </div>
 

@@ -708,6 +708,8 @@
   .contact-form-container {
     padding: 22px 18px 28px;
     border-radius: 18px;
+    box-sizing: border-box;
+    max-width: 100%;
   }
 
   .form-tabs {
@@ -724,6 +726,10 @@
 
   .tab-icon {
     display: none; /* hide icon on tiny screens — save space */
+  }
+
+  .tab-btn-word-extra {
+    display: none !important;
   }
 
   .interactive-connect-form {
@@ -1509,7 +1515,7 @@
 }
 
 .calendar-day-btn:disabled {
-  opacity: 0.22;
+  opacity: 0.48;
   cursor: not-allowed;
   background: transparent !important;
   border-color: transparent !important;
@@ -1517,7 +1523,7 @@
 
 /* Weekend specific styles */
 .calendar-day-btn.weekend:disabled {
-  color: rgba(239, 68, 68, 0.5);
+  color: rgba(239, 68, 68, 0.7);
 }
 
 /* Busy Days indicator */
@@ -1525,12 +1531,16 @@
   position: relative;
 }
 
+.calendar-day-btn.fully-booked:disabled {
+  opacity: 0.65;
+}
+
 .fully-booked-lbl {
   position: absolute;
   bottom: 6px;
   font-size: 7.5px;
   font-weight: 700;
-  color: rgba(239, 68, 68, 0.65);
+  color: rgba(239, 68, 68, 0.8);
   text-transform: uppercase;
   letter-spacing: 0.2px;
 }
@@ -1539,6 +1549,15 @@
   background: rgba(82, 3, 128, 0.01);
   border-color: rgba(82, 3, 128, 0.05);
   color: #3b2460;
+}
+
+[data-theme="light"] .calendar-day-btn:disabled {
+  opacity: 0.55;
+  color: rgba(59, 36, 96, 0.65);
+}
+
+[data-theme="light"] .calendar-day-btn.weekend:disabled {
+  color: rgba(220, 38, 38, 0.75);
 }
 
 [data-theme="light"] .calendar-day-btn:hover:not(:disabled) {
@@ -1841,6 +1860,32 @@
 
   .calendar-day-btn {
     font-size: 10.5px;
+  }
+}
+
+/* ── Giant Footer Brand Wordmark Responsive Containment ── */
+@media (max-width: 640px) {
+  .footer-brand-wrapper {
+    margin: 30px 0 50px;
+  }
+  .footer-giant-brand {
+    font-size: clamp(38px, 11.5vw, 80px);
+    text-shadow:
+      -1px 1px 0px #ffffff,
+      -2px 2px 0px #e5e5ed,
+      -3px 3px 0px #cccccc,
+      -4px 4px 0px #b2b2c2,
+      -5px 5px 1px rgba(0, 0, 0, 0.6),
+      -7px 7px 15px rgba(0, 0, 0, 0.8);
+  }
+  [data-theme="light"] .footer-giant-brand {
+    text-shadow:
+      -1px 1px 0px #ffffff,
+      -2px 2px 0px #e5e5ed,
+      -3px 3px 0px #cccccc,
+      -4px 4px 0px #b2b2c2,
+      -5px 5px 1px rgba(82, 3, 128, 0.15),
+      -7px 7px 15px rgba(82, 3, 128, 0.2);
   }
 }
 

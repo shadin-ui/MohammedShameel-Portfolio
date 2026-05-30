@@ -1200,7 +1200,7 @@
 @media (max-width: 768px) {
   .scroll-up-btn {
     right: 20px;
-    bottom: 28px;
+    bottom: 112px;
     width: 48px;
     height: 48px;
     padding: 0 !important;
@@ -1313,12 +1313,10 @@
     0 0 20px rgba(168, 85, 247, 0.3);
 }
 
-/* Only show on mobile (where top-nav toggle is hidden) */
+/* Only show on mobile (where top-nav toggle is hidden) - DISABLED since bottom-nav already has integrated theme toggle */
 @media (max-width: 860px) {
   .theme-float-btn {
-    display: flex;
-    left: 20px;
-    bottom: 28px;
+    display: none !important;
   }
 }
 

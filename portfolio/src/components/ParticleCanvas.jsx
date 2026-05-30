@@ -6,29 +6,32 @@ export default function ParticleCanvas() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: true });
 
     let animId;
     let particles = [];
+    let frameCount = 0;
 
     function resize() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }
     resize();
-    window.addEventListener('resize', resize);
+
+    const resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(document.documentElement);
 
     class Particle {
       constructor() { this.reset(); }
       reset() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 1.8 + 0.5;
-        this.vx = (Math.random() - 0.5) * 0.25;
-        this.vy = (Math.random() - 0.5) * 0.25;
-        this.opacity = Math.random() * 0.25 + 0.05;
+        this.size = Math.random() * 1.5 + 0.4;
+        this.vx = (Math.random() - 0.5) * 0.2;
+        this.vy = (Math.random() - 0.5) * 0.2;
+        this.opacity = Math.random() * 0.2 + 0.04;
         this.phase = Math.random() * Math.PI * 2;
-        this.speed = Math.random() * 0.015 + 0.005;
+        this.speed = Math.random() * 0.012 + 0.004;
       }
       update() {
         this.x += this.vx;
@@ -36,47 +39,66 @@ export default function ParticleCanvas() {
         this.phase += this.speed;
         if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
       }
-      draw() {
-        const a = this.opacity * (0.5 + 0.5 * Math.sin(this.phase));
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(139, 47, 192, ${a})`;
-        ctx.fill();
-      }
     }
 
-    const count = Math.min(22, Math.floor(window.innerWidth / 65)); /* Reduced count for clean performance */
+    // Fewer particles — enough for visual, not overloading GPU
+    const count = Math.min(16, Math.floor(window.innerWidth / 80));
     for (let i = 0; i < count; i++) particles.push(new Particle());
 
+    const DIST_THRESHOLD_SQ = 14400; // 120px squared
+    const DIST_THRESHOLD = 120;
+
     function animate() {
+      // Skip rendering on hidden tabs to save CPU
+      if (document.hidden) {
+        animId = requestAnimationFrame(animate);
+        return;
+      }
+
+      frameCount++;
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+      // Batch all connection lines into ONE path — huge perf win
+      ctx.beginPath();
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
-          const distSq = dx * dx + dy * dy; /* Squared distance check */
-          
-          if (distSq < 19600) { /* 140 * 140 = 19600 threshold */
-            const d = Math.sqrt(distSq); /* Only calculate square root when within bounds */
-            ctx.beginPath();
+          const distSq = dx * dx + dy * dy;
+          if (distSq < DIST_THRESHOLD_SQ) {
+            const alpha = (1 - Math.sqrt(distSq) / DIST_THRESHOLD) * 0.05;
+            ctx.globalAlpha = alpha;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(82, 3, 128, ${(1 - d / 140) * 0.06})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
           }
         }
       }
+      ctx.strokeStyle = 'rgb(82, 3, 128)';
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
+      ctx.globalAlpha = 1;
 
-      particles.forEach((p) => { p.update(); p.draw(); });
+      // Draw & update particles
+      ctx.fillStyle = 'rgba(139, 47, 192, 1)';
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.update();
+        const a = p.opacity * (0.5 + 0.5 * Math.sin(p.phase));
+        ctx.globalAlpha = a;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+
       animId = requestAnimationFrame(animate);
     }
     animate();
 
     return () => {
       cancelAnimationFrame(animId);
-      window.removeEventListener('resize', resize);
+      resizeObserver.disconnect();
     };
   }, []);
 

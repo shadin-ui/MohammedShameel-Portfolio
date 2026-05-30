@@ -139,6 +139,24 @@ body {
   transition: background-color 0.5s ease, color 0.5s ease;
 }
 
+/* Ensure every section & its children never cause horizontal scroll */
+section {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* Critical: prevent grid/flex children from busting out of container */
+.about-grid > *,
+.ventures-grid > *,
+.ventures-grid-2col > *,
+.expertise-grid > *,
+.bento-grid > *,
+.gitex-inner > *,
+.huddle-inner > *,
+.contact-grid > * {
+  min-width: 0;
+}
+
 img {
   max-width: 100%;
   display: block;

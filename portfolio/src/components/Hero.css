@@ -655,6 +655,11 @@
   }
 }
 
+/* ── Mobile-only inline photo block (hidden on desktop) ── */
+.hero-mobile-photo {
+  display: none;
+}
+
 /* ── Responsive ── */
 @media (max-width: 1024px) {
   .hero-content {
@@ -697,20 +702,109 @@
 
 @media (max-width: 640px) {
   .hero-title {
-    font-size: clamp(32px, 9vw, 48px);
+    font-size: clamp(26px, 8vw, 40px);
+    margin-bottom: 0;
   }
 
+  /* ── Hide the desktop right-column image ── */
+  .hero-right {
+    display: none;
+  }
+
+  /* ── Show the inline mobile photo ── */
+  .hero-mobile-photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0 20px;
+    width: 100%;
+  }
+
+  /* Gradient ring around rounded-square photo */
+  .hero-mobile-photo-ring {
+    width: 180px;
+    height: 225px; /* Proportional 4:5 aspect ratio matching the desktop design */
+    border-radius: 28px;
+    padding: 4px;
+    background: linear-gradient(135deg, #520380 0%, #8b2fc0 50%, #a855d9 100%);
+    box-shadow:
+      0 0 0 6px rgba(82, 3, 128, 0.12),
+      0 16px 40px rgba(82, 3, 128, 0.3),
+      0 0 60px rgba(139, 47, 192, 0.15);
+    animation: mobilePulseRing 3s ease-in-out infinite;
+  }
+
+  @keyframes mobilePulseRing {
+    0%, 100% { box-shadow: 0 0 0 6px rgba(82, 3, 128, 0.12), 0 16px 40px rgba(82, 3, 128, 0.3), 0 0 60px rgba(139, 47, 192, 0.15); }
+    50%       { box-shadow: 0 0 0 10px rgba(82, 3, 128, 0.06), 0 20px 50px rgba(82, 3, 128, 0.4), 0 0 80px rgba(139, 47, 192, 0.25); }
+  }
+
+  .hero-mobile-photo-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    object-fit: cover;
+    object-position: center 10%;  /* Show face, not chest */
+    display: block;
+  }
+
+  /* Small name chip below the photo */
+  .hero-mobile-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 16px;
+    border-radius: 100px;
+    background: rgba(82, 3, 128, 0.08);
+    border: 1px solid rgba(139, 47, 192, 0.2);
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--purple-300);
+    letter-spacing: 0.3px;
+  }
+
+  [data-theme="light"] .hero-mobile-chip {
+    background: rgba(82, 3, 128, 0.05);
+    border-color: rgba(82, 3, 128, 0.15);
+    color: var(--purple-700);
+  }
+
+  .hero-mobile-chip-logo {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    border-radius: 3px;
+  }
+
+  /* Blinking green status dot */
+  .hero-mobile-chip-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+    animation: chipDotBlink 2s ease-in-out infinite;
+  }
+
+  @keyframes chipDotBlink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.4; }
+  }
+
+  /* ── Stats bar ── */
   .hero-bottom-bar {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px 16px;
-    padding: 20px 24px;
+    gap: 14px 10px;
+    padding: 16px 18px;
     width: 100%;
-    border-radius: 20px;
+    border-radius: 18px;
   }
 
   .hero-bottom-bar::after {
-    border-radius: 20px;
+    border-radius: 18px;
   }
 
   .hero-stat-divider {
@@ -718,29 +812,25 @@
   }
 
   .hero-stat {
-    flex: 1 1 110px;
+    flex: 1 1 80px;
     text-align: center;
   }
 
   .hero-stat-number {
-    font-size: 26px;
+    font-size: 22px;
   }
 
-  .hero-float-card {
-    left: 16px;
-    right: 16px;
-    bottom: 20px;
-    padding: 14px 16px;
-  }
-
+  /* Hide CTA badge */
   .hero-float-badge {
     display: none;
   }
+}
 
-  .hero-right {
-    height: 44vh;
-    min-height: 320px;
-    padding: 0 16px 60px;
+/* Extra small phones */
+@media (max-width: 400px) {
+  .hero-mobile-photo-ring {
+    width: 150px;
+    height: 188px; /* Proportional 4:5 aspect ratio matching the desktop design */
   }
 }
 

@@ -238,6 +238,12 @@
   filter: blur(1px) saturate(2.2);
 }
 
+/* Clicking/Pressing down animation - high responsiveness feedback */
+.testimonial-card:active {
+  transform: scale(0.97) translateY(-4px) !important;
+  transition: transform 0.1s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
 /* ── Testimonial Header ── */
 .testimonial-header {
   display: flex;
@@ -575,20 +581,66 @@
 .id-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(4, 2, 8, 0.88);
-  backdrop-filter: blur(28px) saturate(180%);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  background: rgba(4, 2, 8, 0.78);
+  backdrop-filter: blur(0px) saturate(100%);
+  -webkit-backdrop-filter: blur(0px) saturate(100%);
   z-index: 999999;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 24px;
   opacity: 0;
-  animation: idOverlayFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: idOverlayFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+[data-theme="light"] .id-modal-overlay {
+  background: rgba(245, 240, 255, 0.78);
 }
 
 @keyframes idOverlayFadeIn {
-  to { opacity: 1; }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+  }
+}
+
+/* Iridescent glowing blob behind the card modal */
+.id-modal-blob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  animation: idBlobReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards,
+             idBlobPulse 8s ease-in-out infinite alternate;
+}
+
+[data-theme="light"] .id-modal-blob {
+  filter: blur(90px);
+}
+
+@keyframes idBlobReveal {
+  to { opacity: 0.22; }
+}
+
+[data-theme="light"] @keyframes idBlobReveal {
+  to { opacity: 0.11; }
+}
+
+@keyframes idBlobPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.9) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.1) rotate(180deg);
+  }
 }
 
 /* Vertical ID Card container */
@@ -606,9 +658,9 @@
     0 40px 100px rgba(0, 0, 0, 0.7),
     0 0 0 1px rgba(255, 255, 255, 0.04),
     inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  transform: perspective(1200px) rotateX(12deg) translateY(30px) scale(0.94);
+  transform: perspective(1200px) rotateX(16deg) translateY(60px) scale(0.82);
   opacity: 0;
-  animation: idCardEnter 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.08s forwards;
+  animation: idCardEnter 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) 0.05s forwards;
   z-index: 10;
   overflow: hidden;
   transition: transform 0.1s ease; /* For smooth mouse tilt response */
@@ -733,6 +785,10 @@
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
 }
 
+.id-close-btn:active {
+  transform: rotate(90deg) scale(0.9) !important;
+}
+
 [data-theme="light"] .id-close-btn {
   background: rgba(82, 3, 128, 0.05);
   border-color: rgba(82, 3, 128, 0.12);
@@ -808,12 +864,11 @@
 }
 
 .id-photo-frame {
+  --id-photo-bg: #080410;
   width: 110px;
   height: 110px;
   border-radius: 50%;
   padding: 3px;
-  background: #080410;
-  border: 2px solid rgba(255, 255, 255, 0.15);
   position: relative;
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(0,0,0,0.5);
@@ -821,8 +876,7 @@
 }
 
 [data-theme="light"] .id-photo-frame {
-  background: #ffffff;
-  border-color: rgba(82, 3, 128, 0.15);
+  --id-photo-bg: #ffffff;
   box-shadow: 0 8px 20px rgba(82, 3, 128, 0.06);
 }
 
@@ -1222,7 +1276,19 @@
   .id-card-body {
     padding-top: 12px;
   }
-
-
-
-
+@media (max-width: 400px) {
+  .id-card-body {
+    padding: 16px 14px 8px; /* reduced horizontal padding */
+  }
+  .id-card-footer {
+    padding: 12px 14px 16px; /* reduced horizontal padding */
+  }
+  .id-metadata-grid {
+    padding: 10px 10px; /* reduced padding */
+    gap: 8px;
+  }
+  .id-verification-watermark {
+    font-size: 7.5px;
+    letter-spacing: 1.2px;
+  }
+}
