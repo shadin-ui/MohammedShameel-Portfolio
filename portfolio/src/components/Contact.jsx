@@ -66,9 +66,34 @@ export default function Contact() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitted(true);
+
+    const scriptUrl = import.meta.env.VITE_APPS_SCRIPT_URL;
+    const payload = {
+      type: 'inquiry',
+      activeTab,
+      ...formData
+    };
+
+    if (scriptUrl) {
+      try {
+        await fetch(scriptUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        console.error("Failed to send inquiry:", err);
+      }
+    } else {
+      console.log("Inquiry payload (dev mode - no endpoint configured):", payload);
+    }
+
     // Smooth reset timeout for premium user experience
     setTimeout(() => {
       setSubmitted(false);
@@ -105,9 +130,36 @@ export default function Contact() {
     });
   };
 
-  const handleBookingSubmit = (e) => {
+  const handleBookingSubmit = async (e) => {
     e.preventDefault();
     setBookingSubmitted(true);
+
+    const scriptUrl = import.meta.env.VITE_APPS_SCRIPT_URL;
+    const payload = {
+      type: 'booking',
+      ...schedulerFormData,
+      selectedDate: selectedDate ? selectedDate.toDateString() : 'N/A',
+      selectedTime,
+      duration: bookingDuration
+    };
+
+    if (scriptUrl) {
+      try {
+        await fetch(scriptUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        console.error("Failed to send booking:", err);
+      }
+    } else {
+      console.log("Booking payload (dev mode - no endpoint configured):", payload);
+    }
+
     setTimeout(() => {
       setBookingSubmitted(false);
       setSelectedDate(null);
