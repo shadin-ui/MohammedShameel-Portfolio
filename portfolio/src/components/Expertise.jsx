@@ -32,6 +32,12 @@ const ITEMS = [
     desc: 'Portfolio-level thinking — managing across multiple ventures, creating synergies between portfolio companies.',
     icon: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
   },
+  {
+    title: 'Media & Reach',
+    desc: 'Represented Kerala\'s startup ecosystem on global stages like GITEX Dubai — driving media presence, thought leadership, and cross-border narrative building.',
+    icon: <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>,
+    gitex: true,
+  },
 ];
 
 export default function Expertise() {

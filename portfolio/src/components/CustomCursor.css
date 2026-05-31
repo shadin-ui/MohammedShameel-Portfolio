@@ -81,38 +81,7 @@
     inset 0 0 12px rgba(139, 47, 192, 0.2);
 }
 
-/* ── Scroll Ripple System ── */
-.scroll-ripple {
-  position: fixed;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: transparent;
-  border: 1.5px solid rgba(168, 85, 217, 0.45);
-  box-shadow: 
-    0 0 10px rgba(168, 85, 217, 0.25),
-    inset 0 0 6px rgba(168, 85, 217, 0.15);
-  pointer-events: none;
-  z-index: 99997; /* Sits behind trailing circle */
-  transform: translate(-50%, -50%) scale(0.5);
-  transform-origin: center;
-  animation: expandRipple 0.8s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
-  will-change: transform, opacity;
-}
 
-@keyframes expandRipple {
-  0% {
-    transform: translate(-50%, -50%) scale(0.5);
-    opacity: 0.85;
-    border-color: rgba(168, 85, 217, 0.65);
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(4.5);
-    opacity: 0;
-    border-color: rgba(16, 185, 129, 0); /* Blends dynamically to green fading out */
-    box-shadow: 0 0 15px rgba(16, 185, 129, 0);
-  }
-}
 
 /* ── Custom Cursor Light Theme Overrides ── */
 [data-theme="light"] .custom-cursor-dot {
@@ -143,18 +112,10 @@
     inset 0 0 10px rgba(82, 3, 128, 0.15);
 }
 
-[data-theme="light"] .scroll-ripple {
-  border-color: rgba(82, 3, 128, 0.35);
-  box-shadow: 
-    0 0 8px rgba(82, 3, 128, 0.15),
-    inset 0 0 4px rgba(82, 3, 128, 0.08);
-}
-
 /* Hide on touch/mobile devices entirely */
 @media (hover: none) and (pointer: coarse) {
   .custom-cursor-circle,
-  .custom-cursor-dot,
-  .scroll-ripple {
+  .custom-cursor-dot {
     display: none !important;
   }
 

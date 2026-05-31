@@ -53,6 +53,14 @@
   grid-template-columns: 1.2fr 1fr;
   gap: 64px;
   align-items: center;
+  /* Prevent text from overflowing on any screen */
+  overflow: hidden;
+}
+
+.about-text {
+  min-width: 0; /* critical: allow flex/grid child to shrink */
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .about-lead {
@@ -113,8 +121,8 @@
 
 .orbit-system {
   position: relative;
-  width: 360px;
-  height: 360px;
+  width: 460px;
+  height: 460px;
 }
 
 .orbit-center {
@@ -122,9 +130,9 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80px;
-  height: 80px;
-  border-radius: 22px;
+  width: 96px;
+  height: 96px;
+  border-radius: 26px;
   background: rgba(149, 88, 219, 0.493);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -167,18 +175,18 @@
 }
 
 .orbit-ring-1 {
-  width: 220px;
-  height: 220px;
-  margin-top: -110px;
-  margin-left: -110px;
+  width: 280px;
+  height: 280px;
+  margin-top: -140px;
+  margin-left: -140px;
   animation: orbitSpin 36s linear infinite;
 }
 
 .orbit-ring-2 {
-  width: 340px;
-  height: 340px;
-  margin-top: -170px;
-  margin-left: -170px;
+  width: 440px;
+  height: 440px;
+  margin-top: -220px;
+  margin-left: -220px;
   animation: orbitSpin 50s linear infinite reverse;
 }
 
@@ -221,87 +229,36 @@
   animation-play-state: paused;
 }
 
-/* Position and counter-spin orbit nodes (keeping them upright) */
-/* Inner Ring (Ring 1) — 2 Nodes: Strategy (Top), Operations (Bottom) */
-.orbit-ring-1 .orbit-node:nth-child(1) {
-  top: -16px;
-  left: 50%;
+/* Dynamic positioning and counter-spin */
+.node-ring-1 {
   animation: counterSpinX 36s linear infinite;
 }
 
-.orbit-ring-1 .orbit-node:nth-child(2) {
-  bottom: -16px;
-  left: 50%;
-  animation: counterSpinX 36s linear infinite;
-}
-
-/* Outer Ring (Ring 2) — 4 Nodes: Founders (Top), Investors (Bottom), Partners (Left), Networks (Right) */
-.orbit-ring-2 .orbit-node:nth-child(1) {
-  top: -16px;
-  left: 50%;
+.node-ring-2 {
   animation: counterSpinXReverse 50s linear infinite;
 }
 
-.orbit-ring-2 .orbit-node:nth-child(2) {
-  bottom: -16px;
-  left: 50%;
-  animation: counterSpinXReverse 50s linear infinite;
-}
-
-.orbit-ring-2 .orbit-node:nth-child(3) {
-  top: 50%;
-  left: -24px;
-  animation: counterSpinYReverse 50s linear infinite;
-}
-
-.orbit-ring-2 .orbit-node:nth-child(4) {
-  top: 50%;
-  right: -24px;
-  animation: counterSpinYReverse 50s linear infinite;
-}
-
-/* Upright Counter-spin physics keyframes */
 @keyframes counterSpinX {
   from {
-    transform: translateX(-50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
   }
 
   to {
-    transform: translateX(-50%) rotate(-360deg);
+    transform: translate(-50%, -50%) rotate(-360deg);
   }
 }
 
 @keyframes counterSpinXReverse {
   from {
-    transform: translateX(-50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
   }
 
   to {
-    transform: translateX(-50%) rotate(360deg);
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 
-@keyframes counterSpinY {
-  from {
-    transform: translateY(-50%) rotate(0deg);
-  }
-
-  to {
-    transform: translateY(-50%) rotate(-360deg);
-  }
-}
-
-@keyframes counterSpinYReverse {
-  from {
-    transform: translateY(-50%) rotate(0deg);
-  }
-
-  to {
-    transform: translateY(-50%) rotate(360deg);
-  }
-}
-
-/* Responsive */
+/* ── Responsive ── */
 @media (max-width: 1024px) {
   .about-header {
     margin-bottom: 48px;
@@ -319,50 +276,94 @@
   }
 
   .about-grid {
-    gap: 36px;
+    gap: 32px;
+  }
+
+  .about-lead {
+    font-size: 17px;
   }
 }
 
+/* ── Mobile orbit: shrink the whole system to fit screen ── */
 @media (max-width: 640px) {
+  /* Contain the visual so it never exceeds the viewport */
+  .about-visual {
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+  }
+
   .orbit-system {
-    width: 280px;
-    height: 280px;
+    /* Scale down proportionally so 460px wide fits inside ~340px container */
+    width: 300px;
+    height: 300px;
   }
 
   .orbit-ring-1 {
-    width: 180px;
-    height: 180px;
-    margin-top: -90px;
-    margin-left: -90px;
+    width: 170px;
+    height: 170px;
+    margin-top: -85px;
+    margin-left: -85px;
   }
 
   .orbit-ring-2 {
-    width: 260px;
-    height: 260px;
-    margin-top: -130px;
-    margin-left: -130px;
+    width: 280px;
+    height: 280px;
+    margin-top: -140px;
+    margin-left: -140px;
   }
 
   .orbit-center {
     width: 64px;
     height: 64px;
+    border-radius: 18px;
+  }
+
+  .orbit-node {
+    font-size: 9.5px;
+    padding: 5px 10px;
+    border-radius: 8px;
+  }
+
+  .role-tag {
+    font-size: 12px;
+    padding: 7px 14px;
+  }
+
+  .about-lead {
     font-size: 16px;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 400px) {
   .orbit-system {
-    transform: scale(0.82);
-    transform-origin: center;
-    margin: -24px 0;
+    width: 260px;
+    height: 260px;
   }
-}
 
-@media (max-width: 360px) {
-  .orbit-system {
-    transform: scale(0.68);
-    transform-origin: center;
-    margin: -48px 0;
+  .orbit-ring-1 {
+    width: 140px;
+    height: 140px;
+    margin-top: -70px;
+    margin-left: -70px;
+  }
+
+  .orbit-ring-2 {
+    width: 240px;
+    height: 240px;
+    margin-top: -120px;
+    margin-left: -120px;
+  }
+
+  .orbit-center {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+  }
+
+  .orbit-node {
+    font-size: 8.5px;
+    padding: 4px 8px;
   }
 }
 

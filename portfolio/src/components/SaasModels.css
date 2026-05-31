@@ -86,9 +86,26 @@
   }
 }
 
-/* Hide on mobile to save performance and reduce clutter */
+/* Mobile: show shapes at reduced size/opacity */
 @media (max-width: 768px) {
   .saas-background-decorations {
-    display: none;
+    display: block;
+    overflow: visible;
+  }
+
+  .saas-shape {
+    opacity: 0.05;
+  }
+
+  .shape-torus {
+    top: 8vh;
+    left: -8vw;
+    width: clamp(120px, 40vw, 200px);
+  }
+
+  .shape-sphere {
+    bottom: 10vh;
+    left: -6vw;
+    width: clamp(140px, 45vw, 220px);
   }
 }

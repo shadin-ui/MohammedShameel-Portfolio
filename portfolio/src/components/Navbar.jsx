@@ -70,36 +70,74 @@ export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScroll = window.scrollY;
-      setScrolled(currentScroll > 400);
+    let sectionOffsets = [];
 
-      // Check if we are near the bottom (in the footer zone)
-      const totalHeight = document.documentElement.scrollHeight;
-      const viewportHeight = window.innerHeight;
-      const isAtFooter = totalHeight - (currentScroll + viewportHeight) < 220;
-      setIsNearFooter(isAtFooter);
-
+    // Cache the offsets of all sections to eliminate layout thrashing
+    const cacheOffsets = () => {
       const sections = document.querySelectorAll('section[id]');
-      let current = '';
-      sections.forEach((section) => {
-        const top = section.offsetTop - 250;
-        if (currentScroll >= top) {
-          current = section.getAttribute('id');
+      sectionOffsets = Array.from(sections).map((section) => ({
+        id: section.getAttribute('id'),
+        top: section.offsetTop - 250,
+      }));
+    };
+
+    cacheOffsets();
+
+    // Re-cache offsets on window resize with safety check
+    window.addEventListener('resize', cacheOffsets, { passive: true });
+
+    let scrollTimeout = null;
+    const handleScroll = () => {
+      if (scrollTimeout !== null) return;
+
+      scrollTimeout = requestAnimationFrame(() => {
+        const currentScroll = window.scrollY;
+        setScrolled(currentScroll > 400);
+
+        // Check if we are near the bottom (in the footer zone) with currentScroll safety to avoid height measurement offset bugs
+        const totalHeight = document.documentElement.scrollHeight;
+        const viewportHeight = window.innerHeight;
+        const isAtFooter = currentScroll > 100 && (totalHeight - (currentScroll + viewportHeight) < 280);
+        setIsNearFooter(isAtFooter);
+
+        // Find active section using cached static offsets (0 DOM queries!)
+        let current = '';
+        for (let i = 0; i < sectionOffsets.length; i++) {
+          if (currentScroll >= sectionOffsets[i].top) {
+            current = sectionOffsets[i].id;
+          }
         }
+        setActiveSection(current);
+
+        scrollTimeout = null;
       });
-      setActiveSection(current);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    
+    // Synchronize initial load scroll coordinates
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', cacheOffsets);
+      if (scrollTimeout !== null) {
+        cancelAnimationFrame(scrollTimeout);
+      }
+    };
   }, []);
 
   const scrollTo = (href) => {
     setMobileOpen(false);
     document.body.style.overflow = '';
     const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (el) {
+      if (window.lenis) {
+        window.lenis.scrollTo(el, { duration: 1.4 });
+      } else {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
   };
 
   const toggleMobile = () => {
@@ -114,12 +152,7 @@ export default function Navbar() {
         <div className="container">
           <div className="nav-inner">
             <a href="#hero" className="nav-logo" onClick={(e) => { e.preventDefault(); scrollTo('#hero'); }}>
-              <div className="logo-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                </svg>
-              </div>
-              <span className="logo-text">Shameel</span>
+              <span className="logo-text" style={{ textTransform: 'uppercase', letterSpacing: '1.5px', fontWeight: '800' }}>SHAMEEL</span>
             </a>
 
             <div className="nav-center-top">
@@ -155,20 +188,20 @@ export default function Navbar() {
               <button className="nav-cta nav-cta-desktop" onClick={() => scrollTo('#contact')}>
                 Let's Connect
               </button>
-            </div>
 
-            <button
-              className={`nav-toggle ${mobileOpen ? 'active' : ''}`}
-              onClick={toggleMobile}
-              aria-label="Toggle menu"
-            >
-              <span /><span /><span />
-            </button>
+              <button
+                className={`nav-toggle ${mobileOpen ? 'active' : ''}`}
+                onClick={toggleMobile}
+                aria-label="Toggle menu"
+              >
+                <span /><span /><span />
+              </button>
+            </div>
           </div>
         </div>
       </nav>
 
-      {/* ── Bottom Floating Navbar (appears on scroll, hides in footer) ── */}
+      {/* ── Bottom Floating Navbar (shows on scroll, hides in footer) ── */}
       <nav className={`navbar-bottom ${scrolled && !isNearFooter ? 'navbar-bottom--visible' : ''}`}>
         <div className="bottom-nav-inner">
           {NAV_ITEMS.map(({ label, href, icon }) => (
@@ -211,13 +244,44 @@ export default function Navbar() {
       {/* ── Floating Scroll Up Button ── */}
       <button 
         className={`scroll-up-btn ${scrolled ? 'scroll-up-btn--visible' : ''} ${isNearFooter ? 'scroll-up-btn--highlight' : ''}`}
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        onClick={() => {
+          if (window.lenis) {
+            window.lenis.scrollTo(0, { duration: 1.4 });
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        }}
         aria-label="Scroll to top"
       >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="18 15 12 9 6 15" />
-        </svg>
-        <span className="scroll-up-text">Scroll Up</span>
+        <span className="scroll-up-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 19V5M5 12l7-7 7 7" />
+          </svg>
+        </span>
+        <span className="scroll-up-text">Back to Top</span>
+      </button>
+
+      {/* ── Floating Theme Toggle Button (LEFT side) — mirrors scroll-up on right ── */}
+      <button
+        className={`theme-float-btn ${scrolled ? 'theme-float-btn--visible' : ''}`}
+        onClick={toggleTheme}
+        aria-label="Toggle theme"
+      >
+        <span className="theme-float-icon">
+          {theme === 'dark' ? (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="5" fill="currentColor" />
+              <line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" />
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+            </svg>
+          ) : (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          )}
+        </span>
       </button>
 
       {/* Mobile Overlay */}
@@ -230,13 +294,39 @@ export default function Navbar() {
               onClick={() => scrollTo(href)}
             >
               <span className="mobile-nav-num">0{index + 1}</span>
-              <span className="mobile-nav-text">{label}</span>
+              <span className="mobile-nav-label">{label}</span>
             </button>
           ))}
         </div>
-        <button className="theme-toggle-mobile" onClick={toggleTheme}>
-          {theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-        </button>
+
+        {/* Proper toggle switch row */}
+        <div className="mobile-theme-row">
+          <span className="mobile-theme-label">
+            {theme === 'dark' ? 'Dark Mode' : 'Light Mode'}
+          </span>
+          <button
+            className={`theme-toggle-switch ${theme === 'light' ? 'is-light' : ''}`}
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+          >
+            <span className="toggle-track">
+              <span className="toggle-thumb">
+                {theme === 'dark' ? (
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                  </svg>
+                ) : (
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <circle cx="12" cy="12" r="5" fill="currentColor" />
+                    <line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" />
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                  </svg>
+                )}
+              </span>
+            </span>
+          </button>
+        </div>
+
         <button className="nav-cta mobile-nav-cta" onClick={() => scrollTo('#contact')}>
           Let's Connect
         </button>

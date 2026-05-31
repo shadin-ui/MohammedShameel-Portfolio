@@ -8,6 +8,11 @@ export default function CustomCursor() {
   const target = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
+    const isTouchDevice = typeof window !== 'undefined' && 
+      ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+
+    if (isTouchDevice) return; // Exit cleanly inside the effect on touch screens
+
     const handleMove = (e) => {
       // Instant positioning for the leading dot
       if (dotRef.current) {
@@ -60,40 +65,19 @@ export default function CustomCursor() {
 
     document.addEventListener('mouseover', handleOver);
 
-    // Highly performant scroll ripple trail system
-    let lastRippleTime = 0;
-    const handleScroll = () => {
-      // Don't spawn ripples on touch devices
-      if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
-
-      const now = Date.now();
-      if (now - lastRippleTime < 100) return; // Smoothly throttle to 100ms for solid rendering frames
-      lastRippleTime = now;
-
-      // Spawn expanding ripple circle at current custom cursor coordinate path
-      const ripple = document.createElement('div');
-      ripple.className = 'scroll-ripple';
-      ripple.style.left = `${pos.current.x}px`;
-      ripple.style.top = `${pos.current.y}px`;
-      document.body.appendChild(ripple);
-
-      // Clean up cleanly from DOM once CSS animation completes
-      setTimeout(() => {
-        ripple.remove();
-      }, 800);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
     return () => {
       cancelAnimationFrame(animId);
       document.removeEventListener('mousemove', handleMove);
       document.removeEventListener('mouseleave', handleLeave);
       document.removeEventListener('mouseenter', handleEnter);
       document.removeEventListener('mouseover', handleOver);
-      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const isTouchDevice = typeof window !== 'undefined' && 
+    ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+
+  if (isTouchDevice) return null; // Safe to return null below hook calls!
 
   return (
     <>
