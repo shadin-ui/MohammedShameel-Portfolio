@@ -700,9 +700,44 @@
   }
 }
 
+@media (max-width: 768px) {
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 130px clamp(16px, 4vw, 32px) 48px !important;
+  }
+
+  .hero-tag {
+    align-self: center !important;
+    margin: 0 auto 24px auto !important;
+  }
+
+  .hero-title {
+    text-align: center !important;
+    margin-bottom: 8px !important;
+  }
+
+  .hero-subtitle {
+    text-align: center !important;
+    margin: 0 auto 36px auto !important;
+  }
+
+  .hero-cta-group {
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  .hero-bottom-bar {
+    justify-content: center !important;
+    margin: 0 auto !important;
+  }
+}
+
 @media (max-width: 640px) {
   .hero-title {
-    font-size: clamp(26px, 8vw, 40px);
+    font-size: clamp(26px, 8vw, 42px);
     margin-bottom: 0;
   }
 
@@ -717,14 +752,14 @@
     flex-direction: column;
     align-items: center;
     gap: 12px;
-    margin: 24px 0 20px;
+    margin: 20px 0 24px;
     width: 100%;
   }
 
-  /* Gradient ring around rounded-square photo */
+  /* Gradient ring around rounded-square photo - enlarged as requested */
   .hero-mobile-photo-ring {
-    width: 180px;
-    height: 225px; /* Proportional 4:5 aspect ratio matching the desktop design */
+    width: 240px;
+    height: 300px; /* Proportional 4:5 aspect ratio matching the desktop design */
     border-radius: 28px;
     padding: 4px;
     background: linear-gradient(135deg, #520380 0%, #8b2fc0 50%, #a855d9 100%);
@@ -829,8 +864,8 @@
 /* Extra small phones */
 @media (max-width: 400px) {
   .hero-mobile-photo-ring {
-    width: 150px;
-    height: 188px; /* Proportional 4:5 aspect ratio matching the desktop design */
+    width: 200px;
+    height: 250px; /* Proportional 4:5 aspect ratio matching the desktop design */
   }
 }
 
