@@ -392,3 +392,24 @@ body.loaded .app-main-container {
   transform: scale(1);
   filter: blur(0);
 }
+
+/* ── Premium Responsive Global Typography Alignment ── */
+@media (max-width: 768px) {
+  /* Make all general descriptive body texts fully justified for absolute neatness */
+  p,
+  .quote-text,
+  .id-quote-text,
+  .about-lead,
+  .testimonials-sub,
+  .ventures-sub,
+  .expertise-sub,
+  .gallery-sub,
+  .huddle-sub,
+  .contact-desc {
+    text-align: justify !important;
+    text-justify: inter-word; /* High performance word spacing balance */
+    hyphens: auto; /* Clean break-points on small displays */
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+  }
+}
