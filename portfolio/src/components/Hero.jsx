@@ -50,7 +50,7 @@ export default function Hero() {
             <h1 className="hero-title">
               <span className="line">
                 <span className="line-inner">
-                  Hi, I'm <em>Shameelp</em>,
+                  Hi, I'm <em>Shameel</em>,
                 </span>
               </span>
               <span className="line">
