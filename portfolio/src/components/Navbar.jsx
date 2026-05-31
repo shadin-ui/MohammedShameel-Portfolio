@@ -70,25 +70,47 @@ export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScroll = window.scrollY;
-      setScrolled(currentScroll > 400);
+    let sectionOffsets = [];
 
-      // Check if we are near the bottom (in the footer zone) with currentScroll safety to avoid height measurement offset bugs
-      const totalHeight = document.documentElement.scrollHeight;
-      const viewportHeight = window.innerHeight;
-      const isAtFooter = currentScroll > 100 && (totalHeight - (currentScroll + viewportHeight) < 280);
-      setIsNearFooter(isAtFooter);
-
+    // Cache the offsets of all sections to eliminate layout thrashing
+    const cacheOffsets = () => {
       const sections = document.querySelectorAll('section[id]');
-      let current = '';
-      sections.forEach((section) => {
-        const top = section.offsetTop - 250;
-        if (currentScroll >= top) {
-          current = section.getAttribute('id');
+      sectionOffsets = Array.from(sections).map((section) => ({
+        id: section.getAttribute('id'),
+        top: section.offsetTop - 250,
+      }));
+    };
+
+    cacheOffsets();
+
+    // Re-cache offsets on window resize with safety check
+    window.addEventListener('resize', cacheOffsets, { passive: true });
+
+    let scrollTimeout = null;
+    const handleScroll = () => {
+      if (scrollTimeout !== null) return;
+
+      scrollTimeout = requestAnimationFrame(() => {
+        const currentScroll = window.scrollY;
+        setScrolled(currentScroll > 400);
+
+        // Check if we are near the bottom (in the footer zone) with currentScroll safety to avoid height measurement offset bugs
+        const totalHeight = document.documentElement.scrollHeight;
+        const viewportHeight = window.innerHeight;
+        const isAtFooter = currentScroll > 100 && (totalHeight - (currentScroll + viewportHeight) < 280);
+        setIsNearFooter(isAtFooter);
+
+        // Find active section using cached static offsets (0 DOM queries!)
+        let current = '';
+        for (let i = 0; i < sectionOffsets.length; i++) {
+          if (currentScroll >= sectionOffsets[i].top) {
+            current = sectionOffsets[i].id;
+          }
         }
+        setActiveSection(current);
+
+        scrollTimeout = null;
       });
-      setActiveSection(current);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -96,7 +118,13 @@ export default function Navbar() {
     // Synchronize initial load scroll coordinates
     handleScroll();
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', cacheOffsets);
+      if (scrollTimeout !== null) {
+        cancelAnimationFrame(scrollTimeout);
+      }
+    };
   }, []);
 
   const scrollTo = (href) => {

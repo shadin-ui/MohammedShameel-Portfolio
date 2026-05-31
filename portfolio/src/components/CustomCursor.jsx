@@ -2,6 +2,11 @@ import { useEffect, useRef } from 'react';
 import './CustomCursor.css';
 
 export default function CustomCursor() {
+  const isTouchDevice = typeof window !== 'undefined' && 
+    ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+
+  if (isTouchDevice) return null;
+
   const circleRef = useRef(null);
   const dotRef = useRef(null);
   const pos = useRef({ x: 0, y: 0 });

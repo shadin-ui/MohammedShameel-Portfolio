@@ -12,14 +12,24 @@ export default function ParticleCanvas() {
     let particles = [];
     let frameCount = 0;
 
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    resize();
+    let lastWidth = window.innerWidth;
+    let lastHeight = window.innerHeight;
 
-    const resizeObserver = new ResizeObserver(resize);
-    resizeObserver.observe(document.documentElement);
+    function resize() {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      // Optimize: Only resize if width changed, or height changed significantly (ignores mobile address bar collapses)
+      if (w !== lastWidth || Math.abs(h - lastHeight) > 100) {
+        canvas.width = w;
+        canvas.height = h;
+        lastWidth = w;
+        lastHeight = h;
+      }
+    }
+    canvas.width = lastWidth;
+    canvas.height = lastHeight;
+
+    window.addEventListener('resize', resize, { passive: true });
 
     class Particle {
       constructor() { this.reset(); }
@@ -98,7 +108,7 @@ export default function ParticleCanvas() {
 
     return () => {
       cancelAnimationFrame(animId);
-      resizeObserver.disconnect();
+      window.removeEventListener('resize', resize);
     };
   }, []);
 

@@ -37,13 +37,14 @@ export default function App() {
 
     // Initialize Lenis hyper-smooth kinetic scroll (lag-free, hardware accelerated)
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // springy cubic easeOutExpo
+      duration: 1.1,
+      easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)), // smooth cubic easeOutExpo
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1.0,
-      touchMultiplier: 1.5,
+      wheelMultiplier: 0.9,
+      syncTouch: false, // Let touchscreens use native scroll momentum for 0-lag responsiveness
+      touchInertia: 0.8,
       infinite: false,
     });
 

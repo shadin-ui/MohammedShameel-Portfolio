@@ -618,20 +618,18 @@
   opacity: 0;
   pointer-events: none;
   z-index: 1;
+  --blob-opacity-target: 0.22;
   animation: idBlobReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards,
              idBlobPulse 8s ease-in-out infinite alternate;
 }
 
 [data-theme="light"] .id-modal-blob {
   filter: blur(90px);
+  --blob-opacity-target: 0.11;
 }
 
 @keyframes idBlobReveal {
-  to { opacity: 0.22; }
-}
-
-[data-theme="light"] @keyframes idBlobReveal {
-  to { opacity: 0.11; }
+  to { opacity: var(--blob-opacity-target, 0.22); }
 }
 
 @keyframes idBlobPulse {
