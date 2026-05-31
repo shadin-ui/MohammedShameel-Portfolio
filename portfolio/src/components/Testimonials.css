@@ -1274,6 +1274,8 @@
   .id-card-body {
     padding-top: 12px;
   }
+}
+
 @media (max-width: 400px) {
   .id-card-body {
     padding: 16px 14px 8px; /* reduced horizontal padding */
