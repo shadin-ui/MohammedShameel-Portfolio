@@ -1,0 +1,111 @@
+/* ── SaaS 3D Background Decorations ── */
+.saas-background-decorations {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Sits behind text, but above background radial glow */
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.saas-shape {
+  position: absolute;
+  mix-blend-mode: lighten; /* Blend out dark background perfectly */
+  opacity: 0.08; /* Extremely low opacity for subtle decoration */
+  transition: opacity 0.5s ease;
+  will-change: transform; /* Hardware Acceleration */
+  transform: translate3d(0, 0, 0); /* Forces GPU compositing layer */
+}
+
+[data-theme="light"] .saas-shape {
+  opacity: 0.04; /* Even more subtle in light mode */
+  mix-blend-mode: multiply; /* Darker outline blending for light backgrounds */
+  transform: translate3d(0, 0, 0);
+}
+
+.saas-shape img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Shape positions and animations */
+.shape-torus {
+  top: 15vh;
+  left: 5vw;
+  width: clamp(200px, 25vw, 400px);
+  animation: floatTorus 25s ease-in-out infinite;
+  filter: blur(2px);
+}
+
+.shape-cube {
+  top: 180vh;
+  right: 4vw;
+  width: clamp(220px, 28vw, 450px);
+  animation: floatCube 28s ease-in-out infinite;
+  filter: blur(1px);
+}
+
+.shape-sphere {
+  bottom: 20vh;
+  left: -2vw;
+  width: clamp(240px, 30vw, 480px);
+  animation: floatSphere 32s ease-in-out infinite;
+  filter: blur(3px);
+}
+
+/* Float Slow Keyframes */
+@keyframes floatTorus {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  33% {
+    transform: translate(25px, -35px) rotate(45deg) scale(1.05);
+  }
+  66% {
+    transform: translate(-15px, 20px) rotate(90deg) scale(0.95);
+  }
+}
+
+@keyframes floatCube {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate(-30px, 45px) rotate(-180deg) scale(1.1);
+  }
+}
+
+@keyframes floatSphere {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate(40px, -20px) rotate(120deg) scale(0.9);
+  }
+}
+
+/* Mobile: show shapes at reduced size/opacity */
+@media (max-width: 768px) {
+  .saas-background-decorations {
+    display: block;
+    overflow: visible;
+  }
+
+  .saas-shape {
+    opacity: 0.05;
+  }
+
+  .shape-torus {
+    top: 8vh;
+    left: -8vw;
+    width: clamp(120px, 40vw, 200px);
+  }
+
+  .shape-sphere {
+    bottom: 10vh;
+    left: -6vw;
+    width: clamp(140px, 45vw, 220px);
+  }
+}

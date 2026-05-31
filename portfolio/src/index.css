@@ -1,0 +1,415 @@
+/* ============================================
+   MOHAMMED SHAMEEL — PORTFOLIO DESIGN SYSTEM
+   Primary: #520380 (Deep Purple)
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital,wght@0,400;1,400&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Primary Palette */
+  --purple-950: #0f0118;
+  --purple-900: #1a0129;
+  --purple-800: #2d0147;
+  --purple-700: #3d0261;
+  --purple-600: #520380;
+  --purple-500: #6b10a0;
+  --purple-400: #8b2fc0;
+  --purple-300: #a855d9;
+  --purple-200: #c084ef;
+  --purple-100: #dbb4f7;
+  --purple-50: #f3e8ff;
+
+  /* Accent */
+  --accent-blue: #3b82f6;
+  --accent-teal: #14b8a6;
+  --accent-amber: #f59e0b;
+  --accent-rose: #f43f5e;
+  --accent-emerald: #10b981;
+
+  /* Neutral */
+  --dark-950: #06050a;
+  --dark-900: #0a0810;
+  --dark-800: #12101a;
+  --dark-700: #1c1826;
+  --dark-600: #272230;
+  --dark-500: #3d3548;
+  --dark-400: #5a5068;
+  --dark-300: #80788e;
+  --dark-200: #a8a0b4;
+  --dark-100: #d4cfe0;
+  --dark-50: #eeeaf5;
+
+  /* Text */
+  --text-primary: #f5f0ff;
+  --text-secondary: #b8b0c8;
+  --text-muted: #7a7290;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #520380 0%, #8b2fc0 50%, #a855d9 100%);
+  --gradient-glow: linear-gradient(135deg, #520380 0%, #6b10a0 100%);
+  --gradient-card: linear-gradient(135deg, rgba(82, 3, 128, 0.1) 0%, rgba(139, 47, 192, 0.05) 100%);
+  --gradient-hero-bg: radial-gradient(ellipse at 30% 50%, rgba(82, 3, 128, 0.12) 0%, transparent 60%);
+
+  /* Typography'Instrument Serif' */
+  --font-serif: 'Bricolage Grotesque', 'Bricolage Grotesque', 'DM Serif Display', Georgia, serif;
+  --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Bricolage Grotesque', 'Space Grotesk', sans-serif;
+
+  /* Spacing */
+  --section-padding: clamp(80px, 10vw, 140px);
+
+  /* Borders */
+  --border-subtle: 1px solid rgba(82, 3, 128, 0.12);
+  --border-glow: 1px solid rgba(82, 3, 128, 0.3);
+
+  /* Transitions */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Light Mode ── */
+[data-theme="light"] {
+  --dark-950: #f8f6fc;
+  --dark-900: #f2eff8;
+  --dark-800: #ebe7f3;
+  --dark-700: #e0dbed;
+  --dark-600: #d2cce0;
+  --dark-500: #b8b0c8;
+  --dark-400: #9a90ae;
+  --dark-300: #7a7290;
+  --dark-200: #5a5068;
+  --dark-100: #3d3548;
+  --dark-50: #1c1826;
+
+  --text-primary: #1a0129;
+  --text-secondary: #4a3d5c;
+  --text-muted: #7a7290;
+
+  --border-subtle: 1px solid rgba(82, 3, 128, 0.1);
+  --border-glow: 1px solid rgba(82, 3, 128, 0.2);
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ── Lenis Smooth Scroll Core Styles ── */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+html {
+  scroll-padding-top: 80px;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  font-family: var(--font-primary);
+  background: var(--dark-950);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Ensure every section & its children never cause horizontal scroll */
+section {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* Critical: prevent grid/flex children from busting out of container */
+.about-grid > *,
+.ventures-grid > *,
+.ventures-grid-2col > *,
+.expertise-grid > *,
+.bento-grid > *,
+.gitex-inner > *,
+.huddle-inner > *,
+.contact-grid > * {
+  min-width: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 48px);
+}
+
+/* Utility */
+.text-gradient {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Scroll animation base — springy popup dynamics */
+.reveal {
+  opacity: 0;
+  transform: translateY(35px) scale(0.96);
+  transition: opacity 0.85s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.85s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform, opacity;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.reveal-delay-1 {
+  transition-delay: 0.1s;
+}
+
+.reveal-delay-2 {
+  transition-delay: 0.2s;
+}
+
+.reveal-delay-3 {
+  transition-delay: 0.3s;
+}
+
+.reveal-delay-4 {
+  transition-delay: 0.4s;
+}
+
+.reveal-delay-5 {
+  transition-delay: 0.5s;
+}
+
+/* ── Selection ── */
+::selection {
+  background: rgba(82, 3, 128, 0.4);
+  color: white;
+}
+
+/* ── Sleek Glassmorphism Custom Scrollbar ── */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(10, 8, 16, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--purple-600) 0%, var(--purple-400) 100%);
+  border: 2.5px solid var(--dark-950);
+  border-radius: 100px;
+  box-shadow: inset 0 0 6px rgba(139, 47, 192, 0.4);
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--purple-500) 0%, var(--purple-300) 100%);
+  box-shadow: inset 0 0 10px rgba(139, 47, 192, 0.6);
+}
+
+[data-theme="light"]::-webkit-scrollbar-track {
+  background: rgba(242, 239, 248, 0.5);
+}
+
+[data-theme="light"]::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--purple-300) 0%, var(--purple-200) 100%);
+  border-color: #f8f6fc;
+}
+
+/* ── Global Section Header Hover Color Change Only ── */
+.about-header h2,
+.ventures-header h2,
+.expertise-header h2,
+.edu-col h2,
+.contact-left h2 {
+  display: inline-block;
+  cursor: pointer;
+  transition: color 0.4s ease;
+}
+
+.about-header h2:hover,
+.ventures-header h2:hover,
+.expertise-header h2:hover,
+.edu-col h2:hover,
+.contact-left h2:hover {
+  color: var(--purple-300);
+}
+
+[data-theme="light"] .about-header h2:hover,
+[data-theme="light"] .ventures-header h2:hover,
+[data-theme="light"] .expertise-header h2:hover,
+[data-theme="light"] .edu-col h2:hover,
+[data-theme="light"] .contact-left h2:hover {
+  color: var(--purple-600);
+}
+
+/* ============================================================
+   GLOBAL GRADIENT CARD  — purple radial + subtle stroke
+   Apply to any card in the site for consistent premium look
+   ============================================================ */
+
+/* Dark mode — deep translucent purple gradient */
+.venture-card,
+.testimonial-card,
+.contact-form-container,
+.expertise-item,
+.contact-card,
+.collab-bar,
+.cc-stat,
+.gitex-card,
+.mentor-card,
+.edu-timeline-item,
+.collab-chip {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(82, 3, 128, 0.09)  0%,
+      rgba(139, 47, 192, 0.04) 60%,
+      rgba(82, 3, 128, 0.06)  100%
+    ) !important;
+  border: 1px solid rgba(139, 47, 192, 0.18) !important;
+  position: relative;
+}
+
+/* Top specular stroke line — the signature */
+.venture-card::after,
+.testimonial-card::after,
+.expertise-item::after,
+.mentor-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(168, 85, 247, 0.35) 30%,
+    rgba(200, 140, 255, 0.5) 50%,
+    rgba(168, 85, 247, 0.35) 70%,
+    transparent
+  );
+  border-radius: 100px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Light mode — soft lavender gradient + purple stroke */
+[data-theme="light"] .venture-card,
+[data-theme="light"] .testimonial-card,
+[data-theme="light"] .contact-form-container,
+[data-theme="light"] .expertise-item,
+[data-theme="light"] .contact-card,
+[data-theme="light"] .collab-bar,
+[data-theme="light"] .cc-stat,
+[data-theme="light"] .gitex-card,
+[data-theme="light"] .mentor-card,
+[data-theme="light"] .edu-timeline-item,
+[data-theme="light"] .collab-chip {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(247, 242, 255, 0.98) 0%,
+      rgba(237, 220, 255, 0.6)  50%,
+      rgba(247, 242, 255, 0.95) 100%
+    ) !important;
+  border: 1px solid rgba(139, 47, 192, 0.16) !important;
+  box-shadow:
+    0 2px 12px rgba(82, 3, 128, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+[data-theme="light"] .venture-card.featured {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(247, 242, 255, 0.98) 0%,
+      rgba(232, 210, 255, 0.7)  50%,
+      rgba(247, 242, 255, 0.95) 100%
+    ) !important;
+  border-color: rgba(139, 47, 192, 0.22) !important;
+}
+
+/* ── Cinematic Page Entry Reveal Animation (Applies to all inner divs) ── */
+.app-main-container {
+  opacity: 0;
+  transform: scale(0.985);
+  filter: blur(10px);
+  transition: 
+    opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.6s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity, filter;
+}
+
+body.loaded .app-main-container {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+}
+
+/* ── Premium Responsive Global Typography Alignment ── */
+@media (max-width: 768px) {
+  /* Make all general descriptive body texts fully justified for absolute neatness */
+  p,
+  .quote-text,
+  .id-quote-text,
+  .about-lead,
+  .testimonials-sub,
+  .ventures-sub,
+  .expertise-sub,
+  .gallery-sub,
+  .huddle-sub,
+  .contact-desc {
+    text-align: justify !important;
+    text-justify: inter-word; /* High performance word spacing balance */
+    hyphens: auto; /* Clean break-points on small displays */
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+  }
+}
