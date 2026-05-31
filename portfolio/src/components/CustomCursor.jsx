@@ -2,17 +2,17 @@ import { useEffect, useRef } from 'react';
 import './CustomCursor.css';
 
 export default function CustomCursor() {
-  const isTouchDevice = typeof window !== 'undefined' && 
-    ('ontouchstart' in window || navigator.maxTouchPoints > 0);
-
-  if (isTouchDevice) return null;
-
   const circleRef = useRef(null);
   const dotRef = useRef(null);
   const pos = useRef({ x: 0, y: 0 });
   const target = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
+    const isTouchDevice = typeof window !== 'undefined' && 
+      ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+
+    if (isTouchDevice) return; // Exit cleanly inside the effect on touch screens
+
     const handleMove = (e) => {
       // Instant positioning for the leading dot
       if (dotRef.current) {
@@ -73,6 +73,11 @@ export default function CustomCursor() {
       document.removeEventListener('mouseover', handleOver);
     };
   }, []);
+
+  const isTouchDevice = typeof window !== 'undefined' && 
+    ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+
+  if (isTouchDevice) return null; // Safe to return null below hook calls!
 
   return (
     <>
