@@ -2,6 +2,12 @@
    LYNQ ECOSYSTEM COMMAND PANEL & ADMIN STYLES
    ========================================================================== */
 
+/* Force body background to dark when Admin Panel is active to prevent light theme leaks */
+body:has(.admin-console-layout),
+body:has(.admin-login-wrapper) {
+  background-color: #0a0a0f !important;
+}
+
 /* Theme Variables (scoped to admin context) */
 .admin-login-wrapper,
 .admin-console-layout {
@@ -1192,6 +1198,20 @@
   }
 }
 
+@media (max-width: 900px) {
+  .console-calendar-workspace-split {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 16px;
+  }
+  
+  .console-visual-calendar-card {
+    align-self: center;
+    width: 100%;
+    max-width: 360px;
+  }
+}
+
 @media (max-width: 768px) {
   .admin-console-layout {
     padding: 20px;
@@ -1224,5 +1244,22 @@
 
   .login-glass-card {
     padding: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .crm-actions-buttons-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .console-metrics-row {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .metric-glass-card {
+    padding: 16px;
+    gap: 15px;
   }
 }

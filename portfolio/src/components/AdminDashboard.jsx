@@ -100,6 +100,15 @@ export default function AdminDashboard() {
     }
   }, []);
 
+  // Force dark theme on mount for tech console aesthetics, restore original on leave
+  useEffect(() => {
+    const originalTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', 'dark');
+    return () => {
+      document.documentElement.setAttribute('data-theme', originalTheme);
+    };
+  }, []);
+
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     setError('');
