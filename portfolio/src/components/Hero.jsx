@@ -68,12 +68,19 @@ export default function Hero() {
                   alt="Mohammed Shameel"
                   className="hero-mobile-photo-img"
                 />
-              </div>
-              {/* Small name chip */}
-              <div className="hero-mobile-chip">
-                <img src={lynqIcon} alt="LYNQ" className="hero-mobile-chip-logo" />
-                <span>Mohammed Shameel</span>
-                <span className="hero-mobile-chip-dot" />
+                {/* Floating card inside photo container matching the desktop layout */}
+                <div className="hero-mobile-float-card">
+                  <div className="hero-mobile-float-avatar">
+                    <img src={lynqIcon} alt="LYNQ" />
+                  </div>
+                  <div className="hero-mobile-float-info">
+                    <h4>Mohammed Shameel</h4>
+                    <p>CSO · Venture Operator · LYNQ Capital</p>
+                  </div>
+                  <div className="hero-mobile-float-badge">
+                    Available
+                  </div>
+                </div>
               </div>
             </div>
 

@@ -825,76 +825,155 @@
     width: 100%;
   }
 
-  /* Gradient ring around rounded-square photo - enlarged as requested */
+  /* Clean edge-to-edge mobile photo frame matching the desktop 4:5 design */
   .hero-mobile-photo-ring {
-    width: 240px;
-    height: 300px; /* Proportional 4:5 aspect ratio matching the desktop design */
-    border-radius: 28px;
-    padding: 4px;
-    background: linear-gradient(135deg, #520380 0%, #8b2fc0 50%, #a855d9 100%);
+    position: relative;
+    width: 290px;
+    height: 362px;
+    border-radius: 32px;
+    overflow: hidden;
+    background: var(--dark-900);
     box-shadow:
-      0 0 0 6px rgba(82, 3, 128, 0.12),
-      0 16px 40px rgba(82, 3, 128, 0.3),
-      0 0 60px rgba(139, 47, 192, 0.15);
-    animation: mobilePulseRing 3s ease-in-out infinite;
+      0 16px 40px rgba(0, 0, 0, 0.18),
+      0 0 40px rgba(139, 47, 192, 0.12);
+    border: 1px solid rgba(82, 3, 128, 0.15);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    animation: mobileFloatCard 6s ease-in-out infinite alternate;
   }
 
-  @keyframes mobilePulseRing {
-    0%, 100% { box-shadow: 0 0 0 6px rgba(82, 3, 128, 0.12), 0 16px 40px rgba(82, 3, 128, 0.3), 0 0 60px rgba(139, 47, 192, 0.15); }
-    50%       { box-shadow: 0 0 0 10px rgba(82, 3, 128, 0.06), 0 20px 50px rgba(82, 3, 128, 0.4), 0 0 80px rgba(139, 47, 192, 0.25); }
+  @keyframes mobileFloatCard {
+    0% {
+      transform: translateY(0) rotate(0deg);
+    }
+    100% {
+      transform: translateY(-8px) rotate(1deg);
+    }
   }
 
   .hero-mobile-photo-img {
     width: 100%;
     height: 100%;
-    border-radius: 24px;
+    border-radius: 30px;
     object-fit: cover;
-    object-position: center 10%;  /* Show face, not chest */
+    object-position: center 10%;
     display: block;
   }
 
-  /* Small name chip below the photo */
-  .hero-mobile-chip {
-    display: inline-flex;
+  /* Premium floating glassmorphic card inside the mobile photo container */
+  .hero-mobile-float-card {
+    position: absolute;
+    bottom: 16px;
+    left: 12px;
+    right: 12px;
+    z-index: 3;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, 0.78) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(82, 3, 128, 0.14) !important;
+    border-radius: 20px;
+    display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 7px 16px;
-    border-radius: 100px;
+    gap: 12px;
+    box-shadow: 
+      0 12px 28px rgba(0, 0, 0, 0.08),
+      0 1px 3px rgba(0, 0, 0, 0.04);
+    box-sizing: border-box;
+  }
+
+  [data-theme="dark"] .hero-mobile-float-card {
+    background: rgba(10, 10, 12, 0.78) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 
+      0 12px 30px rgba(0, 0, 0, 0.45),
+      0 0 20px rgba(168, 85, 217, 0.18);
+  }
+
+  .hero-mobile-float-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
     background: rgba(82, 3, 128, 0.08);
-    border: 1px solid rgba(139, 47, 192, 0.2);
-    font-family: var(--font-display);
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--purple-300);
-    letter-spacing: 0.3px;
+    border: 1px solid rgba(82, 3, 128, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
   }
 
-  [data-theme="light"] .hero-mobile-chip {
-    background: rgba(82, 3, 128, 0.05);
-    border-color: rgba(82, 3, 128, 0.15);
-    color: var(--purple-700);
+  [data-theme="dark"] .hero-mobile-float-avatar {
+    background: rgba(15, 6, 25, 0.4);
+    border-color: rgba(168, 85, 247, 0.2);
   }
 
-  .hero-mobile-chip-logo {
-    width: 16px;
-    height: 16px;
+  .hero-mobile-float-avatar img {
+    width: 72%;
+    height: 72%;
     object-fit: contain;
-    border-radius: 3px;
+    border-radius: 4px;
   }
 
-  /* Blinking green status dot */
-  .hero-mobile-chip-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #10b981;
-    box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
-    animation: chipDotBlink 2s ease-in-out infinite;
+  [data-theme="light"] .hero-mobile-float-avatar img {
+    filter: brightness(0) saturate(100%) invert(9%) sepia(99%) saturate(5304%) hue-rotate(279deg) brightness(79%) contrast(118%);
   }
 
-  @keyframes chipDotBlink {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0.4; }
+  .hero-mobile-float-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    text-align: left !important;
+  }
+
+  .hero-mobile-float-info h4 {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--dark-950) !important;
+    letter-spacing: -0.2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 !important;
+    line-height: 1.2 !important;
+  }
+
+  [data-theme="dark"] .hero-mobile-float-info h4 {
+    color: white !important;
+  }
+
+  .hero-mobile-float-info p {
+    font-size: 10px;
+    color: var(--text-secondary) !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 !important;
+    line-height: 1.2 !important;
+  }
+
+  [data-theme="light"] .hero-mobile-float-info p {
+    color: #5a5068 !important;
+  }
+
+  .hero-mobile-float-badge {
+    margin-left: auto;
+    padding: 5px 12px;
+    background: rgba(168, 85, 247, 0.12) !important;
+    border: 1px solid rgba(168, 85, 247, 0.25) !important;
+    border-radius: 100px;
+    font-family: var(--font-display);
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #8b5cf6 !important;
+    white-space: nowrap;
+  }
+
+  [data-theme="dark"] .hero-mobile-float-badge {
+    background: rgba(168, 85, 247, 0.18) !important;
+    border-color: rgba(168, 85, 247, 0.4) !important;
+    color: #c084ef !important;
   }
 
   /* ── Stats bar ── */
@@ -933,8 +1012,29 @@
 /* Extra small phones */
 @media (max-width: 400px) {
   .hero-mobile-photo-ring {
-    width: 200px;
-    height: 250px; /* Proportional 4:5 aspect ratio matching the desktop design */
+    width: 250px;
+    height: 312px;
+  }
+  .hero-mobile-float-card {
+    padding: 10px 12px;
+    gap: 8px;
+    bottom: 12px;
+    left: 8px;
+    right: 8px;
+  }
+  .hero-mobile-float-avatar {
+    width: 32px;
+    height: 32px;
+  }
+  .hero-mobile-float-info h4 {
+    font-size: 11.5px;
+  }
+  .hero-mobile-float-info p {
+    font-size: 9px;
+  }
+  .hero-mobile-float-badge {
+    padding: 4px 8px;
+    font-size: 9.5px;
   }
 }
 
