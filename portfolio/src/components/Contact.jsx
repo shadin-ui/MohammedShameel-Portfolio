@@ -308,7 +308,8 @@ export default function Contact() {
                       <line x1="8" y1="2" x2="8" y2="6" />
                       <line x1="3" y1="10" x2="21" y2="10" />
                     </svg>
-                    Schedule<span className="tab-btn-word-extra"> Call</span>
+                    <span className="tab-btn-word-mobile">Book</span>
+                    <span className="tab-btn-word-desktop">Schedule Call</span>
                   </button>
                 </div>
 

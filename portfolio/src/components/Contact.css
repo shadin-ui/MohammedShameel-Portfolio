@@ -713,22 +713,29 @@
   }
 
   .form-tabs {
-    gap: 6px;
-    padding: 5px;
+    display: flex !important;
+    gap: 4px !important;
+    padding: 4px !important;
     margin-bottom: 20px;
   }
 
   .form-tab-btn {
-    font-size: 12px;
-    padding: 9px 6px;
-    gap: 5px;
+    flex: 1 !important;
+    min-width: 0 !important;
+    font-size: 11px !important;
+    padding: 9px 4px !important;
+    gap: 4px !important;
   }
 
   .tab-icon {
-    display: none; /* hide icon on tiny screens — save space */
+    display: none !important;
   }
 
-  .tab-btn-word-extra {
+  .tab-btn-word-mobile {
+    display: inline !important;
+  }
+
+  .tab-btn-word-desktop {
     display: none !important;
   }
 
@@ -948,6 +955,14 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
+}
+
+.tab-btn-word-mobile {
+  display: none;
+}
+
+.tab-btn-word-desktop {
+  display: inline;
 }
 
 .form-tab-btn.active {
