@@ -282,33 +282,45 @@
     height: 420px;
   }
 
-  /* On mobile the label is horizontal — pin it left of the arrow, clip overflow */
+  /* On mobile the label is vertically stacked to show full title without clipping */
   .panel-collapsed-label {
     position: absolute;
     top: 50%;
-    left: 68px;
-    right: 12px;      /* stop it reaching the edge */
+    left: 64px;
+    right: 16px;
     width: auto;
     height: auto;
     transform: translateY(-50%);
     /* reset desktop rotation */
     rotate: none;
-    flex-direction: row;
-    align-items: center;
-    gap: 6px;
-    white-space: nowrap;
-    overflow: hidden;  /* clip overflow */
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2px;
+    white-space: normal;
   }
 
   .collapsed-tag {
-    flex-shrink: 0;    /* badge never shrinks */
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+
+  /* Hide the separator dot on mobile as they stack vertically */
+  .collapsed-tag::after {
+    display: none !important;
   }
 
   .collapsed-title {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    min-width: 0;      /* allows flex child to shrink */
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+    white-space: normal;
+    text-overflow: clip;
+    overflow: visible;
+    min-width: 0;
   }
 
   .panel-header {
