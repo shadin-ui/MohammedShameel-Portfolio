@@ -1,7 +1,10 @@
 /* ── Custom Cursor — Dual-Element Instant Dot & Trailing Circle with Dollar ($) ── */
 
-/* Hide default cursor globally */
-*, *::before, *::after {
+/* Hide default cursor globally only when JavaScript is loaded and active */
+.custom-cursor-active,
+.custom-cursor-active *,
+.custom-cursor-active *::before,
+.custom-cursor-active *::after {
   cursor: none !important;
 }
 
