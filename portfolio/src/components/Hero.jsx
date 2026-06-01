@@ -156,7 +156,10 @@ export default function Hero() {
                   <h4>Mohammed Shameel</h4>
                   <p>CSO · Venture Operator · LYNQ Capital</p>
                 </div>
-                <div className="hero-float-badge">Available</div>
+                <div className="hero-float-badge live">
+                  <span className="live-indicator-dot"></span>
+                  Live
+                </div>
               </div>
             </div>
           </div>
