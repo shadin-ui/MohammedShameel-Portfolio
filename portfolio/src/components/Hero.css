@@ -828,8 +828,8 @@
   /* Clean edge-to-edge mobile photo frame matching the desktop 4:5 design */
   .hero-mobile-photo-ring {
     position: relative;
-    width: 290px;
-    height: 362px;
+    width: 310px;
+    height: 388px;
     border-radius: 32px;
     overflow: hidden;
     background: var(--dark-900);
@@ -862,19 +862,19 @@
   /* Premium floating glassmorphic card inside the mobile photo container */
   .hero-mobile-float-card {
     position: absolute;
-    bottom: 16px;
-    left: 12px;
-    right: 12px;
+    bottom: 12px;
+    left: 8px;
+    right: 8px;
     z-index: 3;
-    padding: 12px 14px;
+    padding: 10px 12px;
     background: rgba(255, 255, 255, 0.78) !important;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(82, 3, 128, 0.14) !important;
-    border-radius: 20px;
+    border-radius: 18px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     box-shadow: 
       0 12px 28px rgba(0, 0, 0, 0.08),
       0 1px 3px rgba(0, 0, 0, 0.04);
@@ -928,13 +928,13 @@
 
   .hero-mobile-float-info h4 {
     font-family: var(--font-display);
-    font-size: 13px;
+    font-size: 12.5px;
     font-weight: 700;
     color: var(--dark-950) !important;
     letter-spacing: -0.2px;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow: visible;
+    text-overflow: clip;
     margin: 0 !important;
     line-height: 1.2 !important;
   }
@@ -944,13 +944,15 @@
   }
 
   .hero-mobile-float-info p {
-    font-size: 10px;
+    font-size: 9.5px;
     color: var(--text-secondary) !important;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
+    word-break: break-word;
     margin: 0 !important;
-    line-height: 1.2 !important;
+    line-height: 1.3 !important;
+    max-width: 145px;
+    overflow: visible;
+    text-overflow: clip;
   }
 
   [data-theme="light"] .hero-mobile-float-info p {
@@ -1012,29 +1014,31 @@
 /* Extra small phones */
 @media (max-width: 400px) {
   .hero-mobile-photo-ring {
-    width: 250px;
-    height: 312px;
+    width: 260px;
+    height: 325px;
   }
   .hero-mobile-float-card {
-    padding: 10px 12px;
-    gap: 8px;
-    bottom: 12px;
-    left: 8px;
-    right: 8px;
+    padding: 8px 10px;
+    gap: 6px;
+    bottom: 10px;
+    left: 6px;
+    right: 6px;
+    border-radius: 15px;
   }
   .hero-mobile-float-avatar {
     width: 32px;
     height: 32px;
   }
   .hero-mobile-float-info h4 {
-    font-size: 11.5px;
+    font-size: 11px;
   }
   .hero-mobile-float-info p {
-    font-size: 9px;
+    font-size: 8.5px;
+    max-width: 105px !important;
   }
   .hero-mobile-float-badge {
     padding: 4px 8px;
-    font-size: 9.5px;
+    font-size: 9px;
   }
 }
 

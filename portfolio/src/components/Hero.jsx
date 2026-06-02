@@ -64,7 +64,7 @@ export default function Hero() {
             <div className="hero-mobile-photo">
               <div className="hero-mobile-photo-ring">
                 <img
-                  src="/hero-new.png"
+                  src="/hero-profile.png"
                   alt="Mohammed Shameel"
                   className="hero-mobile-photo-img"
                 />
