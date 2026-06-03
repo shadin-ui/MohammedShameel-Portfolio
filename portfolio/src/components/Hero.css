@@ -22,6 +22,22 @@
   background:
     radial-gradient(ellipse at 20% 80%, rgba(82, 3, 128, 0.15) 0%, transparent 50%),
     radial-gradient(ellipse at 70% 30%, rgba(82, 3, 128, 0.08) 0%, transparent 50%);
+  animation: bgGlowBreath 16s ease-in-out infinite alternate;
+}
+
+@keyframes bgGlowBreath {
+  0% {
+    filter: hue-rotate(0deg) brightness(1);
+    opacity: 0.85;
+  }
+  50% {
+    filter: hue-rotate(15deg) brightness(1.1);
+    opacity: 1;
+  }
+  100% {
+    filter: hue-rotate(-10deg) brightness(0.95);
+    opacity: 0.9;
+  }
 }
 
 .hero-bg-grid {
@@ -420,9 +436,11 @@
 }
 
 .loaded .hero-image-wrapper {
-  animation: 
-    heroImageRise 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards,
-    heroImageFloat 8s ease-in-out infinite alternate 2.1s; /* smooth float starts after entry completes */
+  animation: heroImageRise 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+
+.loaded .hero-right {
+  animation: heroRightFloat 8s ease-in-out infinite alternate 2.1s;
 }
 
 @keyframes heroImageRise {
@@ -438,18 +456,12 @@
   }
 }
 
-@keyframes heroImageFloat {
+@keyframes heroRightFloat {
   0% {
-    transform: translateY(0) rotateY(0deg) rotateX(0deg);
-    box-shadow: 
-      0 20px 40px rgba(0, 0, 0, 0.28),
-      0 0 30px rgba(139, 47, 192, 0.1);
+    transform: translateY(0) scale(1);
   }
   100% {
-    transform: translateY(-16px) rotateY(3deg) rotateX(-2deg);
-    box-shadow: 
-      0 35px 60px rgba(0, 0, 0, 0.38),
-      0 0 50px rgba(168, 85, 247, 0.22);
+    transform: translateY(-16px) scale(1.015);
   }
 }
 
@@ -752,7 +764,7 @@
     height: 50vh;
     min-height: 400px;
     padding: 0 clamp(24px, 5vw, 48px) 80px;
-    overflow: hidden;
+    overflow: visible; /* Show shadows and allow float range */
     align-items: center; /* Reset to center for tablet/mobile centering */
   }
 
@@ -850,10 +862,10 @@
 
   @keyframes mobileFloatCard {
     0% {
-      transform: translateY(0) rotate(0deg);
+      transform: translateY(0) rotate(0deg) scale(1);
     }
     100% {
-      transform: translateY(-8px) rotate(1deg);
+      transform: translateY(-8px) rotate(1deg) scale(1.02);
     }
   }
 
@@ -983,6 +995,22 @@
     background: rgba(168, 85, 247, 0.18) !important;
     border-color: rgba(168, 85, 247, 0.4) !important;
     color: #c084ef !important;
+  }
+
+  .hero-mobile-float-badge.live {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(16, 185, 129, 0.12) !important;
+    border: 1px solid rgba(16, 185, 129, 0.35) !important;
+    color: #10b981 !important;
+  }
+
+  [data-theme="dark"] .hero-mobile-float-badge.live {
+    background: rgba(16, 185, 129, 0.15) !important;
+    border-color: rgba(16, 185, 129, 0.45) !important;
+    color: #34d399 !important;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.15);
   }
 
   /* ── Stats bar ── */

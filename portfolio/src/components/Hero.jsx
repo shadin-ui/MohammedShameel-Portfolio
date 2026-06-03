@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { useCountUp, useScrollReveal } from '../hooks';
 import lynqIcon from '../assets/icon lynq.png';
 import './Hero.css';
@@ -7,6 +8,33 @@ export default function Hero() {
   const startups = useCountUp(39, 2000, statsVisible);
   const fundraising = useCountUp(22, 2000, statsVisible);
   const ventures = useCountUp(6, 1500, statsVisible);
+
+  const cardRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    const card = cardRef.current;
+    if (!card) return;
+
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = ((centerY - y) / centerY) * 12; // tilt towards cursor vertically
+    const rotateY = ((x - centerX) / centerX) * 12; // tilt towards cursor horizontally
+
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+    card.style.transition = 'transform 0.1s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.1s cubic-bezier(0.25, 1, 0.5, 1)';
+  };
+
+  const handleMouseLeave = () => {
+    const card = cardRef.current;
+    if (!card) return;
+    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    card.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+  };
 
   const scrollToSection = (id) => {
     const el = document.querySelector(id);
@@ -77,8 +105,9 @@ export default function Hero() {
                     <h4>Mohammed Shameel</h4>
                     <p>CSO · Venture Operator · LYNQ Capital</p>
                   </div>
-                  <div className="hero-mobile-float-badge">
-                    Available
+                  <div className="hero-mobile-float-badge live">
+                    <span className="live-indicator-dot"></span>
+                    Live
                   </div>
                 </div>
               </div>
@@ -138,7 +167,12 @@ export default function Hero() {
 
           {/* ── Right — Full image (desktop only, hidden on mobile) ── */}
           <div className="hero-right">
-            <div className="hero-image-wrapper">
+            <div 
+              ref={cardRef}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              className="hero-image-wrapper"
+            >
               <img
                 src="/hero-new.png"
                 alt="Mohammed Shameel"
