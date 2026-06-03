@@ -21,6 +21,16 @@ export default function DottedPath() {
           className="dotted-line-base"
         />
 
+        {/* Outer Glow Backing Path (Native Vector Glow, 0-Lag) */}
+        <path
+          d="M 1150 450 C 650 900, 200 1300, 720 1700 C 1240 2100, 1100 2700, 250 3100 C -100 3600, 450 4300, 1150 4700 C 1650 5100, 950 5550, 720 5950"
+          stroke="rgba(16, 185, 129, 0.22)"
+          strokeWidth="10"
+          strokeLinecap="round"
+          strokeDasharray="30, 200"
+          className="dotted-line-pulse-glow"
+        />
+
         {/* Floating bright glowing dashes (the "blowing" pulse elements) */}
         <path
           d="M 1150 450 C 650 900, 200 1300, 720 1700 C 1240 2100, 1100 2700, 250 3100 C -100 3600, 450 4300, 1150 4700 C 1650 5100, 950 5550, 720 5950"

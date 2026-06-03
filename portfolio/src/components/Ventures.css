@@ -964,6 +964,7 @@
 /* Horizontal scan line laser */
 .snapshare-scan-line {
   position: absolute;
+  top: 0;
   left: 0;
   right: 0;
   height: 2px;
@@ -976,20 +977,22 @@
   opacity: 0.8;
   z-index: 4;
   pointer-events: none;
+  transform: translateY(10px);
+  will-change: transform;
   animation: scanAnim 4s linear infinite;
 }
 
 @keyframes scanAnim {
   0% {
-    top: 10px;
+    transform: translateY(10px);
   }
 
   50% {
-    top: 350px;
+    transform: translateY(350px);
   }
 
   100% {
-    top: 10px;
+    transform: translateY(10px);
   }
 }
 
@@ -1035,15 +1038,15 @@
 
   @keyframes scanAnim {
     0% {
-      top: 10px;
+      transform: translateY(10px);
     }
 
     50% {
-      top: 290px;
+      transform: translateY(290px);
     }
 
     100% {
-      top: 10px;
+      transform: translateY(10px);
     }
   }
 }

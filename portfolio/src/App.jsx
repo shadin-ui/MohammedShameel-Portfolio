@@ -66,6 +66,17 @@ export default function App() {
 
       window.lenis = lenis;
 
+      let scrollTimeout;
+      const handleScrollStart = () => {
+        document.body.classList.add('is-scrolling');
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          document.body.classList.remove('is-scrolling');
+        }, 150);
+      };
+
+      lenis.on('scroll', handleScrollStart);
+
       function raf(time) {
         lenis.raf(time);
         requestAnimationFrame(raf);
@@ -74,8 +85,11 @@ export default function App() {
       requestAnimationFrame(raf);
 
       return () => {
+        lenis.off('scroll', handleScrollStart);
         lenis.destroy();
         window.lenis = null;
+        clearTimeout(scrollTimeout);
+        document.body.classList.remove('is-scrolling');
       };
     }
   }, [isAdmin]);

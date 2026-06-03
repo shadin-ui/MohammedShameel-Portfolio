@@ -199,6 +199,7 @@ button {
 .reveal.visible {
   opacity: 1;
   transform: translateY(0) scale(1);
+  will-change: auto !important;
 }
 
 .reveal-delay-1 {
@@ -234,8 +235,6 @@ button {
 
 ::-webkit-scrollbar-track {
   background: rgba(10, 8, 16, 0.35);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -390,7 +389,8 @@ button {
 body.loaded .app-main-container {
   opacity: 1;
   transform: scale(1);
-  filter: blur(0);
+  filter: none !important;
+  will-change: auto !important;
 }
 
 /* ── Premium Responsive Global Typography Alignment ── */
@@ -412,4 +412,12 @@ body.loaded .app-main-container {
     -webkit-hyphens: auto;
     -ms-hyphens: auto;
   }
+}
+
+/* Pause heavy background animations during scrolls to guarantee 60fps scrolling */
+body.is-scrolling .dotted-line-base,
+body.is-scrolling .dotted-line-pulse,
+body.is-scrolling .dotted-line-pulse-glow,
+body.is-scrolling .saas-shape {
+  animation-play-state: paused !important;
 }
