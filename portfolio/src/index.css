@@ -414,10 +414,10 @@ body.loaded .app-main-container {
   }
 }
 
-/* Pause heavy background animations during scrolls to guarantee 60fps scrolling */
-body.is-scrolling .dotted-line-base,
+/* Heavy background animations are allowed to play constantly without pausing during scrolls. */
+/* body.is-scrolling .dotted-line-base,
 body.is-scrolling .dotted-line-pulse,
 body.is-scrolling .dotted-line-pulse-glow,
 body.is-scrolling .saas-shape {
   animation-play-state: paused !important;
-}
+} */

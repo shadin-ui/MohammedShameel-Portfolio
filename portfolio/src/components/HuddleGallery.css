@@ -539,6 +539,10 @@
 }
 
 @media (max-width: 900px) {
+  .huddle-section {
+    padding: 80px 0 140px !important;
+  }
+
   .huddle-showcase-wrapper {
     aspect-ratio: auto;
     height: auto;
@@ -572,6 +576,12 @@
     gap: 16px !important;
   }
 
+  [data-theme="light"] .huddle-video-container {
+    background: rgba(255, 255, 255, 0.75) !important;
+    border: 1px solid rgba(82, 3, 128, 0.12) !important;
+    box-shadow: 0 10px 30px rgba(82, 3, 128, 0.05) !important;
+  }
+
   .huddle-image {
     position: relative !important;
     width: 100% !important;
@@ -601,6 +611,17 @@
     display: flex;
     flex-direction: column;
     gap: 6px;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-radius: 0 !important;
+  }
+
+  [data-theme="light"] .huddle-meta-title {
+    color: var(--text-primary) !important;
+  }
+
+  [data-theme="light"] .huddle-meta-details {
+    color: var(--text-secondary) !important;
   }
 
   .huddle-meta-details {
@@ -628,7 +649,7 @@
   }
   
   .huddle-image {
-    aspect-ratio: 4 / 3 !important;
+    aspect-ratio: 16 / 9 !important;
     border-radius: 12px !important;
   }
 
